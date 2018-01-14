@@ -22,7 +22,12 @@
 <meta property="og:image" content="http://www.walking999.org/2017/12/23/Github学习笔记/4.png">
 <meta property="og:image" content="http://www.walking999.org/2017/12/23/Github学习笔记/5.png">
 <meta property="og:image" content="http://www.walking999.org/2017/12/23/Github学习笔记/6.png">
-<meta property="og:updated_time" content="2018-01-03T06:32:48.887Z">
+<meta property="og:image" content="http://www.walking999.org/2017/12/23/Github学习笔记/7.png">
+<meta property="og:image" content="http://www.walking999.org/2017/12/23/Github学习笔记/8.png">
+<meta property="og:image" content="http://www.walking999.org/2017/12/23/Github学习笔记/9.png">
+<meta property="og:image" content="http://www.walking999.org/2017/12/23/Github学习笔记/10.png">
+<meta property="og:image" content="http://www.walking999.org/2017/12/23/Github学习笔记/11.png">
+<meta property="og:updated_time" content="2018-01-14T13:13:43.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Github学习笔记">
 <meta name="twitter:description" content="前言对于使用github一知半解的状态是十分难受的，遇到问题时需要不断的查如何解决，所以还不如学习一下github的原理，这才是解决问题的根源。 一开始使用github的时候肯定看过类似github新手教程之类的博客，但由于没有丰富的知识基础为底，导致使用github起来非常不顺手，抽个空学了一下github的原理，并将所理解的记录下来。 github的发展 这是Git： Git是一款免费、开源的">
@@ -248,6 +253,84 @@
 <p><a href="http://blog.csdn.net/tina_ttl/article/details/51326684" target="_blank" rel="noopener">http://blog.csdn.net/tina_ttl/article/details/51326684</a></p>
 <p><a href="http://blog.csdn.net/u012575819/article/details/50553501" target="_blank" rel="noopener">http://blog.csdn.net/u012575819/article/details/50553501</a></p>
 <p><a href="http://blog.csdn.net/lifuxiangcaohui/article/details/17216733" target="_blank" rel="noopener">http://blog.csdn.net/lifuxiangcaohui/article/details/17216733</a></p>
+<p>–2017.12.23</p>
+<h1 id="继续学习github"><a href="#继续学习github" class="headerlink" title="继续学习github"></a>继续学习github</h1><p>前几天完成了数据库课程设计，与朋友一起完成的这次设计，就是用的github做版本控制，真的发现github太太太赞了，经朋友推荐<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" target="_blank" rel="noopener">廖雪峰github讲解</a>写的非常好，现在继续学习一下，并结合自己的使用经验，拿起笔记记录下来。</p>
+<h2 id="版本回退功能"><a href="#版本回退功能" class="headerlink" title="版本回退功能"></a>版本回退功能</h2><ul>
+<li><code>HEAD</code>指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<code>git reset --hard commit_id</code>。</li>
+<li>穿梭前，用<code>git log</code>可以查看提交历史，以便确定要回退到哪个版本。</li>
+<li>要重返未来，用<code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</li>
+<li>（突然发现这是markdown语法，直接把他的小结复制下来了^V^）</li>
+</ul>
+<h2 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h2><p>我认为这张图片已经说明了一切。。。</p>
+<p><img src="/2017/12/23/Github学习笔记/7.png" alt="工作区和暂存区"></p>
+<p>（工作区—-项目文件夹； 版本库—-.git目录）</p>
+<ul>
+<li>用<code>git diff HEAD -- readme.txt</code>命令可以查看工作区和版本库里面最新版本的区别</li>
+<li><code>git checkout -- file</code>可以丢弃工作区的修改，就是让这个文件回到最近一次<code>git commit</code>或<code>git add</code>时的状态。</li>
+<li>用命令<code>git reset HEAD file</code>可以把暂存区的修改撤销掉（unstage），重新放回工作区。</li>
+</ul>
+<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><ul>
+<li>关联远程仓库</li>
+</ul>
+<p>在本地的<code>learngit</code>仓库下运行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github.com:Username/RepositoryName.git</span><br></pre></td></tr></table></figure>
+<p>本地仓库与远程仓库关联。把本地库的内容推送到远程，用<code>git push</code>命令，实际上是把当前分支<code>master</code>推送到远程。</p>
+<p>由于远程库是空的，我们第一次推送<code>master</code>分支时，加上了<code>-u</code>参数，Git不但会把本地的<code>master</code>分支内容推送的远程新的<code>master</code>分支，还会把本地的<code>master</code>分支和远程的<code>master</code>分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>而取消关联:</p>
+<p><code>$ git remote remove origin</code></p>
+<ul>
+<li>clone一个仓库：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git@github.com:Username/RepositoryName.git</span><br></pre></td></tr></table></figure>
+<p>要克隆一个仓库，首先必须知道仓库的地址，然后使用<code>git clone</code>命令克隆。</p>
+<p>Git支持多种协议，包括<code>https</code>，但通过<code>ssh</code>支持的原生<code>git</code>协议速度最快。</p>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><ul>
+<li>创建与合并分支</li>
+</ul>
+<p>关于分支的使用，作者写的很容易理解：<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000" target="_blank" rel="noopener">创建与合并分支</a></p>
+<p><img src="/2017/12/23/Github学习笔记/8.png" alt="图示"></p>
+<p>图示等价于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">master</span><br><span class="line">*dev</span><br></pre></td></tr></table></figure>
+<p>Git鼓励大量使用分支：</p>
+<p>查看分支：<code>git branch</code></p>
+<p>创建分支：<code>git branch &lt;name&gt;</code></p>
+<p>切换分支：<code>git checkout &lt;name&gt;</code></p>
+<p>创建+切换分支：<code>git checkout -b &lt;name&gt;</code></p>
+<p>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
+<p>删除分支：<code>git branch -d &lt;name&gt;</code></p>
+<ul>
+<li>解决冲突</li>
+</ul>
+<p>现在有两个这样的分支：</p>
+<p><img src="/2017/12/23/Github学习笔记/9.png" alt=""></p>
+<p>此时需要手动解决两个分支的冲突（如果在一条线上的两个分支，合并分支的话会自动解决冲突）</p>
+<p>Git用<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>，<code>=======</code>，<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>标记出不同分支的内容，我们修改后保存再提交：</p>
+<p><img src="/2017/12/23/Github学习笔记/10.png" alt=""></p>
+<p>用<code>git log --graph</code>命令可以看到分支合并图。</p>
+<ul>
+<li>bug分支和feature分支</li>
+</ul>
+<p>根据作者所述，结合自己的理解，记录如下：</p>
+<p><img src="/2017/12/23/Github学习笔记/11.png" alt=""></p>
+<h2 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h2><p>​    在理清了分支的基础上，多人协作就是建立在这之上的进一步应用，由于数据库课程设计就是与朋友协作完成的，虽然我不太会用，但通过实践还是很有收获的，故余虽愚，足或有所闻，哈哈。</p>
+<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p>创建标签：</p>
+<p>tag就是一个让人容易记住的有意义的名字，它跟某个commit绑在一起。</p>
+<ul>
+<li>命令<code>git tag &lt;name&gt;</code>用于新建一个标签，默认为<code>HEAD</code>，也可以指定一个commit id；</li>
+<li><code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以指定标签信息；</li>
+<li><code>git tag -s &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以用PGP签名标签；</li>
+<li>命令<code>git tag</code>可以查看所有标签。</li>
+</ul>
+<p>操作标签</p>
+<ul>
+<li>命令<code>git push origin &lt;tagname&gt;</code>可以推送一个本地标签；</li>
+<li>命令<code>git push origin --tags</code>可以推送全部未推送过的本地标签；</li>
+<li>命令<code>git tag -d &lt;tagname&gt;</code>可以删除一个本地标签；</li>
+<li>命令<code>git push origin :refs/tags/&lt;tagname&gt;</code>可以删除一个远程标签。</li>
+</ul>
+<p>实践出真知，以后还得多用才行，忘了就翻笔记！</p>
+<p>–2018.1.14</p>
 
       
 
