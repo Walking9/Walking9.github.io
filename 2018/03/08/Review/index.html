@@ -9,7 +9,7 @@
   <title>Review | Walking9&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="C/C++1、 extern、static 声明变量或函数 extern 表明该变量在别的地方已经定义过了,在这里要使用那个变量. static 表示静态的变量，分配内存的时候, 存储在静态区,不存储在栈上面.（存储在静态区的数据生命周期与程序相同） static修饰全局变量（或函数）：全局变量本来就存储在静态区，因此static并不能改变其存储位置。但是，static限制了其链接属性。被stat">
-<meta name="keywords" content="数据库,C&#x2F;C++,操作系统,数据结构,计算机网络">
+<meta name="keywords" content="C&#x2F;C++,操作系统,数据结构,计算机网络,数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Review">
 <meta property="og:url" content="http://www.walking999.org/2018/03/08/Review/index.html">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/TCP挥手.png">
 <meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/TCP可靠.png">
 <meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/排序算法时间复杂度.png">
-<meta property="og:updated_time" content="2018-03-16T06:46:34.077Z">
+<meta property="og:updated_time" content="2018-03-16T11:24:56.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Review">
 <meta name="twitter:description" content="C/C++1、 extern、static 声明变量或函数 extern 表明该变量在别的地方已经定义过了,在这里要使用那个变量. static 表示静态的变量，分配内存的时候, 存储在静态区,不存储在栈上面.（存储在静态区的数据生命周期与程序相同） static修饰全局变量（或函数）：全局变量本来就存储在静态区，因此static并不能改变其存储位置。但是，static限制了其链接属性。被stat">
@@ -220,31 +220,10 @@
 <p>5.5、hash表构造原则？解决冲突？</p>
 <p>构造原则（2个）：函数便于计算； 计算得到的地址尽可能分配均匀，减少冲突</p>
 <p>解决冲突（4个）：开放定址法；再hash法；链地址法，建立公共溢出区；</p>
-<h2 id="END-STL"><a href="#END-STL" class="headerlink" title="END STL"></a>END STL</h2><p>6、线性表、AVL、hash表存储数据的优劣</p>
-<p>线性表：a、链式：插入删除不需要移动，空间有效利用；</p>
-<p>​                大量访问操作时效率低；</p>
-<p>​        b、顺序：访问操作效率高</p>
-<p>​                插入或删除元素，需要移动元素，效率低</p>
-<p>AVL：查找O(log2n)，插入O(log2n);</p>
-<p>​    查找方便，但维护平衡代价高</p>
-<p>hash表：查找O(1)，插入O(1)</p>
-<p>​    查找、插入高效，但不能显示序的信息，占用空间多</p>
-<p>7、B树、B+树</p>
-<p>B树是为了提高磁盘或外部存储设备查找效率而产生的一种多路平衡查找树；</p>
-<p>B+树用于数据库索引，而B树则常用于文件索引；</p>
-<p>8、<a href="https://www.cnblogs.com/maybe2030/p/4732377.html" target="_blank" rel="noopener">各种树的总结</a></p>
-<p>9、<a href="http://top.jobbole.com/1599/" target="_blank" rel="noopener">常用算法和数据结构的复杂度总结</a></p>
-<p>10、指针数组：存放指针的数组int*a[10]</p>
+<h2 id="END-STL"><a href="#END-STL" class="headerlink" title="END STL"></a>END STL</h2><p>10、指针数组：存放指针的数组int*a[10]</p>
 <p>数组指针：指向数组的指针int(*a)[10];</p>
 <p>指针函数：返回值为指针的函数int*a();</p>
 <p>函数指针：指向函数的指针(int(*f)(inta))</p>
-<p>11、红黑树对比BST、AVL、hash表</p>
-<p>红黑树是牺牲了严格的高度平衡的优越条件为代价，它只是要求部分的达到平衡要求，降低了对旋转的要求，从而提高了性能，能以log2N的时间复杂度进行搜索，插入，删除操作，任何不平衡都可以在三次旋转内解决</p>
-<p>高度！！！平均高度log(N),最坏不会超过2log(N);</p>
-<p>相比于BST，因为红黑树可以确保树的最长路径不会超过两倍最短路径的长度，所以查找效果是有最低保证的，最坏情况也可以保证logN。而BST最坏情况可达N</p>
-<p>相比AVL，时间复杂度相同，但是统计性能比AVL树高，插入等操作节约时间</p>
-<p>相比hash表，权衡几个因素进行选择：查找速度、数据量、内存使用、可扩展性；Hash查找速度更快，但是消耗内存，当数据特别多，构造速度也变慢</p>
-<p>来自<a href="http://blog.csdn.net/silangquan/article/details/18655795" target="_blank" rel="noopener">http://blog.csdn.net/silangquan/article/details/18655795</a></p>
 <p>12、malloc/free 与 new/delete</p>
 <ul>
 <li>malloc/free是标准库函数，而new/delete是运算符</li>
@@ -386,22 +365,20 @@
 <p>守护进程是一种生存期很长的进程，它们独立于控制终端而且周期性的执行某种任务或者等待处理某些发生的事件。一般的网络服务都是守护进程。</p>
 <p>处理僵尸进程的三种方法：</p>
 <ul>
-<li>父进程回收法</li>
-</ul>
-<p>​    Wait函数将使其调用者阻塞，直到某个子进程终止</p>
-<ul>
-<li>使用signal信号函数</li>
-</ul>
-<p>​    当子进程死亡，发送信号给父进程，父进程调用Wait,回收</p>
-<ul>
-<li>init进程回收法</li>
+<li><p>父进程回收法</p>
+<p>​Wait函数将使其调用者阻塞，直到某个子进程终止</p>
+</li>
+<li><p>使用signal信号函数</p>
+<p>​当子进程死亡，发送信号给父进程，父进程调用Wait,回收</p>
+</li>
+<li><p>init进程回收法</p>
+</li>
 </ul>
 <ol>
-<li><p>如果父进程先于子进程结束，那么子进程的父进程就会变成init进程</p>
-</li>
-<li><p>如果init的子进程结束，则init进程会自动回收其子进程的资源，而不是让他变成僵尸</p>
-</li>
+<li>如果父进程先于子进程结束，那么子进程的父进程就会变成init进程</li>
+<li>如果init的子进程结束，则init进程会自动回收其子进程的资源，而不是让他变成僵尸</li>
 </ol>
+<p>11、</p>
 <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p><strong>1、TCP三次握手？为什么不是两次或四次？</strong></p>
 <p><img src="/2018/03/08/Review/TCP握手.png" alt="TCP三次握手"></p>
 <p>三次握手是为了<strong>防止失效的连接请求报文段突然又传到服务器</strong>；</p>
@@ -474,8 +451,37 @@
 <p>​    浏览器下载数据后，解析源文件，显示基础页面    </p>
 <p>​    分析超链接页面，重复上述过程，完成全部显示</p>
 <p>12、select、poll、epoll</p>
+<p>13、五种IO模型</p>
+<p>14、MD5的值一致，他们对应的字符串也一致吗</p>
+<p>15、socket通信</p>
 <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>1、排序算法时间复杂度</p>
 <p><img src="/2018/03/08/Review/排序算法时间复杂度.png" alt="sort"></p>
+<p>6、线性表、AVL、hash表存储数据的优劣</p>
+<p>线性表：a、链式：插入删除不需要移动，空间有效利用；</p>
+<p>​                大量访问操作时效率低；</p>
+<p>​        b、顺序：访问操作效率高</p>
+<p>​                插入或删除元素，需要移动元素，效率低</p>
+<p>AVL：查找O(log2n)，插入O(log2n);</p>
+<p>​    查找方便，但维护平衡代价高</p>
+<p>hash表：查找O(1)，插入O(1)</p>
+<p>​    查找、插入高效，但不能显示序的信息，占用空间多</p>
+<p>7、B树、B+树</p>
+<p>B树是为了提高磁盘或外部存储设备查找效率而产生的一种多路平衡查找树；</p>
+<p>B+树用于数据库索引，而B树则常用于文件索引；</p>
+<p>8、<a href="https://www.cnblogs.com/maybe2030/p/4732377.html" target="_blank" rel="noopener">各种树的总结</a></p>
+<p>9、<a href="http://top.jobbole.com/1599/" target="_blank" rel="noopener">常用算法和数据结构的复杂度总结</a></p>
+<p>11、红黑树对比BST、AVL、hash表</p>
+<p>红黑树是牺牲了严格的高度平衡的优越条件为代价，它只是要求部分的达到平衡要求，降低了对旋转的要求，从而提高了性能，能以log2N的时间复杂度进行搜索，插入，删除操作，任何不平衡都可以在三次旋转内解决</p>
+<p>高度！！！平均高度log(N),最坏不会超过2log(N);</p>
+<p>相比于BST，因为红黑树可以确保树的最长路径不会超过两倍最短路径的长度，所以查找效果是有最低保证的，最坏情况也可以保证logN。而BST最坏情况可达N</p>
+<p>相比AVL，时间复杂度相同，但是统计性能比AVL树高，插入等操作节约时间</p>
+<p>相比hash表，权衡几个因素进行选择：查找速度、数据量、内存使用、可扩展性；Hash查找速度更快，但是消耗内存，当数据特别多，构造速度也变慢</p>
+<p>来自<a href="http://blog.csdn.net/silangquan/article/details/18655795" target="_blank" rel="noopener">http://blog.csdn.net/silangquan/article/details/18655795</a></p>
+<p>12、快排为什么快</p>
+<p>13、最大子数组问题</p>
+<p>14、硬币找零问题</p>
+<p>15、求一个数组中右边第一个比他大的数（单调栈）</p>
+<p>16、两个字符串中怎么找相同的最大子字串</p>
 <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><blockquote>
 <p>1、什么是存储过程？优点？</p>
 <p>一些预编译的SQL语句，完成某个功能，类似C语言的函数</p>
@@ -521,8 +527,9 @@
 <p>2NF：表中不存在非关键字段对任一候选关键字段（码）的部分函数依赖；</p>
 <p>3NF：表中不存在非关键字段对任一候选字段（码）的传递函数依赖；</p>
 <p>BCNF：表中不存在任何属性对任一候选字段的完全函数依赖（部分+传递）；</p>
+<p>8、数据库索引为何要用B+树</p>
 </blockquote>
-
+<h1 id="海量数据处理"><a href="#海量数据处理" class="headerlink" title="海量数据处理"></a>海量数据处理</h1>
       
 
       
@@ -534,10 +541,6 @@
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
         		</li>
@@ -552,6 +555,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		
 		</ul>
@@ -795,14 +802,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">网页应用开发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">conclusion</a>
               </li>
              
@@ -836,6 +835,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
