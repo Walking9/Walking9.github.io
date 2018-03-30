@@ -27,7 +27,11 @@
 <meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/tcp.png">
 <meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/udp.png">
 <meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/排序算法时间复杂度.png">
-<meta property="og:updated_time" content="2018-03-29T02:15:34.186Z">
+<meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/MyISAM主键索引.png">
+<meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/MyISAM辅助索引.png">
+<meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/InnoDB主键索引.png">
+<meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/InnoDB辅助索引.png">
+<meta property="og:updated_time" content="2018-03-29T17:04:15.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Review">
 <meta name="twitter:description" content="C/C++1、 extern、static 声明变量或函数 extern 表明该变量在别的地方已经定义过了,在这里要使用那个变量.static 表示静态的变量，分配内存的时候, 存储在静态区,不存储在栈上面.（存储在静态区的数据生命周期与程序相同） static修饰全局变量（或函数）：全局变量本来就存储在静态区，因此static并不能改变其存储位置。但是，static限制了其链接属性。被stati">
@@ -674,8 +678,7 @@
 <p>14、硬币找零问题</p>
 <p>15、求一个数组中右边第一个比他大的数（单调栈）</p>
 <p>16、两个字符串中怎么找相同的最大子字串</p>
-<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><blockquote>
-<p>1、什么是存储过程？优点？</p>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><p>1、什么是存储过程？优点？</p>
 <p>一些预编译的SQL语句，完成某个功能，类似C语言的函数</p>
 <p>优点：a、执行效率高</p>
 <p>​    b、降低网络通信量，提高通信效率</p>
@@ -692,24 +695,15 @@
 <p>原子性，一致性，隔离性，持续性</p>
 <p>Atomicity, Consistency, Isolation, Durability</p>
 <p>4、乐观锁、悲观锁</p>
-<ul>
-<li>悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作</li>
-<li>乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性。</li>
-</ul>
+<p>悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作</p>
+<p>乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性。</p>
 <p>5、drop、delete与truncate的区别</p>
-<ul>
-<li><p>delete和truncate只删除表的数据不删除表的结构</p>
-</li>
-<li><p>速度,一般来说: drop&gt; truncate &gt;delete </p>
-</li>
-<li><p>delete语句是dml,这个操作会放到rollback segement中,事务提交之后才生效;<br>如果有相应的trigger,执行的时候将被触发. truncate,drop是ddl, 操作立即生效,原数据不放到rollback segment中,不能回滚. 操作不触发trigger. </p>
-</li>
-<li><p>使用场景：</p>
-<p>不再需要一张表的时候，用drop</p>
+<p>delete和truncate只删除表的数据不删除表的结构</p>
+<p>速度,一般来说: drop&gt; truncate &gt;delete </p>
+<p>delete语句是dml,这个操作会放到rollback segement中,事务提交之后才生效;<br>如果有相应的trigger,执行的时候将被触发. truncate,drop是ddl, 操作立即生效,原数据不放到rollback segment中,不能回滚. 操作不触发trigger. </p>
+<p>使用场景：不再需要一张表的时候，用drop</p>
 <p>想删除部分数据行时候，用delete，并且带上where子句</p>
 <p>保留表而删除所有数据的时候用truncate</p>
-</li>
-</ul>
 <p>6、视图</p>
 <p>视图是一种虚拟的表，具有和物理表相同的功能，相当于一个窗口，我们可以通过这个窗口观察我们所感兴趣的数据；</p>
 <p>修改基本表会影响视图，反之不会</p>
@@ -719,8 +713,42 @@
 <p>2NF：表中不存在非关键字段对任一候选关键字段（码）的部分函数依赖；</p>
 <p>3NF：表中不存在非关键字段对任一候选字段（码）的传递函数依赖；</p>
 <p>BCNF：表中不存在任何属性对任一候选字段的完全函数依赖（部分+传递）；</p>
-<p>8、数据库索引为何要用B+树</p>
-</blockquote>
+<p>8、Mysql几种索引类型：</p>
+<ul>
+<li>FULLTEXT全文索引，只有MylSAM引擎支持；（目前只有CHAR、VARCHAR、TEXT列上创建全文索引）</li>
+<li>HASH索引；</li>
+<li>BTREE索引；利用B+树从root开始遍历node，获取leaf，是mysql默认和最常用的索引类型；</li>
+<li>RTREE索引；mysql很少用，仅支持geometry数据类型，支持该类型的存储引擎只有MyISAM、BDb、InnoDb、NDb、Archive几种。优势在于：范围查找</li>
+</ul>
+<p>索引种类：</p>
+<ul>
+<li>普通索引：仅加速查询</li>
+<li>唯一索引：加速查询 + 列值唯一（可以有null）</li>
+<li>主键索引：加速查询 + 列值唯一（不可以有null）+ 表中只有一个</li>
+<li>组合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并</li>
+<li>全文索引：对文本的内容进行分词，进行搜索</li>
+</ul>
+<p>ps.</p>
+<p>索引合并，使用多个单列索引组合搜索覆盖索引，select的数据列只用从索引中就能够取得，不必读取数据行，换句话说查询列要被所建的索引覆盖</p>
+<p>9、InnoDB索引和MyISAM索引的区别：</p>
+<p>一是主索引的区别，InnoDB的数据文件本身就是索引文件。而MyISAM的索引和数据是分开的。</p>
+<p>二是辅助索引的区别：InnoDB的辅助索引data域存储相应记录主键的值而不是地址。而MyISAM的辅助索引和主索引没有多大区别。</p>
+<p>10、数据库索引为何要用B+树</p>
+<p>​    一般来说，索引本身很大，不可能全部存储在内存中，因此索引往往以<strong>索引文件</strong>的形式存储在磁盘上，所以索引的结构组织要尽量减少查找过程中磁盘I/O的存取次数；</p>
+<p>​    根据局部性原理与磁盘预读， 数据库系统巧妙利用了磁盘预读原理，将一个节点的大小设为等于一个页，这样每个节点只需要一次I/O就可以完全载入。为了达到这个目的，在实际实现B- Tree还需要使用如下技巧：</p>
+<p>​      每次新建节点时，直接申请一个页的空间，这样就保证一个节点物理上也存储在一个页里，加之计算机存储分配都是按页对齐的，就实现了<strong>一个node只需一次I/O</strong>。</p>
+<p>　　B-Tree中一次检索最多需要h-1次I/O（根节点常驻内存），渐进复杂度为O（h）=O（logmN）。一般实际应用中，m是非常大的数字，通常超过100，因此h非常小（通常不超过3）。</p>
+<p>11、MyISAM和InnoDB两个存储引擎的索引实现方式</p>
+<ul>
+<li>MyISAM:</li>
+</ul>
+<p><img src="/2018/03/08/Review/MyISAM主键索引.png" alt="MyISAM主键索引"></p>
+<p><img src="/2018/03/08/Review/MyISAM辅助索引.png" alt="MyISAM辅助索引"></p>
+<ul>
+<li>InnoDB:</li>
+</ul>
+<p><img src="/2018/03/08/Review/InnoDB主键索引.png" alt="InnoDB主键索引"></p>
+<p><img src="/2018/03/08/Review/InnoDB辅助索引.png" alt="InnoDB辅助索引"></p>
 <h1 id="海量数据处理"><a href="#海量数据处理" class="headerlink" title="海量数据处理"></a>海量数据处理</h1><h3 id="映射-统计-排序"><a href="#映射-统计-排序" class="headerlink" title="映射+统计+排序"></a>映射+统计+排序</h3><p><strong>方法1、海量日志数据，提取出某日访问百度次数最多的那个IP。</strong></p>
 <ol>
 <li>先映射：分而治之/hash映射：针对数据太大，内存受限，只能是：把大文件化成(取模映射)小文件，即16字方针：大而化小，各个击破，缩小规模，逐个解决</li>
@@ -1095,14 +1123,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
@@ -1124,6 +1144,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
