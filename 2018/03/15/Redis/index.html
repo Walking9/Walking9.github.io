@@ -8,18 +8,22 @@
   <link rel="dns-prefetch" href="http://www.walking999.org">
   <title>Redis | Walking9&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="后端开发 Linux 操作系统 数据库 Coding">
+  <meta name="description" content="study redis from runoob Redis 简介1、简介：REmote DIctionary Server(Redis)是一个key-value存储系统，是一个Key-Value数据库。 2、安装：（Ubuntu下） 12$sudo apt-get update$sudo apt-get install redis-server 启动： 1$ redis-server 测试： 12">
 <meta name="keywords" content="Redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis">
 <meta property="og:url" content="http://www.walking999.org/2018/03/15/Redis/index.html">
 <meta property="og:site_name" content="Walking9&#39;s Blog">
-<meta property="og:description" content="后端开发 Linux 操作系统 数据库 Coding">
+<meta property="og:description" content="study redis from runoob Redis 简介1、简介：REmote DIctionary Server(Redis)是一个key-value存储系统，是一个Key-Value数据库。 2、安装：（Ubuntu下） 12$sudo apt-get update$sudo apt-get install redis-server 启动： 1$ redis-server 测试： 12">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-15T13:17:28.227Z">
+<meta property="og:image" content="http://www.walking999.org/2018/03/15/Redis/list.png">
+<meta property="og:image" content="http://www.walking999.org/2018/03/15/Redis/set.png">
+<meta property="og:image" content="http://www.walking999.org/2018/03/15/Redis/zset.png">
+<meta property="og:updated_time" content="2018-03-30T14:20:43.552Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis">
-<meta name="twitter:description" content="后端开发 Linux 操作系统 数据库 Coding">
+<meta name="twitter:description" content="study redis from runoob Redis 简介1、简介：REmote DIctionary Server(Redis)是一个key-value存储系统，是一个Key-Value数据库。 2、安装：（Ubuntu下） 12$sudo apt-get update$sudo apt-get install redis-server 启动： 1$ redis-server 测试： 12">
+<meta name="twitter:image" content="http://www.walking999.org/2018/03/15/Redis/list.png">
   
     <link rel="alternative" href="/atom.xml" title="Walking9&#39;s Blog" type="application/atom+xml">
   
@@ -179,7 +183,67 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>study redis from runoob</p>
+<h1 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h1><p>1、简介：REmote DIctionary Server(Redis)是一个key-value存储系统，是一个Key-Value数据库。</p>
+<p>2、安装：（Ubuntu下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$sudo apt-get update</span><br><span class="line">$sudo apt-get install redis-server</span><br></pre></td></tr></table></figure>
+<p>启动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-server</span><br></pre></td></tr></table></figure>
+<p>测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli</span><br><span class="line">redis 127.0.0.1:6379&gt; ping</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
+<p>配置文件：Redis安装目录下，redis.conf</p>
+<p>3、五种数据类型：string, hash, list, set, zset(有序集合)</p>
+<ul>
+<li>举例：string + hash</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; HMSET myhash field1 &quot;Hello&quot; field2 &quot;World&quot;</span><br><span class="line">&quot;OK&quot;</span><br><span class="line">redis&gt; HGET myhash field1</span><br><span class="line">&quot;Hello&quot;</span><br><span class="line">redis&gt; HGET myhash field2</span><br><span class="line">&quot;World&quot;</span><br></pre></td></tr></table></figure>
+<p>解释：myhash是一个Hash, 有两个键值对，键field1, field2</p>
+<ul>
+<li>举例：list, 注意左右插入</li>
+</ul>
+<p><img src="/2018/03/15/Redis/list.png" alt="list"></p>
+<ul>
+<li>举例：set, 返回值 表示成功与否</li>
+</ul>
+<p><img src="/2018/03/15/Redis/set.png" alt=""></p>
+<ul>
+<li>举例：zset</li>
+</ul>
+<p><img src="/2018/03/15/Redis/zset.png" alt="zset"></p>
+<ul>
+<li><p>小结：</p>
+<p>hmset命令操作hash</p>
+<p><code>hmset key value</code></p>
+<p>push命令：操作列表list</p>
+<p><code>lpush/rpush key member</code></p>
+<p>sadd命令：操作集合set</p>
+<p><code>sadd key member</code></p>
+<p>zadd命令 ：操作有序集合zset</p>
+<p><code>zadd key score member</code></p>
+</li>
+</ul>
+<h1 id="Redis-命令"><a href="#Redis-命令" class="headerlink" title="Redis 命令"></a>Redis 命令</h1><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>Redis 客户端的基本语法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli</span><br></pre></td></tr></table></figure>
+<p>以下实例讲解了如何启动 redis 客户端：</p>
+<p>启动 redis 客户端，打开终端并输入命令 <strong>redis-cli</strong>。该命令会连接本地的 redis 服务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$redis-cli</span><br><span class="line">redis 127.0.0.1:6379&gt;</span><br><span class="line">redis 127.0.0.1:6379&gt; PING</span><br><span class="line"></span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
+<p>在以上实例中我们连接到本地的 redis 服务并执行 <strong>PING</strong> 命令，该命令用于检测 redis 服务是否启动。</p>
+<h3 id="在远程服务上执行命令"><a href="#在远程服务上执行命令" class="headerlink" title="在远程服务上执行命令"></a>在远程服务上执行命令</h3><p>如果需要在远程 redis 服务上执行命令，同样我们使用的也是 <strong>redis-cli</strong> 命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -h host -p port -a password</span><br></pre></td></tr></table></figure>
+<p>以下实例演示了如何连接到主机为 127.0.0.1，端口为 6379 ，密码为 mypass 的 redis 服务上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$redis-cli -h 127.0.0.1 -p 6379 -a &quot;mypass&quot;</span><br><span class="line">redis 127.0.0.1:6379&gt;</span><br><span class="line">redis 127.0.0.1:6379&gt; PING</span><br><span class="line"></span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
+<p><em>关于更多命令，可以在用的时候边用边学</em></p>
+<p><a href="http://www.runoob.com/redis/redis-sets.html" target="_blank" rel="noopener">redis命令–runoob</a></p>
+<p><a href="https://redis.io/commands" target="_blank" rel="noopener">redis命令–官方</a></p>
+<h1 id="Redis-HyperLogLog"><a href="#Redis-HyperLogLog" class="headerlink" title="Redis HyperLogLog"></a>Redis HyperLogLog</h1><p>Redis 在 2.8.9 版本添加了 HyperLogLog 结构。</p>
+<p>Redis HyperLogLog 是用来做基数统计的算法，HyperLogLog 的优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定 的、并且是很小的。</p>
+<p>在 Redis 里面，每个 HyperLogLog 键只需要花费 12 KB 内存，就可以计算接近 2^64 个不同元素的基 数。这和计算基数时，元素越多耗费内存就越多的集合形成鲜明对比。</p>
+<p>但是，因为 HyperLogLog 只会根据输入元素来计算基数，而不会储存输入元素本身，所以 HyperLogLog 不能像集合那样，返回输入的各个元素。</p>
+<h3 id="什么是基数"><a href="#什么是基数" class="headerlink" title="什么是基数?"></a>什么是基数?</h3><p>比如数据集 {1, 3, 5, 7, 5, 7, 8}， 那么这个数据集的基数集为 {1, 3, 5 ,7, 8}, 基数(不重复元素)为5。 基数估计就是在误差可接受的范围内，快速计算基数。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>以下实例演示了 HyperLogLog 的工作过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; PFADD runoobkey &quot;redis&quot;</span><br><span class="line"></span><br><span class="line">1) (integer) 1</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; PFADD runoobkey &quot;mongodb&quot;</span><br><span class="line"></span><br><span class="line">1) (integer) 1</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; PFADD runoobkey &quot;mysql&quot;</span><br><span class="line"></span><br><span class="line">1) (integer) 1</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; PFCOUNT runoobkey</span><br><span class="line"></span><br><span class="line">(integer) 3</span><br></pre></td></tr></table></figure>
+<p>后记：学的每个感觉，不学了。。。</p>
+
       
 
       
@@ -411,19 +475,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">阿里</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">

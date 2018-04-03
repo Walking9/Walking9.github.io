@@ -179,7 +179,67 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>study redis from runoob</p>
+<h1 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h1><p>1、简介：REmote DIctionary Server(Redis)是一个key-value存储系统，是一个Key-Value数据库。</p>
+<p>2、安装：（Ubuntu下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$sudo apt-get update</span><br><span class="line">$sudo apt-get install redis-server</span><br></pre></td></tr></table></figure>
+<p>启动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-server</span><br></pre></td></tr></table></figure>
+<p>测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli</span><br><span class="line">redis 127.0.0.1:6379&gt; ping</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
+<p>配置文件：Redis安装目录下，redis.conf</p>
+<p>3、五种数据类型：string, hash, list, set, zset(有序集合)</p>
+<ul>
+<li>举例：string + hash</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; HMSET myhash field1 &quot;Hello&quot; field2 &quot;World&quot;</span><br><span class="line">&quot;OK&quot;</span><br><span class="line">redis&gt; HGET myhash field1</span><br><span class="line">&quot;Hello&quot;</span><br><span class="line">redis&gt; HGET myhash field2</span><br><span class="line">&quot;World&quot;</span><br></pre></td></tr></table></figure>
+<p>解释：myhash是一个Hash, 有两个键值对，键field1, field2</p>
+<ul>
+<li>举例：list, 注意左右插入</li>
+</ul>
+<p><img src="/2018/03/15/Redis/list.png" alt="list"></p>
+<ul>
+<li>举例：set, 返回值 表示成功与否</li>
+</ul>
+<p><img src="/2018/03/15/Redis/set.png" alt=""></p>
+<ul>
+<li>举例：zset</li>
+</ul>
+<p><img src="/2018/03/15/Redis/zset.png" alt="zset"></p>
+<ul>
+<li><p>小结：</p>
+<p>hmset命令操作hash</p>
+<p><code>hmset key value</code></p>
+<p>push命令：操作列表list</p>
+<p><code>lpush/rpush key member</code></p>
+<p>sadd命令：操作集合set</p>
+<p><code>sadd key member</code></p>
+<p>zadd命令 ：操作有序集合zset</p>
+<p><code>zadd key score member</code></p>
+</li>
+</ul>
+<h1 id="Redis-命令"><a href="#Redis-命令" class="headerlink" title="Redis 命令"></a>Redis 命令</h1><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>Redis 客户端的基本语法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli</span><br></pre></td></tr></table></figure>
+<p>以下实例讲解了如何启动 redis 客户端：</p>
+<p>启动 redis 客户端，打开终端并输入命令 <strong>redis-cli</strong>。该命令会连接本地的 redis 服务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$redis-cli</span><br><span class="line">redis 127.0.0.1:6379&gt;</span><br><span class="line">redis 127.0.0.1:6379&gt; PING</span><br><span class="line"></span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
+<p>在以上实例中我们连接到本地的 redis 服务并执行 <strong>PING</strong> 命令，该命令用于检测 redis 服务是否启动。</p>
+<h3 id="在远程服务上执行命令"><a href="#在远程服务上执行命令" class="headerlink" title="在远程服务上执行命令"></a>在远程服务上执行命令</h3><p>如果需要在远程 redis 服务上执行命令，同样我们使用的也是 <strong>redis-cli</strong> 命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -h host -p port -a password</span><br></pre></td></tr></table></figure>
+<p>以下实例演示了如何连接到主机为 127.0.0.1，端口为 6379 ，密码为 mypass 的 redis 服务上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$redis-cli -h 127.0.0.1 -p 6379 -a &quot;mypass&quot;</span><br><span class="line">redis 127.0.0.1:6379&gt;</span><br><span class="line">redis 127.0.0.1:6379&gt; PING</span><br><span class="line"></span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
+<p><em>关于更多命令，可以在用的时候边用边学</em></p>
+<p><a href="http://www.runoob.com/redis/redis-sets.html" target="_blank" rel="noopener">redis命令–runoob</a></p>
+<p><a href="https://redis.io/commands" target="_blank" rel="noopener">redis命令–官方</a></p>
+<h1 id="Redis-HyperLogLog"><a href="#Redis-HyperLogLog" class="headerlink" title="Redis HyperLogLog"></a>Redis HyperLogLog</h1><p>Redis 在 2.8.9 版本添加了 HyperLogLog 结构。</p>
+<p>Redis HyperLogLog 是用来做基数统计的算法，HyperLogLog 的优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定 的、并且是很小的。</p>
+<p>在 Redis 里面，每个 HyperLogLog 键只需要花费 12 KB 内存，就可以计算接近 2^64 个不同元素的基 数。这和计算基数时，元素越多耗费内存就越多的集合形成鲜明对比。</p>
+<p>但是，因为 HyperLogLog 只会根据输入元素来计算基数，而不会储存输入元素本身，所以 HyperLogLog 不能像集合那样，返回输入的各个元素。</p>
+<h3 id="什么是基数"><a href="#什么是基数" class="headerlink" title="什么是基数?"></a>什么是基数?</h3><p>比如数据集 {1, 3, 5, 7, 5, 7, 8}， 那么这个数据集的基数集为 {1, 3, 5 ,7, 8}, 基数(不重复元素)为5。 基数估计就是在误差可接受的范围内，快速计算基数。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>以下实例演示了 HyperLogLog 的工作过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; PFADD runoobkey &quot;redis&quot;</span><br><span class="line"></span><br><span class="line">1) (integer) 1</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; PFADD runoobkey &quot;mongodb&quot;</span><br><span class="line"></span><br><span class="line">1) (integer) 1</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; PFADD runoobkey &quot;mysql&quot;</span><br><span class="line"></span><br><span class="line">1) (integer) 1</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; PFCOUNT runoobkey</span><br><span class="line"></span><br><span class="line">(integer) 3</span><br></pre></td></tr></table></figure>
+<p>后记：学的每个感觉，不学了。。。</p>
+
       
 
       
@@ -426,7 +486,19 @@
 </ol>
 </li>
 </ol>
-<p>22、</p>
+<p>22、从while（cin&gt;&gt;a）开始探讨cin</p>
+<p>1.</p>
+<p>首先cin&gt;&gt;a返回的是左操作数，也就是返回cin。</p>
+<p>cin的条件状态中: cin.eof()    判断流是否到达文件的结束符</p>
+<p>　　　　　　　　 cin.fail()    判断IO操作是否失败</p>
+<p>在while（cin&gt;&gt;a）中看流是否还能用，主要是判断 cin.fail()  的取值。事实上，无论是否用于while循环，流必须处于无错误状态才能用于输入和输出 ，也就是cin.fail() 必须为0值，程序以下的cin操作才能正常执行。</p>
+<p>导致cin.fail() 为1的操作有：输入坏值 或 遇到文件结束符（ctrl+z）</p>
+<p>当cin.fail() =1时，可以设置cin.clear()将流中的所有状态值设为有效状态，以下操作就会正常输入输出了，否则再遇到cin就不能正常读入赋值。</p>
+<p>2.</p>
+<p>关于while（cin&gt;&gt;a）中输入值是用 “空格” 间隔还是用 “回车” 间隔的问题：</p>
+<p>while（cin）中有个缓冲机制规定，只有收到回车键，才会将所有输入的数据一次提交到输入处理函数cin里，而这个输入过程，在按下回车之前，是不受cin控制的。</p>
+<p>对于正常的输入，用回车和空格没有差别，关键是我们最后往往要输入个ctrl+z来结束输入，这里要特别注意，ctrl+z之前必须要按“回车”，不能是空格，也不能什么都不按。</p>
+<p>正确的顺序是：“正常值输入（以空格或回车间隔都可以）”、“回车”、（ctrl+z）、“回车”。这样在缓冲机制下while（cin）循环就会把ctrl+z作为输入流单独进行判断，cin.eof()为真，即遇到正常的文件结束符，否则，while（cin）循环判断时以为ctrl+z和之前的空格是一起的或者和之前的其他输入是一起的，认为是输入了坏值，认为没有遇到正常的文件结束符。</p>
 <h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><p>1、线程和进程的基本状态</p>
 <p>新建、就绪、阻塞、运行、死亡</p>
 <p>2、同步和互斥</p>
@@ -677,6 +749,13 @@
 <p>1）调用epoll_create()建立一个epoll对象(在epoll文件系统中为这个句柄对象分配资源)</p>
 <p>2）调用epoll_ctl向epoll对象中添加这100万个连接的套接字</p>
 <p>3）调用epoll_wait收集发生的事件的连接</p>
+<p>select和poll都只提供了一个函数——select或者poll函数。而epoll提供了三个函数，epoll_create,epoll_ctl和epoll_wait，epoll_create是创建一个epoll句柄；epoll_ctl是注册要监听的事件类型；epoll_wait则是等待事件的产生。</p>
+<p>　　对于第一个缺点，epoll的解决方案在epoll_ctl函数中。每次注册新的事件到epoll句柄中时（在epoll_ctl中指定EPOLL_CTL_ADD），会把所有的fd拷贝进内核，而不是在epoll_wait的时候重复拷贝。epoll保证了每个fd在整个过程中只会拷贝一次。</p>
+<p>　　对于第二个缺点，epoll的解决方案不像select或poll一样每次都把current轮流加入fd对应的设备等待队列中，而只在epoll_ctl时把current挂一遍（这一遍必不可少）并为每个fd指定一个回调函数，当设备就绪，唤醒等待队列上的等待者时，就会调用这个回调函数，而这个回调函数会把就绪的fd加入一个就绪链表）。epoll_wait的工作实际上就是在这个就绪链表中查看有没有就绪的fd（利用schedule_timeout()实现睡一会，判断一会的效果，和select实现中的第7步是类似的）。</p>
+<p>　　对于第三个缺点，epoll没有这个限制，它所支持的FD上限是最大可以打开文件的数目，这个数字一般远大于2048,举个例子,在1GB内存的机器上大约是10万左右，具体数目可以cat /proc/sys/fs/file-max察看,一般来说这个数目和系统内存关系很大。</p>
+<p><strong>总结：</strong></p>
+<p>（1）select，poll实现需要自己不断轮询所有fd集合，直到设备就绪，期间可能要睡眠和唤醒多次交替。而epoll其实也需要调用epoll_wait不断轮询就绪链表，期间也可能多次睡眠和唤醒交替，但是它是设备就绪时，调用回调函数，把就绪fd放入就绪链表中，并唤醒在epoll_wait中进入睡眠的进程。虽然都要睡眠和交替，但是select和poll在“醒着”的时候要遍历整个fd集合，而epoll在“醒着”的时候只要判断一下就绪链表是否为空就行了，这节省了大量的CPU时间。这就是回调机制带来的性能提升。</p>
+<p>（2）select，poll每次调用都要把fd集合从用户态往内核态拷贝一次，并且要把current往设备等待队列中挂一次，而epoll只要一次拷贝，而且把current往等待队列上挂也只挂一次（在epoll_wait的开始，注意这里的等待队列并不是设备等待队列，只是一个epoll内部定义的等待队列）。这也能节省不少的开销。</p>
 <p>13、五种IO模型</p>
 <p><a href="http://www.cnblogs.com/nufangrensheng/p/3588690.html" target="_blank" rel="noopener">http://www.cnblogs.com/nufangrensheng/p/3588690.html</a></p>
 <p>14、MD5的值一致，他们对应的字符串也一致吗  –不一定</p>
@@ -735,6 +814,22 @@
 <p>14、硬币找零问题</p>
 <p>15、求一个数组中右边第一个比他大的数（单调栈）</p>
 <p>16、两个字符串中怎么找相同的最大子字串</p>
+<p>17、<a href="http://www.cnblogs.com/xiaoxi/p/6868087.html" target="_blank" rel="noopener">数据库和B树的那些事</a></p>
+<p>m阶B树满足以下条件：</p>
+<ul>
+<li>每个节点至多可以拥有m棵子树</li>
+<li>根节点，只有至少有2个节点（要么极端情况，就是一棵树就一个根节点，单细胞生物，即是根，也是叶，也是树)。</li>
+<li>非根非叶的节点至少有的Ceil(m/2)个子树(Ceil表示向上取整，图中5阶B树，每个节点至少有3个子树，也就是至少有3个叉)。</li>
+<li>非叶节点中的信息包括[n,A0,K1,A1,K2,A2,…,Kn,An]，，其中n表示该节点中保存的关键字个数，K为关键字且Ki&lt;Ki+1，A为指向子树根节点的指针。</li>
+<li>从根到叶子的每一条路径都有相同的长度，也就是说，叶子节在相同的层，并且这些节点不带信息，实际上这些节点就表示找不到指定的值，也就是指向这些节点的指针为空。</li>
+</ul>
+<p><strong>B+树</strong></p>
+<p>作为B树的加强版，B+树与B树的差异在于</p>
+<ul>
+<li>有n棵子树的节点含有n个关键字（也有认为是n-1个关键字）</li>
+<li>所有的叶子节点包含了全部的关键字，及指向含这些关键字记录的指针，且叶子节点本身根据关键字自小而大顺序连接</li>
+<li>非叶子节点可以看成索引部分，节点中仅含有其子树（根节点）中的最大（或最小）关键字</li>
+</ul>
 <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><p>1、什么是存储过程？优点？</p>
 <p>一些预编译的SQL语句，完成某个功能，类似C语言的函数</p>
 <p>优点：a、执行效率高</p>
@@ -749,9 +844,9 @@
 <p>3、事务：并发控制的基本单位，是一个操作序列，这些操作要么都执行，要么都不执行，是一个不可分割的工作单位；</p>
 <p>是数据库维护数据一致性的单位；</p>
 <p>事务的特性ACID：</p>
-<p>原子性，一致性，隔离性，持续性</p>
+<p>原子性，一致性（方法：事务，悲观锁，乐观锁），隔离性，持续性</p>
 <p>Atomicity, Consistency, Isolation, Durability</p>
-<p>4、乐观锁、悲观锁</p>
+<p>4、乐观锁、悲观锁。并发控制的方式：加锁</p>
 <p>悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作</p>
 <p>乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性。</p>
 <p>5、drop、delete与truncate的区别</p>
@@ -806,6 +901,64 @@
 </ul>
 <p><img src="/2018/03/08/Review/InnoDB主键索引.png" alt="InnoDB主键索引"></p>
 <p><img src="/2018/03/08/Review/InnoDB辅助索引.png" alt="InnoDB辅助索引"></p>
+<p>12、优化查询的方法</p>
+<ol>
+<li>使用索引</li>
+<li>优化sql语句：使用explain select <em> from table; 使用具体字段代替</em> ; 不在索引列做运算或使用函数； 尽量用limit限制</li>
+<li>优化数据库对象：优化表的数据类型； 对表进行拆分； 使用中间表来提高查询速度；</li>
+<li>硬件优化：CPU、内存、磁盘io的优化</li>
+<li>mysql自身的优化：主要对其配置文件my.cnf中的各项参数进行优化调整；</li>
+<li>应用优化：使用数据库连接池； 使用查询缓存</li>
+</ol>
+<p>13、特别大的访问量到数据库上，如何优化？</p>
+<ol>
+<li>使用优化查询方法（见12）</li>
+<li>主从复制，读写分离，负载均衡</li>
+<li>数据库分表，分区，分库</li>
+</ol>
+<p>14、如何防止sql注入？</p>
+<ol>
+<li>参数绑定：不要拼接sql字符串，将参数传入set方法；</li>
+<li>检查变量的数据类型和格式；</li>
+<li>把所有的sql语句封装在存储过程中；</li>
+</ol>
+<p>15、数据库四种隔离级别，从低到高：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">级别</th>
+<th style="text-align:center">脏读</th>
+<th style="text-align:center">不可重复读</th>
+<th style="text-align:center">幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Read uncommitted 读未提交数据</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">Read committed 读已提交</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">Repeatable read 可重复读</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td style="text-align:center">Serializable 可串行化</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+</tr>
+</tbody>
+</table>
 <h1 id="海量数据处理"><a href="#海量数据处理" class="headerlink" title="海量数据处理"></a>海量数据处理</h1><h3 id="映射-统计-排序"><a href="#映射-统计-排序" class="headerlink" title="映射+统计+排序"></a>映射+统计+排序</h3><p><strong>方法1、海量日志数据，提取出某日访问百度次数最多的那个IP。</strong></p>
 <ol>
 <li>先映射：分而治之/hash映射：针对数据太大，内存受限，只能是：把大文件化成(取模映射)小文件，即16字方针：大而化小，各个击破，缩小规模，逐个解决</li>
@@ -1869,19 +2022,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">阿里</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
