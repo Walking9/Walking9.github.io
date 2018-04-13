@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/MyISAM辅助索引.png">
 <meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/InnoDB主键索引.png">
 <meta property="og:image" content="http://www.walking999.org/2018/03/08/Review/InnoDB辅助索引.png">
-<meta property="og:updated_time" content="2018-04-10T13:27:47.127Z">
+<meta property="og:updated_time" content="2018-04-13T15:43:44.174Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Review">
 <meta name="twitter:description" content="C/C++1、 extern、static 声明变量或函数 extern 表明该变量在别的地方已经定义过了,在这里要使用那个变量.static 表示静态的变量，分配内存的时候, 存储在静态区,不存储在栈上面.（存储在静态区的数据生命周期与程序相同） static修饰全局变量（或函数）：全局变量本来就存储在静态区，因此static并不能改变其存储位置。但是，static限制了其链接属性。被stati">
@@ -662,6 +662,10 @@
 <p><img src="/2018/03/08/Review/ip.png" alt=""></p>
 <p><img src="/2018/03/08/Review/tcp.png" alt=""></p>
 <p><img src="/2018/03/08/Review/udp.png" alt=""></p>
+<p>20、水平触发、边缘触发</p>
+<p>Level_triggered(水平触发)：当被监控的文件描述符上有可读写事件发生时，epoll_wait()会通知处理程序去读写。如果这次没有把数据一次性全部读写完(如读写缓冲区太小)，那么下次调用 epoll_wait()时，它还会通知你在上没读写完的文件描述符上继续读写，当然如果你一直不去读写，它会一直通知你！！！如果系统中有大量你不需要读写的就绪文件描述符，而它们每次都会返回，这样会大大降低处理程序检索自己关心的就绪文件描述符的效率！！！</p>
+<p>Edge_triggered(边缘触发)：当被监控的文件描述符上有可读写事件发生时，epoll_wait()会通知处理程序去读写。如果这次没有把数据全部读写完(如读写缓冲区太小)，那么下次调用epoll_wait()时，它不会通知你，也就是它只会通知你一次，直到该文件描述符上出现第二次可读写事件才会通知你！！！这种模式比水平触发效率高，系统不会充斥大量你不关心的就绪文件描述符！！！</p>
+<p>21、linux容器、虚拟机</p>
 <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>1、排序算法时间复杂度</p>
 <p><img src="/2018/03/08/Review/排序算法时间复杂度.png" alt="sort"></p>
 <p>6、线性表、AVL、hash表存储数据的优劣</p>
@@ -1209,19 +1213,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">阿里</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">阿里</a>
               </li>
              
               <li class="article-tag-list-item">
