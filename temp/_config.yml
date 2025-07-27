@@ -121,4 +121,7 @@ jsonContent:
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/Walking9/Walking9.github.io.git
+  branch: main
+  message: 'Site updated: {{ now("YYYY-MM-DD HH:mm:ss") }}'
