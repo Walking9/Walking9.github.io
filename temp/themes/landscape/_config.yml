@@ -44,6 +44,7 @@ copyright:
 sidebar: right
 # Widgets displaying in sidebar
 widgets:
+- about
 - category
 - tag
 - tagcloud
