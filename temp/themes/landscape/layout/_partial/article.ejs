@@ -11,11 +11,18 @@
       </header>
     <% } %>
     <div class="e-content article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
+      <% if (index){ %>
+        <div class="article-summary">
+          <% if (post.excerpt){ %>
+            <%- post.excerpt %>
+          <% } else { %>
+            <% var content = strip_html(post.content).substring(0, 200); %>
+            <p><%= content %>...</p>
+          <% } %>
+        </div>
         <% if (theme.excerpt_link){ %>
           <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+            <a href="<%- url_for(post.path) %>"><%= theme.excerpt_link %></a>
           </p>
         <% } %>
       <% } else { %>

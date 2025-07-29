@@ -1,6 +1,6 @@
 ---
 title: SpringMVC+IDEA
-date: 2017-12-27 12:40:22
+date: 2019-12-27 12:40:22
 tags: [IDEA, SpringMVC, Maven, Hibernate, MySql]
 ---
 
