@@ -1259,6 +1259,41 @@ pre .javascript .function {
     color: #fff;
   }
 }
+.about-widget .about-avatar {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.about-widget .about-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  border: 3px solid #eee;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.about-widget .about-avatar img:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  border-color: #258fb8;
+}
+.about-widget .about-info {
+  margin-bottom: 15px;
+}
+.about-widget .about-info ul li {
+  margin-bottom: 8px;
+}
+.about-widget .about-info ul li i {
+  margin-right: 8px;
+  color: #258fb8;
+}
+.about-widget .about-description p {
+  text-align: justify;
+  line-height: 1.6;
+}
 @media screen and (min-width: 768px) {
   #sidebar {
     display: inline;
