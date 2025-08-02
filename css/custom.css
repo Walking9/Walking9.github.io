@@ -1,0 +1,52 @@
+/* 关于我模块样式 */
+.aboutme-wrap {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.aboutme-item {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.aboutme-icon {
+  width: 20px;
+  margin-right: 10px;
+  text-align: center;
+  color: #4d4d4d;
+}
+
+.aboutme-text {
+  flex: 1;
+}
+
+.aboutme-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed #eaeaea;
+}
+
+.aboutme-section-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #4d4d4d;
+}
+
+.aboutme-tag {
+  display: inline-block;
+  background: #f6f6f6;
+  padding: 3px 8px;
+  margin: 3px;
+  border-radius: 3px;
+  font-size: 12px;
+  color: #666;
+}
+
+.aboutme-highlight {
+  color: #e74c3c;
+  font-weight: bold;
+}
