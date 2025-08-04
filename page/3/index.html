@@ -78,9 +78,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-51学习库（8）--DS1302时钟模块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-51学习库（7）--DS18B20温度传感器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%888%EF%BC%89--DS1302%E6%97%B6%E9%92%9F%E6%A8%A1%E5%9D%97/" class="article-date">
+    <a href="/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%887%EF%BC%89--DS18B20%E6%B8%A9%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/" class="article-date">
   <time class="dt-published" datetime="2017-04-08T05:23:24.000Z" itemprop="datePublished">2017-04-08</time>
 </a>
     
@@ -92,7 +92,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%888%EF%BC%89--DS1302%E6%97%B6%E9%92%9F%E6%A8%A1%E5%9D%97/">51学习库（8）--DS1302时钟模块</a>
+      <a class="p-name article-title" href="/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%887%EF%BC%89--DS18B20%E6%B8%A9%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/">51学习库（7）--DS18B20温度传感器</a>
     </h1>
   
 
@@ -103,19 +103,19 @@
         <div class="article-summary">
           
             
-            <p>51学习库（8）–DS1302时钟模块注：使用的单片机是stc12c5a60s2，该系列单片机属于加强51，在运行速度上是普通51的8-12倍，有关时序的操作需要加以注意。注2：使用说明：
-12345678910void main()&amp;#123;	InitLCD();	   //初始化lcd	InitDS1302();   //在测试断开电源，电池供电的功能时，注释该行    	while(1)	...</p>
+            <p>51学习库（7）–DS18B20温度传感器注：使用的单片机是stc12c5a60s2，该系列单片机属于加强51，在运行速度上是普通51的8-12倍，有关时序的操作需要加以注意。注2：使用说明：
+12unsigned int temp = Ds18b20ReadTemp();    //调用函数，取得测温结果（相对大小）float num0 = temp*0.0625+0.05;    //使用公式...</p>
           
         </div>
         
           <p class="article-more-link">
-            <a href="/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%888%EF%BC%89--DS1302%E6%97%B6%E9%92%9F%E6%A8%A1%E5%9D%97/">Read More</a>
+            <a href="/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%887%EF%BC%89--DS18B20%E6%B8%A9%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://walking9.github.io/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%888%EF%BC%89--DS1302%E6%97%B6%E9%92%9F%E6%A8%A1%E5%9D%97/" data-id="cmdx5i1ea000gh2mk9s36cgzo" data-title="51学习库（8）--DS1302时钟模块" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://walking9.github.io/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%887%EF%BC%89--DS18B20%E6%B8%A9%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/" data-id="cmdx6aeq3000gmumk54a7cfp3" data-title="51学习库（7）--DS18B20温度传感器" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -166,7 +166,58 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://walking9.github.io/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%889%EF%BC%89--EEPROM/" data-id="cmdx5i1eb000ih2mk6an4fvof" data-title="51学习库（9）--EEPROM" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://walking9.github.io/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%889%EF%BC%89--EEPROM/" data-id="cmdx6aeq4000imumk8aty7m3j" data-title="51学习库（9）--EEPROM" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">51单片机</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">单片机</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-51学习库（8）--DS1302时钟模块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%888%EF%BC%89--DS1302%E6%97%B6%E9%92%9F%E6%A8%A1%E5%9D%97/" class="article-date">
+  <time class="dt-published" datetime="2017-04-08T05:23:24.000Z" itemprop="datePublished">2017-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%888%EF%BC%89--DS1302%E6%97%B6%E9%92%9F%E6%A8%A1%E5%9D%97/">51学习库（8）--DS1302时钟模块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div class="article-summary">
+          
+            
+            <p>51学习库（8）–DS1302时钟模块注：使用的单片机是stc12c5a60s2，该系列单片机属于加强51，在运行速度上是普通51的8-12倍，有关时序的操作需要加以注意。注2：使用说明：
+12345678910void main()&amp;#123;	InitLCD();	   //初始化lcd	InitDS1302();   //在测试断开电源，电池供电的功能时，注释该行    	while(1)	...</p>
+          
+        </div>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%888%EF%BC%89--DS1302%E6%97%B6%E9%92%9F%E6%A8%A1%E5%9D%97/">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://walking9.github.io/2017/04/08/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%888%EF%BC%89--DS1302%E6%97%B6%E9%92%9F%E6%A8%A1%E5%9D%97/" data-id="cmdx6aeq5000jmumkfdsj5hy6" data-title="51学习库（8）--DS1302时钟模块" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -217,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://walking9.github.io/2017/03/27/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%886%EF%BC%89--DHT11%E6%B8%A9%E6%B9%BF%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/" data-id="cmdx5i1hk0056h2mk9r8aaqy6" data-title="51学习库（6）--DHT11温湿度传感器" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://walking9.github.io/2017/03/27/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%886%EF%BC%89--DHT11%E6%B8%A9%E6%B9%BF%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8/" data-id="cmdx6aeq3000fmumkhuu855ra" data-title="51学习库（6）--DHT11温湿度传感器" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -268,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://walking9.github.io/2017/03/06/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%885%EF%BC%89--HC_SR04%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%A8%A1%E5%9D%97/" data-id="cmdx5i1e8000dh2mk5yz22fzq" data-title="51学习库（5）--HC_SR04超声波模块" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://walking9.github.io/2017/03/06/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%885%EF%BC%89--HC_SR04%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%A8%A1%E5%9D%97/" data-id="cmdx6aeq1000dmumk7l0idecy" data-title="51学习库（5）--HC_SR04超声波模块" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -319,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://walking9.github.io/2017/02/15/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%884%EF%BC%89--%E5%86%85%E9%83%A8AD/" data-id="cmdx5i1e7000bh2mkc9rn8asf" data-title="51学习库（4）--内部AD" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://walking9.github.io/2017/02/15/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%884%EF%BC%89--%E5%86%85%E9%83%A8AD/" data-id="cmdx6aeq1000bmumk94gxcq7e" data-title="51学习库（4）--内部AD" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -370,7 +421,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://walking9.github.io/2017/02/14/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%883%EF%BC%89--12864/" data-id="cmdx5i1e60009h2mkc40f3eox" data-title="51学习库（3）--12864" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://walking9.github.io/2017/02/14/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%883%EF%BC%89--12864/" data-id="cmdx6aepz0009mumk2nnjdbdy" data-title="51学习库（3）--12864" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -422,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://walking9.github.io/2017/02/03/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%882%EF%BC%89--%E7%9F%A9%E9%98%B5%E9%94%AE%E7%9B%98/" data-id="cmdx5i1e60008h2mk359s4p1s" data-title="51学习库（2）--矩阵键盘" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://walking9.github.io/2017/02/03/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%882%EF%BC%89--%E7%9F%A9%E9%98%B5%E9%94%AE%E7%9B%98/" data-id="cmdx6aepw0004mumk96qd3mj9" data-title="51学习库（2）--矩阵键盘" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -474,7 +525,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://walking9.github.io/2017/01/22/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%881%EF%BC%89--%E6%95%B0%E7%A0%81%E7%AE%A1/" data-id="cmdx5i1e40005h2mk12v5d44t" data-title="51学习库（1）--数码管" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://walking9.github.io/2017/01/22/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%881%EF%BC%89--%E6%95%B0%E7%A0%81%E7%AE%A1/" data-id="cmdx6aepz0008mumkfiya244t" data-title="51学习库（1）--数码管" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -526,7 +577,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://walking9.github.io/2017/01/22/51%E5%AD%A6%E4%B9%A0%E5%BA%93%E7%9A%84%E5%87%A0%E7%82%B9%E8%AF%B4%E6%98%8E/" data-id="cmdx5i1e30004h2mkg7947gku" data-title="51学习库的几点说明" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://walking9.github.io/2017/01/22/51%E5%AD%A6%E4%B9%A0%E5%BA%93%E7%9A%84%E5%87%A0%E7%82%B9%E8%AF%B4%E6%98%8E/" data-id="cmdx6aepo0003mumk2yia0z48" data-title="51学习库的几点说明" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -540,61 +591,11 @@
 
 
   
-    <article id="post-【转载】qt中文件读写操作" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/01/17/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91qt%E4%B8%AD%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C/" class="article-date">
-  <time class="dt-published" datetime="2017-01-17T05:23:24.000Z" itemprop="datePublished">2017-01-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/01/17/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91qt%E4%B8%AD%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C/">【转载】qt中文件读写操作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <div class="article-summary">
-          
-            
-            <p>【转载】qt中文件读写操作1、QIODevice直接继承自QObjectQIODevice类是输入&amp;#x2F;输出设备的基类。QIODevice为设备提供了公共实现和抽象接口用于读写块数据。QIODevice是一个抽象类，不能被实例化。被Q3Socket,Q3SocketDevice,QAbstractSocket,QBuffer,QFile,QLocalSocket,QNetworkReply,...</p>
-          
-        </div>
-        
-          <p class="article-more-link">
-            <a href="/2017/01/17/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91qt%E4%B8%AD%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C/">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://walking9.github.io/2017/01/17/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91qt%E4%B8%AD%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C/" data-id="cmdx5i1em000wh2mkbdrv7ue4" data-title="【转载】qt中文件读写操作" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">文件操作</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -652,7 +653,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
     </div>
   </div>
 
@@ -681,7 +682,7 @@
           </li>
         
           <li>
-            <a href="/2021/08/11/%E6%89%8B%E6%9C%BA%E4%BA%A7%E5%93%81%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">手机产品指标 —— 稳定性：技术实践与产品视角的经验总结</a>
+            <a href="/2022/08/04/%E8%93%9D%E7%89%99%E8%80%B3%E6%9C%BA%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/">蓝牙耳机开发经验</a>
           </li>
         
       </ul>
