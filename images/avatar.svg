@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- 背景圆形 -->
+  <circle cx="100" cy="100" r="100" fill="#3498db" />
+  <!-- 头部 -->
+  <circle cx="100" cy="85" r="40" fill="#f5f5f5" />
+  <!-- 身体 -->
+  <path d="M50,180 C50,120 150,120 150,180" fill="#f5f5f5" />
+  <!-- 眼睛 -->
+  <circle cx="85" cy="80" r="5" fill="#333" />
+  <circle cx="115" cy="80" r="5" fill="#333" />
+  <!-- 嘴巴 -->
+  <path d="M85,100 Q100,115 115,100" stroke="#333" stroke-width="3" fill="none" />
+</svg>

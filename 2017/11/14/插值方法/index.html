@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>插值方法 | Walking9&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="插值方法    自打学习了计算方法这门课程，深刻的把数学与编程再与实际结合在一起，深深的感受到了数值分析的魅力，以及数学的奥妙，233333，数学太强大了，不啰嗦了，进入正题。     1、一下代码仅供参考，我只是把我实验的代码拿来记录下来，本次实验涉及到三种插值方法：分段插值、拉格朗日插值、牛顿插值。     2、实验题目：     ![根据实际，写自己的代码](https:&#x2F;&#x2F;img-blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="插值方法">
+<meta property="og:url" content="https://walking9.github.io/2017/11/14/%E6%8F%92%E5%80%BC%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Walking9&#39;s Blog">
+<meta property="og:description" content="插值方法    自打学习了计算方法这门课程，深刻的把数学与编程再与实际结合在一起，深深的感受到了数值分析的魅力，以及数学的奥妙，233333，数学太强大了，不啰嗦了，进入正题。     1、一下代码仅供参考，我只是把我实验的代码拿来记录下来，本次实验涉及到三种插值方法：分段插值、拉格朗日插值、牛顿插值。     2、实验题目：     ![根据实际，写自己的代码](https:&#x2F;&#x2F;img-blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20170317160502812?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="article:published_time" content="2017-11-14T05:23:24.000Z">
+<meta property="article:modified_time" content="2025-08-04T13:18:42.213Z">
+<meta property="article:author" content="Walking9">
+<meta property="article:tag" content="数值计算">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170317160502812?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="Walking9's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Walking9&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I try to keep on moving</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://walking9.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-插值方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/11/14/%E6%8F%92%E5%80%BC%E6%96%B9%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2017-11-14T05:23:24.000Z" itemprop="datePublished">2017-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      插值方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="插值方法"><a href="#插值方法" class="headerlink" title="插值方法"></a>插值方法</h1><pre><code>    自打学习了计算方法这门课程，深刻的把数学与编程再与实际结合在一起，深深的感受到了数值分析的魅力，以及数学的奥妙，233333，数学太强大了，不啰嗦了，进入正题。
+    1、一下代码仅供参考，我只是把我实验的代码拿来记录下来，本次实验涉及到三种插值方法：分段插值、拉格朗日插值、牛顿插值。
+    2、实验题目：
+    ![根据实际，写自己的代码](https://img-blog.csdn.net/20170317155920106?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+    3、请各位客官加以理解后，自行改写自己的代码
+</code></pre>
+<p>二、实验结果<br><img src="https://img-blog.csdn.net/20170317160502812?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">typedef struct Node&#123;    //将结点写成结构的形式</span><br><span class="line">    float x;</span><br><span class="line">    float y;</span><br><span class="line">    struct Node *next;</span><br><span class="line">&#125;Node;</span><br><span class="line"></span><br><span class="line">typedef struct Data&#123;</span><br><span class="line">    float x;</span><br><span class="line">    float y;</span><br><span class="line">&#125;Data;</span><br><span class="line"></span><br><span class="line">float LagrangeInsert(Node* head, float x)</span><br><span class="line">&#123;</span><br><span class="line">    Node *point1, *point2, *p;</span><br><span class="line">    float temp1, temp2;</span><br><span class="line"></span><br><span class="line">    point1 = point2 = head-&gt;next;</span><br><span class="line">    temp1 = 0;                //记录内循环的积</span><br><span class="line">    temp2 = 1;                //记录外循环的和</span><br><span class="line">    while(NULL != point1)</span><br><span class="line">    &#123;</span><br><span class="line">        while(NULL != point2)</span><br><span class="line">        &#123;</span><br><span class="line">            if(point1 != point2)</span><br><span class="line">                temp2 *= (x - point2-&gt;x) / (point1-&gt;x - point2-&gt;x);   //temp2表示L(x)</span><br><span class="line">            point2 = point2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        temp1 += temp2*point1-&gt;y;</span><br><span class="line">        temp2 = 1;</span><br><span class="line">        point2 = head-&gt;next;</span><br><span class="line">        point1 = point1-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    return temp1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">float PiecewiseLinearInsert(Node* head, float x)</span><br><span class="line">&#123;</span><br><span class="line">    head = head-&gt;next;    //跳过头结点</span><br><span class="line">    Node *point;</span><br><span class="line">    float temp;</span><br><span class="line">    float pace = (head-&gt;next-&gt;x) - (head-&gt;x);    //步长</span><br><span class="line"></span><br><span class="line">    point = head;</span><br><span class="line">    while((x - point-&gt;x) &gt; pace)    //确定区间</span><br><span class="line">        point = point-&gt;next;</span><br><span class="line">    temp = (point-&gt;y)*(x-(point-&gt;next-&gt;x))/(point-&gt;x - point-&gt;next-&gt;x);</span><br><span class="line">    temp += (point-&gt;next-&gt;y)*(x-(point-&gt;x))/(point-&gt;next-&gt;x - point-&gt;x);</span><br><span class="line">    return temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">float DifferenceQuotient(Data* point, int start, int end)   //递归的方法求差商</span><br><span class="line">&#123;</span><br><span class="line">    if(start == end)</span><br><span class="line">        return point[start].y;</span><br><span class="line">    return (DifferenceQuotient(point, start+1, end)-DifferenceQuotient \</span><br><span class="line">            (point, start, end-1))/(point[end].x - point[start].x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">float NewtonInsert(Data* point, float x, int nodeNum)</span><br><span class="line">&#123;</span><br><span class="line">    int flag = 0, i = 0;</span><br><span class="line">    float answer = 0.0;</span><br><span class="line">    float temp, chaShang;</span><br><span class="line">    while(flag &lt;= nodeNum-1)</span><br><span class="line">    &#123;</span><br><span class="line">        chaShang = DifferenceQuotient(point, 0, flag);</span><br><span class="line">        for(i=0; i&lt;flag; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            chaShang *= (x-point[i].x);   //此时已不是差商，而是一项</span><br><span class="line">        &#125;</span><br><span class="line">        answer += chaShang;</span><br><span class="line">        flag++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return answer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">float function(float x)    //原函数</span><br><span class="line">&#123;</span><br><span class="line">    return 1/(1 + x*x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    /* 实验一 */</span><br><span class="line">    int j;</span><br><span class="line">    float i;</span><br><span class="line">    float cin;</span><br><span class="line">    float F, L, P;</span><br><span class="line">    Node* newNode = malloc(sizeof(Node));</span><br><span class="line">    Node* head = newNode;</span><br><span class="line">    head-&gt;next = NULL;</span><br><span class="line">    for(i=-5.0; i&lt;6; i++)    //尾插法建立有头结点链表x(i):-5.0 -4.0 .... 5.0</span><br><span class="line">    &#123;</span><br><span class="line">        Node* temp = malloc(sizeof(Node));</span><br><span class="line">        temp-&gt;x = i;</span><br><span class="line">        temp-&gt;y = function(i);</span><br><span class="line">        temp-&gt;next = NULL;</span><br><span class="line">        newNode-&gt;next = temp;</span><br><span class="line">        newNode = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;---------------------------实验一--------------------------\n&quot;);</span><br><span class="line">    printf(&quot;请输入插值x:&quot;);</span><br><span class="line">    scanf(&quot;%f&quot;, &amp;cin);</span><br><span class="line">    F = function(cin);</span><br><span class="line">    L = LagrangeInsert(head, cin);</span><br><span class="line">    P = PiecewiseLinearInsert(head, cin);</span><br><span class="line">    printf(&quot;X         y(精确)     y(拉格朗日)y(分段线性)  误差（拉）  误差（分）\n&quot;);</span><br><span class="line">    printf(&quot;%f  %f    %f   %f    %f    %f\n&quot;, cin, F, L, P, F-L, F-P);</span><br><span class="line"></span><br><span class="line">    printf(&quot;请输入插值x:&quot;);</span><br><span class="line">    scanf(&quot;%f&quot;, &amp;cin);</span><br><span class="line"></span><br><span class="line">    F = function(cin);</span><br><span class="line">    L = LagrangeInsert(head, cin);</span><br><span class="line">    P = PiecewiseLinearInsert(head, cin);</span><br><span class="line">    printf(&quot;X         y(精确)     y(拉格朗日)y(分段线性)  误差（拉）  误差（分）\n&quot;);</span><br><span class="line">    printf(&quot;%f  %f    %f   %f    %f    %f\n&quot;, cin, F, L, P, F-L, F-P);</span><br><span class="line"></span><br><span class="line">    /* 实验二 */</span><br><span class="line">    printf(&quot;\n\n--------------------------实验二-------------------------\n&quot;);</span><br><span class="line">    Data array[100];   //可存放100个结点数据</span><br><span class="line">    int nodeNum = 3;</span><br><span class="line">    i = 1.0;           //y0 = 1.0</span><br><span class="line">    for(j=0; j&lt;nodeNum; j++)    //建立节点信息数组</span><br><span class="line">    &#123;</span><br><span class="line">        array[j].y = i;</span><br><span class="line">        array[j].x = i*i;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;Answer: %f&quot;, NewtonInsert(array, 5.0, 3));</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>三、写在后面<br>        1、三种插值方法的思想是根据公式得来的，其中拉格朗日插值、分段插值我用的是链表作为数据链，但是牛顿插值的话，还是用数组好。关于这一点我得自我批评下，本来三种方法都可以用数组存储结点数据的，用链表反而感觉不方便了，这是我写到牛顿插值才发现的问题，之前也就懒得改的。<br>        2、代码仅供参考，因为是要上交的实验代码，并没有用心去维护，思想可以借鉴。<br>        3、插值方法的应用：越来越多的领域需要高分辨率图像，采用图像插值技术来提高数字图像的分辨率和清晰度，从软件方面进行改进就具有十分重要的实用价值。图像插值是一个数据再生过程。由原始图像数据再生出具有更高分辨率的图像数据。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://walking9.github.io/2017/11/14/%E6%8F%92%E5%80%BC%E6%96%B9%E6%B3%95/" data-id="cmdx54h1a001aq1mk08ep587i" data-title="插值方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag">数值计算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/18/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          数值积分
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/09/%E6%B1%82%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">求解线性方程组</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">About Me</h3>
+  <div class="widget about-widget">
+    <div class="about-avatar">
+      <img src="/images/shiba.jpg" alt="Avatar" />
+    </div>
+    <div class="about-info">
+      <ul>
+        <li><i class="fa fa-map-marker"></i> 上海市青浦区</li>
+        <li><i class="fa fa-envelope"></i> luka_auto@163.com</li>
+        <li><i class="fa fa-phone"></i> 177-1515-2023</li>
+        <li><i class="fa fa-briefcase"></i> C/C++工程师 @ 华为</li>
+      </ul>
+    </div>
+    <div class="about-description">
+      <p>👤 标签：程序员/toB售前/解决方案工程师/电子产品发烧友/AI忠实用户🏷️</p>
+      <p>✨ 6年工作经验，曾参与多款消费电子产品研发，现负责云计算AI+数据相关产品 🚀</p>
+      <p>💻 计算机语言：C/C++/Python/Go/Java 🛠️</p>
+      <p>🤖 积极拥抱AGI时代，职业发展全面转型，未来瞄准AI应用领域 🎯</p>
+      <p>🌟 致力于发展多元化能力：产品、运营、售前、开发等 💪</p>
+      <p>🐕 欢迎关注公众号：<strong>六边形的小狗</strong> 🔍</p>
+    </div>
+  </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">51单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSDN/" rel="tag">CSDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/" rel="tag">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/" rel="tag">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conclusion/" rel="tag">conclusion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nrf24l01/" rel="tag">nrf24l01</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A7%E5%93%81/" rel="tag">产品</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" rel="tag">学习路线</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag">数值计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" rel="tag">无线通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" rel="tag">歪比巴波🤐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">海量数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%F0%9F%A4%90/" rel="tag">🤐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">51单片机</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CSDN/" style="font-size: 10px;">CSDN</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/conclusion/" style="font-size: 10px;">conclusion</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/nrf24l01/" style="font-size: 10px;">nrf24l01</a> <a href="/tags/%E4%BA%A7%E5%93%81/" style="font-size: 10px;">产品</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">单片机</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 10px;">学习路线</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 20px;">嵌入式</a> <a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 12.5px;">技术</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" style="font-size: 15px;">数值计算</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 15px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">文件操作</a> <a href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" style="font-size: 12.5px;">无线通信</a> <a href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" style="font-size: 10px;">歪比巴波🤐</a> <a href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">海量数据处理</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" style="font-size: 10px;">软件开发</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 10px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%F0%9F%A4%90/" style="font-size: 10px;">🤐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/27/2025.07.27%E6%97%A5%E8%AE%B0/">2025.07.27日记</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/24/2025.07.24%E6%97%A5%E8%AE%B0/">2025.07.24日记</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/08/Review/">Review</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/15/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式软件开发学习路线</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/11/%E6%89%8B%E6%9C%BA%E4%BA%A7%E5%93%81%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">商业博客与个人博客系统的对比</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 Walking9<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>求解线性方程组 | Walking9&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="求解线性方程组实验目的 (1)	熟悉求解线性方程组的有关理论和方法；(2)	能编程实现雅可比及高斯-塞德尔迭代法、列主元高斯消去法、约当消去，追赶法(3)	通过测试，进一步了解各种方法的优缺点(4)	根据不同类型的方程组，选择合适的数值方法 实验内容 **本次实验参考公式**   二、实验过程【参考代码】 1234567891011121314151617181920212223242526272">
+<meta property="og:type" content="article">
+<meta property="og:title" content="求解线性方程组">
+<meta property="og:url" content="https://walking9.github.io/2017/11/09/%E6%B1%82%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/index.html">
+<meta property="og:site_name" content="Walking9&#39;s Blog">
+<meta property="og:description" content="求解线性方程组实验目的 (1)	熟悉求解线性方程组的有关理论和方法；(2)	能编程实现雅可比及高斯-塞德尔迭代法、列主元高斯消去法、约当消去，追赶法(3)	通过测试，进一步了解各种方法的优缺点(4)	根据不同类型的方程组，选择合适的数值方法 实验内容 **本次实验参考公式**   二、实验过程【参考代码】 1234567891011121314151617181920212223242526272">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20170408140209909?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170408140337521?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170408140820560?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="article:published_time" content="2017-11-09T05:23:24.000Z">
+<meta property="article:modified_time" content="2025-08-04T13:18:42.215Z">
+<meta property="article:author" content="Walking9">
+<meta property="article:tag" content="数值计算">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170408140209909?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="Walking9's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Walking9&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I try to keep on moving</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://walking9.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-求解线性方程组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/11/09/%E6%B1%82%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/" class="article-date">
+  <time class="dt-published" datetime="2017-11-09T05:23:24.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      求解线性方程组
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="求解线性方程组"><a href="#求解线性方程组" class="headerlink" title="求解线性方程组"></a>求解线性方程组</h1><p>实验目的</p>
+<p>(1)	熟悉求解线性方程组的有关理论和方法；<br>(2)	能编程实现雅可比及高斯-塞德尔迭代法、列主元高斯消去法、约当消去，追赶法<br>(3)	通过测试，进一步了解各种方法的优缺点<br>(4)	根据不同类型的方程组，选择合适的数值方法</p>
+<p>实验内容<br><img src="https://img-blog.csdn.net/20170408140209909?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<pre><code>**本次实验参考公式**
+</code></pre>
+<p><img src="https://img-blog.csdn.net/20170408140337521?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>二、实验过程<br>【参考代码】</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">//求解线性方程组</span><br><span class="line">#define N_EQUATIONS 3    //方程组个数，即未知元个数</span><br><span class="line">#define N_DETERMINANT 4    //行列式阶数</span><br><span class="line"></span><br><span class="line">double* Gausss_Seidel(double A[][N_EQUATIONS], double B[], double e, int N)</span><br><span class="line">// 输入参数： A 系数矩阵， B 初始向量， e 误差限， N 最大迭代次数</span><br><span class="line">&#123;</span><br><span class="line">    int i, j;</span><br><span class="line">    int k = 0;    //记录当前迭代次数</span><br><span class="line">    double ACC;    //累加器</span><br><span class="line">    double MAX = 0.0;</span><br><span class="line">    double Y[N_EQUATIONS];</span><br><span class="line">    double X[N_EQUATIONS];</span><br><span class="line">    for(i=0; i&lt;N_EQUATIONS; i++)   //初始化初值为0.0</span><br><span class="line">    &#123;</span><br><span class="line">        X[i] = 0.0;</span><br><span class="line">        Y[i] = 0.0;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;-------------------------Gauss_Seidel迭代过程--------------------------\n&quot;);</span><br><span class="line">    printf(&quot;k      &quot;);</span><br><span class="line">    for(i=0; i&lt;N_EQUATIONS; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;x%d(k)         &quot;, i+1);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">    printf(&quot;%d      &quot;, k);</span><br><span class="line">    for(i=0; i&lt;N_EQUATIONS; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;%lf      &quot;, Y[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">    while(k &lt; N)</span><br><span class="line">    &#123;</span><br><span class="line">        for(i=0; i&lt;N_EQUATIONS; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ACC = 0.0;</span><br><span class="line">            for(j=0; j&lt;N_EQUATIONS; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if(j != i)</span><br><span class="line">                    ACC += A[i][j] * Y[j];</span><br><span class="line">            &#125;</span><br><span class="line">            Y[i] = (B[i] - ACC)/A[i][i];</span><br><span class="line">        &#125;</span><br><span class="line">        k++;</span><br><span class="line">        printf(&quot;%d      &quot;, k);</span><br><span class="line">        for(i=0; i&lt;N_EQUATIONS; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;%lf      &quot;, Y[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">        MAX = 0;</span><br><span class="line">        for(i=0; i&lt;N_EQUATIONS; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(fabs(Y[i]-X[i]) &gt; MAX)</span><br><span class="line">                MAX = fabs(Y[i]-X[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        if(MAX &lt; e)      //判断是否达到精度要求</span><br><span class="line">            return Y;</span><br><span class="line">        for(i=0; i&lt;N_EQUATIONS; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            X[i] = Y[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double SolveDeterminant(double A[][N_DETERMINANT], int n)</span><br><span class="line">&#123;</span><br><span class="line">	int a, b, i, j, k, m;</span><br><span class="line">	int count = 0;    //记录交换次数</span><br><span class="line">	double B[N_DETERMINANT][N_DETERMINANT], z = 1.0;</span><br><span class="line"></span><br><span class="line">	for(i=0; i&lt;n-1; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(A[i][i] == 0)</span><br><span class="line">		&#123;</span><br><span class="line">			for(b=i+1; b&lt;n; b++)</span><br><span class="line">			if(A[b][i] != 0)</span><br><span class="line">			&#123;</span><br><span class="line">				for(a=0; a&lt;n; a++)</span><br><span class="line">				&#123;</span><br><span class="line">					B[i][a] = A[i][a];</span><br><span class="line">					A[i][a] = A[b][a];</span><br><span class="line">					A[b][a] = B[i][a];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">            count++;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		for(j=i+1; j&lt;n; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			for(k=n-1; k&gt;=0; k--)</span><br><span class="line">			&#123;</span><br><span class="line">				A[j][k]=A[j][k]-(A[i][k]*A[j][i]/A[i][i]); //将行列式化为上三角形式</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	printf(&quot;Exchange times: %d\n&quot;, count);</span><br><span class="line">	printf(&quot;上三角矩阵形式:\n&quot;);</span><br><span class="line">	for(a=0; a&lt;n; a++)</span><br><span class="line">	&#123;</span><br><span class="line">		for(b=0; b&lt;n; b++)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;%f   &quot;, A[a][b]);</span><br><span class="line">			if(b == n-1)</span><br><span class="line">			printf(&quot;\n&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for(m=0; m&lt;n; m++)</span><br><span class="line">		z = z*A[m][m];</span><br><span class="line">	return pow(-1, count)*z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    double A0[N_EQUATIONS][N_EQUATIONS] = &#123;      //系数矩阵</span><br><span class="line">    &#123;10.0, -1.0, -2.0&#125;,</span><br><span class="line">    &#123;-1.0, 10.0, -2.0&#125;,</span><br><span class="line">    &#123;-1.0, -1.0, 5.0&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    double B0[N_EQUATIONS] = &#123;7.2, 8.3, 4.2&#125;;</span><br><span class="line">/* 则：</span><br><span class="line">   10*x1 - x2 - 2*x3 = 7.2</span><br><span class="line">   -x1 + 10*x2 - 2*x3 = 8.3</span><br><span class="line">   -x1 - x2 + 5*x3 = 4.2</span><br><span class="line"> */</span><br><span class="line">    double* answer;</span><br><span class="line">    answer = Gausss_Seidel(&amp;A0, B0, 0.00001, 20);</span><br><span class="line"></span><br><span class="line">    printf(&quot;\n----------------------选主元高斯消去求行列式值-------------------------\n&quot;);</span><br><span class="line">	double A[N_DETERMINANT][N_DETERMINANT] = &#123;</span><br><span class="line">	&#123;3, -2, 1, 4&#125;,</span><br><span class="line">	&#123;-7, 5, -3, -6&#125;,</span><br><span class="line">	&#123;2, 1, -1, 3&#125;,</span><br><span class="line">	&#123;4, -3, 2, 8&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	double value = SolveDeterminant(A, N_DETERMINANT);</span><br><span class="line">	printf(&quot;the value is: %lf\n&quot;, value);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>三、实验结果</p>
+<p><img src="https://img-blog.csdn.net/20170408140820560?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>四、写在后面</p>
+<pre><code>无
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://walking9.github.io/2017/11/09/%E6%B1%82%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/" data-id="cmdx54h1d001gq1mk6nkhdjyi" data-title="求解线性方程组" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag">数值计算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/14/%E6%8F%92%E5%80%BC%E6%96%B9%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          插值方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/08/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E6%B1%82%E6%A0%B9%E8%BF%AD%E4%BB%A3%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">非线性方程求根迭代法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">About Me</h3>
+  <div class="widget about-widget">
+    <div class="about-avatar">
+      <img src="/images/shiba.jpg" alt="Avatar" />
+    </div>
+    <div class="about-info">
+      <ul>
+        <li><i class="fa fa-map-marker"></i> 上海市青浦区</li>
+        <li><i class="fa fa-envelope"></i> luka_auto@163.com</li>
+        <li><i class="fa fa-phone"></i> 177-1515-2023</li>
+        <li><i class="fa fa-briefcase"></i> C/C++工程师 @ 华为</li>
+      </ul>
+    </div>
+    <div class="about-description">
+      <p>👤 标签：程序员/toB售前/解决方案工程师/电子产品发烧友/AI忠实用户🏷️</p>
+      <p>✨ 6年工作经验，曾参与多款消费电子产品研发，现负责云计算AI+数据相关产品 🚀</p>
+      <p>💻 计算机语言：C/C++/Python/Go/Java 🛠️</p>
+      <p>🤖 积极拥抱AGI时代，职业发展全面转型，未来瞄准AI应用领域 🎯</p>
+      <p>🌟 致力于发展多元化能力：产品、运营、售前、开发等 💪</p>
+      <p>🐕 欢迎关注公众号：<strong>六边形的小狗</strong> 🔍</p>
+    </div>
+  </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">51单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSDN/" rel="tag">CSDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/" rel="tag">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/" rel="tag">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conclusion/" rel="tag">conclusion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nrf24l01/" rel="tag">nrf24l01</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A7%E5%93%81/" rel="tag">产品</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" rel="tag">学习路线</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag">数值计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" rel="tag">无线通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" rel="tag">歪比巴波🤐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">海量数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%F0%9F%A4%90/" rel="tag">🤐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">51单片机</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CSDN/" style="font-size: 10px;">CSDN</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/conclusion/" style="font-size: 10px;">conclusion</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/nrf24l01/" style="font-size: 10px;">nrf24l01</a> <a href="/tags/%E4%BA%A7%E5%93%81/" style="font-size: 10px;">产品</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">单片机</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 10px;">学习路线</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 20px;">嵌入式</a> <a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 12.5px;">技术</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" style="font-size: 15px;">数值计算</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 15px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">文件操作</a> <a href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" style="font-size: 12.5px;">无线通信</a> <a href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" style="font-size: 10px;">歪比巴波🤐</a> <a href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">海量数据处理</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" style="font-size: 10px;">软件开发</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 10px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%F0%9F%A4%90/" style="font-size: 10px;">🤐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/27/2025.07.27%E6%97%A5%E8%AE%B0/">2025.07.27日记</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/24/2025.07.24%E6%97%A5%E8%AE%B0/">2025.07.24日记</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/08/Review/">Review</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/15/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式软件开发学习路线</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/11/%E6%89%8B%E6%9C%BA%E4%BA%A7%E5%93%81%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">商业博客与个人博客系统的对比</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 Walking9<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

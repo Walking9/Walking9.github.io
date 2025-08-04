@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>商业博客与个人博客系统的对比 | Walking9&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="手机产品指标 —— 稳定性：技术实践与产品视角的经验总结在旗舰机的研发与迭代过程中，蜂窝通信模块的稳定性是决定产品竞争力的核心指标之一。作为负责该模块稳定性看护的工程师，我在日常工作中不仅需要解决具体的技术问题，更需要从产品维度思考如何通过技术优化提升用户体验。以下从技术实践与产品价值两个层面，总结这段时间的工作经验。 一、核心工作目标：以技术指标支撑产品竞争力蜂窝通信模块是旗舰机实现通话、数据连">
+<meta property="og:type" content="article">
+<meta property="og:title" content="商业博客与个人博客系统的对比">
+<meta property="og:url" content="https://walking9.github.io/2021/08/11/%E6%89%8B%E6%9C%BA%E4%BA%A7%E5%93%81%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Walking9&#39;s Blog">
+<meta property="og:description" content="手机产品指标 —— 稳定性：技术实践与产品视角的经验总结在旗舰机的研发与迭代过程中，蜂窝通信模块的稳定性是决定产品竞争力的核心指标之一。作为负责该模块稳定性看护的工程师，我在日常工作中不仅需要解决具体的技术问题，更需要从产品维度思考如何通过技术优化提升用户体验。以下从技术实践与产品价值两个层面，总结这段时间的工作经验。 一、核心工作目标：以技术指标支撑产品竞争力蜂窝通信模块是旗舰机实现通话、数据连">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-11T02:30:00.000Z">
+<meta property="article:modified_time" content="2025-08-04T13:18:42.210Z">
+<meta property="article:author" content="Walking9">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="产品">
+<meta property="article:tag" content="经验">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Walking9's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Walking9&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I try to keep on moving</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://walking9.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-手机产品开发经验总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/08/11/%E6%89%8B%E6%9C%BA%E4%BA%A7%E5%93%81%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2021-08-11T02:30:00.000Z" itemprop="datePublished">2021-08-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      商业博客与个人博客系统的对比
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="手机产品指标-——-稳定性：技术实践与产品视角的经验总结"><a href="#手机产品指标-——-稳定性：技术实践与产品视角的经验总结" class="headerlink" title="手机产品指标 —— 稳定性：技术实践与产品视角的经验总结"></a>手机产品指标 —— 稳定性：技术实践与产品视角的经验总结</h1><p>在旗舰机的研发与迭代过程中，蜂窝通信模块的稳定性是决定产品竞争力的核心指标之一。作为负责该模块稳定性看护的工程师，我在日常工作中不仅需要解决具体的技术问题，更需要从产品维度思考如何通过技术优化提升用户体验。以下从技术实践与产品价值两个层面，总结这段时间的工作经验。</p>
+<h2 id="一、核心工作目标：以技术指标支撑产品竞争力"><a href="#一、核心工作目标：以技术指标支撑产品竞争力" class="headerlink" title="一、核心工作目标：以技术指标支撑产品竞争力"></a>一、核心工作目标：以技术指标支撑产品竞争力</h2><p>蜂窝通信模块是旗舰机实现通话、数据连接的核心组件，而<strong>modem 的稳定性</strong>直接决定了用户对 “信号好、不掉线” 的基础体验。我的工作核心可概括为三个维度：</p>
+<ol>
+<li><p><strong>问题闭环管理</strong>：聚焦 modem 重启类问题（占通信稳定性投诉的 60% 以上），通过全链路分析定位根因并推动修复；</p>
+</li>
+<li><p><strong>指标刚性看护</strong>：将 MTBF（平均无故障工作时间）作为核心 KPI，确保旗舰机型该指标达到行业 Top 10% 水平（目标值≥1500 小时）。其中，MTBF 的计算公式为：MTBF &#x3D; 总运行时间 &#x2F; 故障次数，它能直观反映模块在正常工作状态下的持续运行能力，是衡量稳定性的关键量化指标；</p>
+</li>
+<li><p><strong>产品体验平衡</strong>：在解决稳定性问题的同时，同步优化通信功耗（蜂窝模块功耗占整机 15%-20%），避免 “为稳定牺牲续航” 的产品矛盾。</p>
+</li>
+</ol>
+<h2 id="二、典型问题的技术攻坚与产品影响分析"><a href="#二、典型问题的技术攻坚与产品影响分析" class="headerlink" title="二、典型问题的技术攻坚与产品影响分析"></a>二、典型问题的技术攻坚与产品影响分析</h2><h3 id="（一）DDR-跳变导致的内存踩踏问题：从-“偶发异常”-到-“确定性修复”（硬件类）"><a href="#（一）DDR-跳变导致的内存踩踏问题：从-“偶发异常”-到-“确定性修复”（硬件类）" class="headerlink" title="（一）DDR 跳变导致的内存踩踏问题：从 “偶发异常” 到 “确定性修复”（硬件类）"></a>（一）DDR 跳变导致的内存踩踏问题：从 “偶发异常” 到 “确定性修复”（硬件类）</h3><p><strong>技术特征</strong>：DDR 作为 modem 与 AP（应用处理器）共享的存储介质，其电压波动或时序偏移可能导致 modem 访问内存时触发地址越界，表现为 “无规律重启”（日均发生概率＜0.1%）。</p>
+<p><strong>解决路径</strong>：</p>
+<ul>
+<li><p>建立 “内存访问日志回溯系统”，通过抓取 modem 重启前 100ms 的内存地址序列，定位越界发生的物理地址段；</p>
+</li>
+<li><p>联合基带团队优化 DDR 控制器的电压调节算法，将电压波动范围从 ±5% 压缩至 ±2%；</p>
+</li>
+<li><p>引入内存地址校验机制，在 modem 固件层增加地址合法性预检查逻辑。</p>
+</li>
+</ul>
+<p><strong>产品价值</strong>：该问题修复后，某旗舰机型的通信稳定性投诉下降 32%，用户反馈 “电梯 &#x2F; 地铁等弱网场景掉线次数明显减少”，直接提升了产品在通信可靠性维度的口碑。</p>
+<h3 id="（二）看门狗复位：从-“被动触发”-到-“主动预防”（软件类）"><a href="#（二）看门狗复位：从-“被动触发”-到-“主动预防”（软件类）" class="headerlink" title="（二）看门狗复位：从 “被动触发” 到 “主动预防”（软件类）"></a>（二）看门狗复位：从 “被动触发” 到 “主动预防”（软件类）</h3><p><strong>技术逻辑</strong>：modem 内置的硬件看门狗（Watchdog）会定期检测软件心跳，若 100ms 内未收到响应则触发复位。但实际场景中，高负载（如 5G NSA 锚点切换）可能导致软件延迟，引发 “误复位”。</p>
+<p><strong>优化方案</strong>：</p>
+<ul>
+<li><p>动态调整看门狗阈值：根据当前通信负载（如小区切换、数据吞吐量），将触发时间从固定 100ms 调整为 50-200ms 自适应；</p>
+</li>
+<li><p>引入 “预超时预警机制”：当检测到软件响应延迟超过阈值 80% 时，主动释放非核心任务资源，优先保障心跳信号。</p>
+</li>
+</ul>
+<p><strong>产品视角</strong>：优化后，看门狗误触发率从 0.05% 降至 0.001%，既保留了看门狗的故障兜底功能，又避免了 “正常使用中突然断网” 的用户痛点，平衡了技术可靠性与产品体验流畅性。</p>
+<h3 id="（三）子系统子模块-bug-触发的主动复位：从-“随机崩溃”-到-“代码级防护”（软件类）"><a href="#（三）子系统子模块-bug-触发的主动复位：从-“随机崩溃”-到-“代码级防护”（软件类）" class="headerlink" title="（三）子系统子模块 bug 触发的主动复位：从 “随机崩溃” 到 “代码级防护”（软件类）"></a>（三）子系统子模块 bug 触发的主动复位：从 “随机崩溃” 到 “代码级防护”（软件类）</h3><p><strong>技术特征</strong>：在蜂窝通信模块的复杂系统中，子系统与子模块的软件 bug 是引发 modem 主动复位的常见因素，其中空指针 &#x2F; 野指针、内存越界、栈溢出尤为典型。空指针 &#x2F; 野指针会导致程序访问非法内存地址，使系统陷入不可控状态，进而触发复位；内存越界则是指程序访问了超出分配范围的内存区域，可能破坏其他数据结构，引发连锁错误导致复位；栈溢出是由于程序在栈中分配的空间超过了预设大小，覆盖了栈底的关键信息，迫使系统启动保护机制进行复位。这类问题往往具有较强的场景相关性，在特定的通信流程（如呼叫建立、切换网络制式）中更易触发，发生概率约为 0.08%。</p>
+<p><strong>解决路径</strong>：</p>
+<ul>
+<li><p>针对空指针 &#x2F; 野指针：引入静态代码分析工具，在编译阶段对指针操作进行全面扫描，找出潜在的未初始化指针和已释放指针的非法使用；同时在运行时添加指针合法性检查机制，当检测到空指针 &#x2F; 野指针访问时，及时触发异常处理流程，避免系统直接复位。</p>
+</li>
+<li><p>对于内存越界：采用内存边界保护技术，在分配的内存块前后设置保护页，当程序越界访问时，能够立即捕获异常并记录详细的访问信息；此外，推广使用内存安全的编程语言子集，从源头减少内存越界的可能性。</p>
+</li>
+<li><p>面对栈溢出：通过动态栈监控工具，实时跟踪栈的使用情况，当栈空间使用率达到阈值（如 80%）时，及时发出预警并尝试回收部分非必要的栈空间；同时根据不同子模块的功能需求，合理调整栈的初始大小，避免因空间不足导致溢出。</p>
+</li>
+</ul>
+<p><strong>产品价值</strong>：通过对这些子系统子模块 bug 的修复，相关机型在复杂通信场景下的复位次数显著降低，用户在进行视频通话、在线游戏等对网络稳定性要求高的操作时，体验得到显著提升。</p>
+<h2 id="三、稳定性问题分析流程：系统化排查的关键"><a href="#三、稳定性问题分析流程：系统化排查的关键" class="headerlink" title="三、稳定性问题分析流程：系统化排查的关键"></a>三、稳定性问题分析流程：系统化排查的关键</h2><p>在处理各类稳定性问题时，一套规范、高效的分析流程至关重要，能帮助我们快速定位问题根源，提高解决问题的效率。具体流程如下：</p>
+<ol>
+<li><p><strong>判断问题类型</strong>：首先明确问题是否属于 modem 重启类问题，还是其他类型的稳定性问题，如信号中断、网络卡顿等。不同类型的问题，其分析方向和解决手段大相径庭。</p>
+</li>
+<li><p><strong>判断问题的模块</strong>：确定问题所属的具体模块，是属于硬件层面的射频模块、电源模块，还是软件层面的协议栈、驱动程序等。精准定位模块，能缩小排查范围，提高分析的针对性。</p>
+</li>
+<li><p><strong>现有日志是否支持分析</strong>：查看当前已有的运行日志、错误日志等，判断这些日志是否包含足够的信息来支撑问题分析。若日志信息完整、清晰，可直接基于日志进行深入研判；若日志信息缺失或模糊，则需进行下一步操作。</p>
+</li>
+<li><p><strong>无法分析则加日志，提供复现思路和场景，黑盒压测观察</strong>：当现有日志不足以分析问题时，需要有针对性地增加日志采集点，以便获取更多关键信息。同时，结合实际使用场景，提供详细的问题复现思路和具体场景描述，如特定的网络环境、操作步骤等。此外，通过黑盒压测的方式，模拟高负载、长时间运行等极端情况，观察模块的表现，捕捉潜在的问题。</p>
+</li>
+</ol>
+<p>通过这套流程，我们能够有条不紊地对稳定性问题进行排查和分析，大大提高了问题解决的效率和准确性，为产品的稳定交付提供了有力保障。</p>
+<h2 id="四、技术与产品融合的核心经验"><a href="#四、技术与产品融合的核心经验" class="headerlink" title="四、技术与产品融合的核心经验"></a>四、技术与产品融合的核心经验</h2><ol>
+<li><p><strong>指标拆解要落地用户场景</strong>：MTBF 不仅是实验室数据，更要对应 “日均掉网次数”“弱网环境成功率” 等用户可感知的指标，避免为了技术指标而牺牲实际体验。</p>
+</li>
+<li><p><strong>问题解决需预判产品生命周期</strong>：从研发阶段就考虑硬件老化、软件迭代对稳定性的影响，例如在固件中预留可升级的补偿算法接口，为后期维护留出空间。</p>
+</li>
+<li><p><strong>跨团队协作要以产品价值为锚点</strong>：与硬件、射频、软件团队沟通时，不仅要讲技术原理，更要说明 “该问题会导致 XX 场景下用户投诉，影响产品评分 XX 分”，推动资源向核心体验问题倾斜。</p>
+</li>
+</ol>
+<p>蜂窝通信模块的稳定性看护，本质上是在 “技术可行性” 与 “产品竞争力” 之间寻找最优解。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://walking9.github.io/2021/08/11/%E6%89%8B%E6%9C%BA%E4%BA%A7%E5%93%81%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" data-id="cmdx54h180017q1mk6ukc9yz2" data-title="商业博客与个人博客系统的对比" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A7%E5%93%81/" rel="tag">产品</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/11/15/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          嵌入式软件开发学习路线
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/27/SpringMVC-IDEA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">SpringMVC+IDEA</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">About Me</h3>
+  <div class="widget about-widget">
+    <div class="about-avatar">
+      <img src="/images/shiba.jpg" alt="Avatar" />
+    </div>
+    <div class="about-info">
+      <ul>
+        <li><i class="fa fa-map-marker"></i> 上海市青浦区</li>
+        <li><i class="fa fa-envelope"></i> luka_auto@163.com</li>
+        <li><i class="fa fa-phone"></i> 177-1515-2023</li>
+        <li><i class="fa fa-briefcase"></i> C/C++工程师 @ 华为</li>
+      </ul>
+    </div>
+    <div class="about-description">
+      <p>👤 标签：程序员/toB售前/解决方案工程师/电子产品发烧友/AI忠实用户🏷️</p>
+      <p>✨ 6年工作经验，曾参与多款消费电子产品研发，现负责云计算AI+数据相关产品 🚀</p>
+      <p>💻 计算机语言：C/C++/Python/Go/Java 🛠️</p>
+      <p>🤖 积极拥抱AGI时代，职业发展全面转型，未来瞄准AI应用领域 🎯</p>
+      <p>🌟 致力于发展多元化能力：产品、运营、售前、开发等 💪</p>
+      <p>🐕 欢迎关注公众号：<strong>六边形的小狗</strong> 🔍</p>
+    </div>
+  </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">51单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSDN/" rel="tag">CSDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/" rel="tag">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/" rel="tag">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conclusion/" rel="tag">conclusion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nrf24l01/" rel="tag">nrf24l01</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A7%E5%93%81/" rel="tag">产品</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" rel="tag">学习路线</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag">数值计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" rel="tag">无线通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" rel="tag">歪比巴波🤐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">海量数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%F0%9F%A4%90/" rel="tag">🤐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">51单片机</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CSDN/" style="font-size: 10px;">CSDN</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/conclusion/" style="font-size: 10px;">conclusion</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/nrf24l01/" style="font-size: 10px;">nrf24l01</a> <a href="/tags/%E4%BA%A7%E5%93%81/" style="font-size: 10px;">产品</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">单片机</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 10px;">学习路线</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 20px;">嵌入式</a> <a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 12.5px;">技术</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" style="font-size: 15px;">数值计算</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 15px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">文件操作</a> <a href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" style="font-size: 12.5px;">无线通信</a> <a href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" style="font-size: 10px;">歪比巴波🤐</a> <a href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">海量数据处理</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" style="font-size: 10px;">软件开发</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 10px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%F0%9F%A4%90/" style="font-size: 10px;">🤐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/27/2025.07.27%E6%97%A5%E8%AE%B0/">2025.07.27日记</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/24/2025.07.24%E6%97%A5%E8%AE%B0/">2025.07.24日记</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/08/Review/">Review</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/15/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式软件开发学习路线</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/11/%E6%89%8B%E6%9C%BA%E4%BA%A7%E5%93%81%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">商业博客与个人博客系统的对比</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 Walking9<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

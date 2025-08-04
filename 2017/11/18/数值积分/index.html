@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>数值积分 | Walking9&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="数值积分一、写在前面    本篇文章介绍了以插值方法为基础的数值积分算法，其中最经典的便是Romberg提出的思想理念，同上篇文章一样，还是用一个实验来展示Romberg算法思想。    实验内容： 二、实验过程     在代码片中，我给出了较为详细的注释，在这里不在多说，最好的语言是代码！^V^ 三、实验结果：【参考代码】 123456789101112131415161718192021222">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数值积分">
+<meta property="og:url" content="https://walking9.github.io/2017/11/18/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86/index.html">
+<meta property="og:site_name" content="Walking9&#39;s Blog">
+<meta property="og:description" content="数值积分一、写在前面    本篇文章介绍了以插值方法为基础的数值积分算法，其中最经典的便是Romberg提出的思想理念，同上篇文章一样，还是用一个实验来展示Romberg算法思想。    实验内容： 二、实验过程     在代码片中，我给出了较为详细的注释，在这里不在多说，最好的语言是代码！^V^ 三、实验结果：【参考代码】 123456789101112131415161718192021222">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20170326211814682?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170326212954657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170326211300430?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="article:published_time" content="2017-11-18T05:23:24.000Z">
+<meta property="article:modified_time" content="2025-08-04T13:18:42.214Z">
+<meta property="article:author" content="Walking9">
+<meta property="article:tag" content="数值计算">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170326211814682?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="Walking9's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Walking9&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I try to keep on moving</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://walking9.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数值积分" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/11/18/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86/" class="article-date">
+  <time class="dt-published" datetime="2017-11-18T05:23:24.000Z" itemprop="datePublished">2017-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      数值积分
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="数值积分"><a href="#数值积分" class="headerlink" title="数值积分"></a>数值积分</h1><p>一、写在前面<br>    本篇文章介绍了以插值方法为基础的数值积分算法，其中最经典的便是Romberg提出的思想理念，同上篇文章一样，还是用一个实验来展示Romberg算法思想。<br>    实验内容：<br><img src="https://img-blog.csdn.net/20170326211814682?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>二、实验过程<br>     在代码片中，我给出了较为详细的注释，在这里不在多说，最好的语言是代码！^V^<br><img src="https://img-blog.csdn.net/20170326212954657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>三、实验结果：<br><img src="https://img-blog.csdn.net/20170326211300430?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>【参考代码】</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line"></span><br><span class="line">double function(double x)    //原函数（可以不用给出，只给出几组已知数据放在数值中）</span><br><span class="line">&#123;</span><br><span class="line">    if(x == 0)</span><br><span class="line">        return 1;     //当x-&gt;0,函数极限是1</span><br><span class="line">    return sin(x)/x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double CompositeTrapezoidalRule(double a, double b, int n)     //复化梯形公式在区间[a, b]上n等分</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    double h = (b-a)/n;    //h为步长</span><br><span class="line">    double sum = function(a) + function(b);</span><br><span class="line">    for(i = 1; i&lt;n; i++)    //运用公式</span><br><span class="line">    &#123;</span><br><span class="line">        sum += 2*function(a + h*i);</span><br><span class="line">    &#125;</span><br><span class="line">    return sum*h/2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double CompositeSimpsonRule(double a, double b, int n)    //复化Simpson公式在区间[a, b]上n等分</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    double h = (b-a)/n;</span><br><span class="line">    double sum = function(a) + function(b) + 4*function(a + h/2);</span><br><span class="line">    for(i = 1; i&lt;n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum += 2*function(a + h*i);</span><br><span class="line">        sum += 4*function(a + h*i + h/2);</span><br><span class="line">    &#125;</span><br><span class="line">    return sum*h/6;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double CompositeCotesRule(double a, double b, int n)    //复化Cotes公式在区间[a, b]上n等分</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    double h = (b-a)/n;</span><br><span class="line">    double sum = 7*(function(a) + function(b));</span><br><span class="line">    sum += (32*function(a + h/4) + 12*function(a + h/2) + 32*function(a + 0.75*h));</span><br><span class="line">    for(i = 1; i&lt;n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum += (32*function(a + h*i + h/4) + 12*function(a + h*i + h/2) + 32*function(a + h*i + 0.75*h));</span><br><span class="line">    &#125;</span><br><span class="line">    return sum*h/90;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    double answer;</span><br><span class="line">    printf(&quot;------------------Romberg Experiment--------------------\n\n&quot;);</span><br><span class="line">    printf(&quot;k   Trapezoidal Simpson     Cotes     Romberg\n&quot;);</span><br><span class="line">    printf(&quot;k=0: %lf \n&quot;, CompositeTrapezoidalRule(0.0, 1.0, 1));    //第一行显示</span><br><span class="line"></span><br><span class="line">    printf(&quot;k=1: %lf \t&quot;, CompositeTrapezoidalRule(0.0, 1.0, 2));    //第二行显示</span><br><span class="line">    printf(&quot;%lf\n&quot;, CompositeSimpsonRule(0.0, 1.0, 1));</span><br><span class="line"></span><br><span class="line">    printf(&quot;k=2: %lf \t&quot;, CompositeTrapezoidalRule(0.0, 1.0, 4));    //第三行显示</span><br><span class="line">    printf(&quot;%lf   &quot;, CompositeSimpsonRule(0.0, 1.0, 2));</span><br><span class="line">    printf(&quot;%lf\n&quot;, CompositeCotesRule(0.0, 1.0, 1));</span><br><span class="line"></span><br><span class="line">    printf(&quot;k=3: %lf \t&quot;, CompositeTrapezoidalRule(0.0, 1.0, 8));    //第四行显示</span><br><span class="line">    printf(&quot;%lf   &quot;, CompositeSimpsonRule(0.0, 1.0, 4));</span><br><span class="line">//    printf(&quot;%lf\n&quot;, CompositeCotesRule(0.0, 1.0, 2));    当n=2时，Cotes算法误差较大，此处用Romberg</span><br><span class="line">    double S2 = CompositeSimpsonRule(0.0, 1.0, 2);</span><br><span class="line">    double S4 = CompositeSimpsonRule(0.0, 1.0, 4);</span><br><span class="line">    double C1 = CompositeCotesRule(0.0, 1.0, 1);</span><br><span class="line">    double C2 = 16*S4/15 - S2/15;</span><br><span class="line">    double R1 = 64*C2/63 - C1/63;</span><br><span class="line">    printf(&quot;%lf   &quot;, C2);</span><br><span class="line">    printf(&quot;%lf\n&quot;, R1);</span><br><span class="line"></span><br><span class="line">    printf(&quot;k=4: %lf \t&quot;, CompositeTrapezoidalRule(0.0, 1.0, 16));    //第五行显示</span><br><span class="line">    printf(&quot;%lf   &quot;, CompositeSimpsonRule(0.0, 1.0, 8));</span><br><span class="line">//  C4和R2都用Romberg</span><br><span class="line">    double S8 = CompositeSimpsonRule(0.0, 1.0, 8);</span><br><span class="line">    double C4 = 16*S8/15 - S4/15;</span><br><span class="line">    double R2 = 64*C4/63 - C2/63;</span><br><span class="line">    printf(&quot;%lf   &quot;, C4);</span><br><span class="line">    printf(&quot;%lf\n&quot;, R2);</span><br><span class="line"></span><br><span class="line">    printf(&quot;the 4 result is %lf\n&quot;, R2);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>四、写在后面<br>    数值积分的应用：在许多实际问题中，常常需要计算定积分的值。但是在实际使用中，往往遇到如下困难，而不能使用牛顿-莱布尼兹公式。<br>    （1）	找不到用初等函数表示的原函数<br>    （2）	虽然找到了原函数，但因表达式过于复杂而不便计算<br>    （3）	f(x)是由测量或计算得到的表格函数<br>     由于以上种种困难，有必要研究积分的数值计算问题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://walking9.github.io/2017/11/18/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86/" data-id="cmdx54h1c001eq1mkd6do4ngi" data-title="数值积分" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag">数值计算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/18/%E6%95%B0%E5%80%BC%E5%BE%AE%E5%88%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          数值微分
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/14/%E6%8F%92%E5%80%BC%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">插值方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">About Me</h3>
+  <div class="widget about-widget">
+    <div class="about-avatar">
+      <img src="/images/shiba.jpg" alt="Avatar" />
+    </div>
+    <div class="about-info">
+      <ul>
+        <li><i class="fa fa-map-marker"></i> 上海市青浦区</li>
+        <li><i class="fa fa-envelope"></i> luka_auto@163.com</li>
+        <li><i class="fa fa-phone"></i> 177-1515-2023</li>
+        <li><i class="fa fa-briefcase"></i> C/C++工程师 @ 华为</li>
+      </ul>
+    </div>
+    <div class="about-description">
+      <p>👤 标签：程序员/toB售前/解决方案工程师/电子产品发烧友/AI忠实用户🏷️</p>
+      <p>✨ 6年工作经验，曾参与多款消费电子产品研发，现负责云计算AI+数据相关产品 🚀</p>
+      <p>💻 计算机语言：C/C++/Python/Go/Java 🛠️</p>
+      <p>🤖 积极拥抱AGI时代，职业发展全面转型，未来瞄准AI应用领域 🎯</p>
+      <p>🌟 致力于发展多元化能力：产品、运营、售前、开发等 💪</p>
+      <p>🐕 欢迎关注公众号：<strong>六边形的小狗</strong> 🔍</p>
+    </div>
+  </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">51单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSDN/" rel="tag">CSDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/" rel="tag">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/" rel="tag">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conclusion/" rel="tag">conclusion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nrf24l01/" rel="tag">nrf24l01</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A7%E5%93%81/" rel="tag">产品</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" rel="tag">学习路线</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag">数值计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" rel="tag">无线通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" rel="tag">歪比巴波🤐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">海量数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%F0%9F%A4%90/" rel="tag">🤐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">51单片机</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CSDN/" style="font-size: 10px;">CSDN</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/conclusion/" style="font-size: 10px;">conclusion</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/nrf24l01/" style="font-size: 10px;">nrf24l01</a> <a href="/tags/%E4%BA%A7%E5%93%81/" style="font-size: 10px;">产品</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">单片机</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 10px;">学习路线</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 20px;">嵌入式</a> <a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 12.5px;">技术</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" style="font-size: 15px;">数值计算</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 15px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">文件操作</a> <a href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" style="font-size: 12.5px;">无线通信</a> <a href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" style="font-size: 10px;">歪比巴波🤐</a> <a href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">海量数据处理</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" style="font-size: 10px;">软件开发</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 10px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%F0%9F%A4%90/" style="font-size: 10px;">🤐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/27/2025.07.27%E6%97%A5%E8%AE%B0/">2025.07.27日记</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/24/2025.07.24%E6%97%A5%E8%AE%B0/">2025.07.24日记</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/08/Review/">Review</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/15/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式软件开发学习路线</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/11/%E6%89%8B%E6%9C%BA%E4%BA%A7%E5%93%81%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">商业博客与个人博客系统的对比</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 Walking9<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>nrf24l01之python | Walking9&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="nrf24l01之python无线通信模块nrf24l01采用2.4G技术，同样，蓝牙和wifi模块也是采用的2.4G技术，只是后者在技术的基础之上做了扩展，封装更高，那么我们在做通信的时候，如果只是单纯想完成两个设备之间的通信，我的建议是使用nrf24l01模块*2。之前做过蓝牙模块之间的通信，其优点在于有指定的指令集，集成度高，操作起来十分方便，但是传输速度不快，质量不可靠，实时性不高，所以需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nrf24l01之python">
+<meta property="og:url" content="https://walking9.github.io/2017/06/12/nrf24l01%E4%B9%8Bpython/index.html">
+<meta property="og:site_name" content="Walking9&#39;s Blog">
+<meta property="og:description" content="nrf24l01之python无线通信模块nrf24l01采用2.4G技术，同样，蓝牙和wifi模块也是采用的2.4G技术，只是后者在技术的基础之上做了扩展，封装更高，那么我们在做通信的时候，如果只是单纯想完成两个设备之间的通信，我的建议是使用nrf24l01模块*2。之前做过蓝牙模块之间的通信，其优点在于有指定的指令集，集成度高，操作起来十分方便，但是传输速度不快，质量不可靠，实时性不高，所以需">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-06-12T05:23:24.000Z">
+<meta property="article:modified_time" content="2025-08-04T13:18:42.207Z">
+<meta property="article:author" content="Walking9">
+<meta property="article:tag" content="嵌入式">
+<meta property="article:tag" content="无线通信">
+<meta property="article:tag" content="nrf24l01">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Walking9's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Walking9&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I try to keep on moving</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://walking9.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-nrf24l01之python" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/06/12/nrf24l01%E4%B9%8Bpython/" class="article-date">
+  <time class="dt-published" datetime="2017-06-12T05:23:24.000Z" itemprop="datePublished">2017-06-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      nrf24l01之python
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="nrf24l01之python"><a href="#nrf24l01之python" class="headerlink" title="nrf24l01之python"></a>nrf24l01之python</h1><p>无线通信模块nrf24l01采用2.4G技术，同样，蓝牙和wifi模块也是采用的2.4G技术，只是后者在技术的基础之上做了扩展，封装更高，那么我们在做通信的时候，如果只是单纯想完成两个设备之间的通信，我的建议是使用nrf24l01模块*2。之前做过蓝牙模块之间的通信，其优点在于有指定的指令集，集成度高，操作起来十分方便，但是传输速度不快，质量不可靠，实时性不高，所以需要nrf24l01。</p>
+<p>二、<br>在openmv上编写nrf24l01的发送代码，Python。<br>openmv是用于做图像处理的一个开源项目，将摄像头和一块stm32芯片集成在一起，通过python语言来完成对单片机的控制，以及调用内部的库函数来完成图像处理的部分内容。<br>首先得知道nrf24l01是如何完成通信的。<br>1、nrf24l01需要与单片机正常通信，这是通过spi总线来完成的，四根信号线，mosi、miso、sck、cs，注意，并不是nrf24l01上的mosi与单片机的miso连接，这里我在连线的时候是有过犹豫的，之后通过实践证明以及百度，证实了mosi与mosi相连，miso与miso相连。<br>nrf24l01与单片机是通过spi串行通信，但具体如何完成通信，这涉及到spi协议，网上资料还是很多的，在此是调用了openmv的库内的spi相关函数。调用方法点击跳转：<br><a target="_blank" rel="noopener" href="http://docs.openmv.io/library/pyb.SPI.html#pyb-spi">http://docs.openmv.io/library/pyb.SPI.html#pyb-spi</a></p>
+<p>在此我想说的是，即使调用了spi的库，仍然被一个地方卡住了，正确的使用是这样的：</p>
+<pre><code>CS.value(0)
+NRF_SPI.send_recv(buff, buff, timeout=500)
+CS.value(1)
+</code></pre>
+<p>可以看到，需要经过一次片选的完成才能正确的完成数据的通信，而不是一直片选中该模块就可以完成通信的。</p>
+<p>2、nrf24l01的通信，上面说到，四根信号线用在了spi上，还有两个CE、IRQ来完成模块的自身需求，通过配置模块内部的寄存器来完成数据的发送，此处应有代码。<br>（如需详细了解模块内部的寄存器可以仔细阅读数据手册，那上面说的很清楚，另外，此处只将nrf24l01作为发送端，接收端同理）</p>
+<p>def nrf_writereg(reg, dat):     # NRF24L01+写寄存器<br>    …</p>
+<p>def nrf_readreg(reg):<br>    …</p>
+<p>def nrf_writebuf(reg, pBuf, datalen):    #pBuf为TX的地址<br>    …<br>上面这三个函数是对nrf24l01的寄存器进行的基本操作，下面上全部的代码，表示在我的设备上已正常测试通过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br></pre></td><td class="code"><pre><span class="line">import sensor, image, time</span><br><span class="line">import pyb</span><br><span class="line">from pyb import Pin, SPI, ExtInt</span><br><span class="line"></span><br><span class="line"># 用户配置 发送和 接收地址，频道</span><br><span class="line">TX_ADDRESS = (0x34, 0x43, 0x10, 0x10, 0x01)   # 定义一个静态发送地址</span><br><span class="line">RX_ADDRESS = (0x34, 0x43, 0x10, 0x10, 0x01)</span><br><span class="line">CHANAL    =      40                              #频道选择</span><br><span class="line">buff = bytearray(2)</span><br><span class="line"></span><br><span class="line">def callback(line): #中断服务函数</span><br><span class="line">    state = nrf_readreg(FIFO_STATUS) #读取FIFO_STATUS寄存器的值,正常为17</span><br><span class="line">    #print(&quot;FIFO_STATUS = &quot;, state)</span><br><span class="line">    state = nrf_readreg(STATUS)     #读取status寄存器的值,state为发送状态,数值46: 正常发送完成, 30:重发超过次数</span><br><span class="line">    #print(&quot;state = &quot;, state)</span><br><span class="line">    nrf_writereg(NRF_WRITE_REG + STATUS, state)  #清除中断标志</span><br><span class="line">    global nrf_irq_tx_flag</span><br><span class="line">    #if(state &amp; RX_DR)  #接收到数据</span><br><span class="line">        #不会接受到数据的，忽略该种情况</span><br><span class="line">    if(state &amp; TX_DS):  #发送完数据</span><br><span class="line">        nrf_irq_tx_flag = 0</span><br><span class="line">        nrf_writereg(FLUSH_TX, NOP)    #清除TX FIFO寄存器</span><br><span class="line">        print(&quot;\nTX_DS&quot;)</span><br><span class="line">    if(state &amp; MAX_RT):      #发送超时,达到最多重发次数标志位</span><br><span class="line">        nrf_irq_tx_flag = 0                            #标记发送失败</span><br><span class="line">        nrf_writereg(FLUSH_TX, NOP)                    #清除TX FIFO寄存器</span><br><span class="line">        #有可能是 对方也处于 发送状态</span><br><span class="line">        #放弃本次发送</span><br><span class="line">        print(&quot;\nMAX_RT&quot;)</span><br><span class="line">    if(state &amp; TX_FULL):    #TX FIFO 满</span><br><span class="line">        print(&quot;\nTX_FULL&quot;)</span><br><span class="line"></span><br><span class="line"># 配置spi协议端口，波特率12500*1000</span><br><span class="line">nrf_tx_buff = &#x27;H+!0&#x27;</span><br><span class="line">NRF_SPI = SPI(2)</span><br><span class="line"># 配置nrf的CE，io输出模式，初始电平为0</span><br><span class="line">CE = pyb.Pin(pyb.Pin.board.P4, pyb.Pin.OUT)</span><br><span class="line"># 配置IRQ为下降沿触发中断，handler为回调函数(中断服务函数)</span><br><span class="line">NRF_IRQ = pyb.ExtInt(pyb.Pin.board.P5, pyb.ExtInt.IRQ_FALLING, pyb.Pin.PULL_UP, callback)</span><br><span class="line">NRF_IRQ.enable()</span><br><span class="line"># CS</span><br><span class="line">CS = pyb.Pin(pyb.Pin.board.P3, pyb.Pin.OUT)</span><br><span class="line"></span><br><span class="line">DATA_PACKET        =     32      #一次传输最大可支持的字节数（1~32）</span><br><span class="line">RX_FIFO_PACKET_NUM =     80      #接收 FIFO 的 包 数目 ( 总空间 必须要大于 一副图像的大小，否则 没法接收完 )</span><br><span class="line">ADR_WIDTH          =     5       #定义地址长度（3~5）</span><br><span class="line">IS_CRC16           =     1       #1表示使用 CRC16，0表示 使用CRC8 (0~1)</span><br><span class="line">nrf_irq_tx_flag    =     0</span><br><span class="line"></span><br><span class="line"># 内部配置参量</span><br><span class="line">TX_ADR_WIDTH  =  ADR_WIDTH       #发射地址宽度</span><br><span class="line">TX_PLOAD_WIDTH = DATA_PACKET     #发射数据通道有效数据宽度0~32Byte</span><br><span class="line"></span><br><span class="line">RX_ADR_WIDTH  =  ADR_WIDTH       #接收地址宽度</span><br><span class="line">RX_PLOAD_WIDTH=  DATA_PACKET     #接收数据通道有效数据宽度0~32Byte</span><br><span class="line"></span><br><span class="line"># /******************************** NRF24L01+ 寄存器命令 宏定义***************************************/</span><br><span class="line"># SPI(nRF24L01) commands , NRF的SPI命令宏定义，详见NRF功能使用文档</span><br><span class="line">NRF_READ_REG  =  0x00    # Define read command to register</span><br><span class="line">NRF_WRITE_REG =  0x20    # Define write command to register</span><br><span class="line">RD_RX_PLOAD  =   0x61    # Define RX payload register address</span><br><span class="line">WR_TX_PLOAD  =   0xA0    # Define TX payload register address</span><br><span class="line">FLUSH_TX     =   0xE1    # Define flush TX register command</span><br><span class="line">FLUSH_RX     =   0xE2    # Define flush RX register command</span><br><span class="line">REUSE_TX_PL  =   0xE3    # Define reuse TX payload register command</span><br><span class="line">NOP          =   0xFF    # Define No Operation, might be used to read status register</span><br><span class="line"></span><br><span class="line"># SPI(nRF24L01) registers(addresses) ，NRF24L01 相关寄存器地址的宏定义</span><br><span class="line">CONFIG   =   0x00        # &#x27;Config&#x27; register address</span><br><span class="line">EN_AA    =   0x01        # &#x27;Enable Auto Acknowledgment&#x27; register address</span><br><span class="line">EN_RXADDR =  0x02        # &#x27;Enabled RX addresses&#x27; register address</span><br><span class="line">SETUP_AW  =  0x03        # &#x27;Setup address width&#x27; register address</span><br><span class="line">SETUP_RETR=  0x04        # &#x27;Setup Auto. Retrans&#x27; register address</span><br><span class="line">RF_CH     =  0x05        # &#x27;RF channel&#x27; register address</span><br><span class="line">RF_SETUP  =  0x06        # &#x27;RF setup&#x27; register address</span><br><span class="line">STATUS    =  0x07        # &#x27;Status&#x27; register address</span><br><span class="line">OBSERVE_TX=  0x08        # &#x27;Observe TX&#x27; register address</span><br><span class="line">CD        =  0x09        # &#x27;Carrier Detect&#x27; register address</span><br><span class="line">RX_ADDR_P0=  0x0A        # &#x27;RX address pipe0&#x27; register address</span><br><span class="line">RX_ADDR_P1=  0x0B        # &#x27;RX address pipe1&#x27; register address</span><br><span class="line">RX_ADDR_P2=  0x0C        # &#x27;RX address pipe2&#x27; register address</span><br><span class="line">RX_ADDR_P3=  0x0D        # &#x27;RX address pipe3&#x27; register address</span><br><span class="line">RX_ADDR_P4=  0x0E        # &#x27;RX address pipe4&#x27; register address</span><br><span class="line">RX_ADDR_P5=  0x0F        # &#x27;RX address pipe5&#x27; register address</span><br><span class="line">TX_ADDR   =  0x10        # &#x27;TX address&#x27; register address</span><br><span class="line">RX_PW_P0  =  0x11        # &#x27;RX payload width, pipe0&#x27; register address</span><br><span class="line">RX_PW_P1  =  0x12        # &#x27;RX payload width, pipe1&#x27; register address</span><br><span class="line">RX_PW_P2  =  0x13        # &#x27;RX payload width, pipe2&#x27; register address</span><br><span class="line">RX_PW_P3  =  0x14        # &#x27;RX payload width, pipe3&#x27; register address</span><br><span class="line">RX_PW_P4  =  0x15        # &#x27;RX payload width, pipe4&#x27; register address</span><br><span class="line">RX_PW_P5  =  0x16        # &#x27;RX payload width, pipe5&#x27; register address</span><br><span class="line">FIFO_STATUS= 0x17        # &#x27;FIFO Status Register&#x27; register address</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#几个重要的状态标记</span><br><span class="line">TX_FULL   =  0x01        #TX FIFO 寄存器满标志。 1 为 满，0为 不满</span><br><span class="line">MAX_RT    =  0x10        #达到最大重发次数中断标志位</span><br><span class="line">TX_DS     =  0x20        #发送完成中断标志位</span><br><span class="line">RX_DR     =  0x40        #接收到数据中断标志位</span><br><span class="line"></span><br><span class="line">def nrf_writereg(reg, dat):     # NRF24L01+写寄存器</span><br><span class="line">    buff[0] = reg          #先发送寄存器</span><br><span class="line">    buff[1] = dat          #再发送数据</span><br><span class="line">    CS.value(0)</span><br><span class="line">    NRF_SPI.send_recv(buff, buff, timeout=500)</span><br><span class="line">    CS.value(1)</span><br><span class="line">    return buff[0]</span><br><span class="line"></span><br><span class="line">def nrf_readreg(reg):</span><br><span class="line">    buff[0] = reg         #先发送寄存器</span><br><span class="line">    buff[1] = 0</span><br><span class="line">    CS.value(0)</span><br><span class="line">    NRF_SPI.send_recv(buff, buff, timeout=500)</span><br><span class="line">    CS.value(1)</span><br><span class="line">    return buff[1]  #返回读取的值</span><br><span class="line"></span><br><span class="line">def nrf_writebuf(reg, pBuf, datalen):    #pBuf为TX的地址</span><br><span class="line">    buff = bytearray(datalen+1)</span><br><span class="line">    buff[0] = reg</span><br><span class="line">    ctr = 1</span><br><span class="line">    for i in pBuf:</span><br><span class="line">        buff[ctr] = i</span><br><span class="line">        ctr += 1</span><br><span class="line">    CS.value(0)</span><br><span class="line">    NRF_SPI.send_recv(buff, buff, timeout=500)</span><br><span class="line">    CS.value(1)</span><br><span class="line">    return reg    #返回NRF24L01的状态</span><br><span class="line"></span><br><span class="line">def nrf_link_check():           #检测NRF24L01+与MCU是否正常连接</span><br><span class="line">    NRF_CHECH_DATA = 0xd2       #此值为校验数据时使用，可修改为其他值</span><br><span class="line"></span><br><span class="line">    buff = bytearray(6)</span><br><span class="line">    buff[0] = NRF_WRITE_REG + TX_ADDR</span><br><span class="line">    buff[1] = NRF_CHECH_DATA</span><br><span class="line">    buff[2] = NRF_CHECH_DATA</span><br><span class="line">    buff[3] = NRF_CHECH_DATA</span><br><span class="line">    buff[4] = NRF_CHECH_DATA</span><br><span class="line">    buff[5] = NRF_CHECH_DATA</span><br><span class="line">    CS.value(0)</span><br><span class="line">    NRF_SPI.send_recv(buff, buff)</span><br><span class="line">    CS.value(1)</span><br><span class="line"></span><br><span class="line">    buff[0] = TX_ADDR</span><br><span class="line">    CS.value(0)</span><br><span class="line">    NRF_SPI.send_recv(buff, buff)</span><br><span class="line">    CS.value(1)</span><br><span class="line"></span><br><span class="line">    #比较</span><br><span class="line">    for i in (buff[1], buff[2], buff[3], buff[4], buff[5]):</span><br><span class="line">        if i != NRF_CHECH_DATA:</span><br><span class="line">            return 0        #MCU与NRF不正常连接</span><br><span class="line">    return 1                #MCU与NRF成功连接</span><br><span class="line"></span><br><span class="line">def nrf_init():</span><br><span class="line">    ## 配置nrf的寄存器</span><br><span class="line">    # CE置低，即将开始配置</span><br><span class="line">    NRF_SPI.init(SPI.MASTER, baudrate=12500000,polarity=0, phase=0, bits=8, firstbit=SPI.MSB, ti=False, crc=None)</span><br><span class="line">    CE.value(0)</span><br><span class="line">    nrf_writereg(NRF_WRITE_REG + SETUP_AW, ADR_WIDTH - 2)          #设置地址长度为 TX_ADR_WIDTH</span><br><span class="line">    nrf_writereg(NRF_WRITE_REG + RF_CH, CHANAL)                    #设置RF通道为CHANAL</span><br><span class="line">    nrf_writereg(NRF_WRITE_REG + RF_SETUP, 0x0f)                   #设置TX发射参数,0db增益,2Mbps,低噪声增益开启</span><br><span class="line">    nrf_writereg(NRF_WRITE_REG + EN_AA, 0x01)                      #使能通道0的自动应答</span><br><span class="line">    nrf_writereg(NRF_WRITE_REG + EN_RXADDR, 0x01)                  #使能通道0的接收地址</span><br><span class="line">    #RX模式配置</span><br><span class="line">    #nrf_writebuf(NRF_WRITE_REG + RX_ADDR_P0, RX_ADDRESS, RX_ADR_WIDTH)           #写RX节点地址</span><br><span class="line">    nrf_writereg(NRF_WRITE_REG + RX_PW_P0, RX_PLOAD_WIDTH)         #选择通道0的有效数据宽度</span><br><span class="line">    #nrf_writereg(NRF_WRITE_REG + CONFIG, 0x0B | (IS_CRC16 &lt;&lt; 2));       #配置基本工作模式的参数;PWR_UP,EN_CRC,16BIT_CRC,接收模式</span><br><span class="line"></span><br><span class="line">    #TX模式配置</span><br><span class="line">    nrf_writebuf(NRF_WRITE_REG + TX_ADDR, TX_ADDRESS, TX_ADR_WIDTH)           #写TX节点地址</span><br><span class="line">    nrf_writereg(NRF_WRITE_REG + SETUP_RETR, 0x00)                 #设置自动重发间隔时间:250us + 86us;最大自动重发次数:15次</span><br><span class="line">    nrf_writereg(FLUSH_TX, NOP)                                    #清除TX FIFO寄存器</span><br><span class="line">    # CE置高，配置完成</span><br><span class="line">    CE.value(1)</span><br><span class="line">    time.sleep(1)</span><br><span class="line">    return nrf_link_check()</span><br><span class="line"></span><br><span class="line">def nrf_tx(txbuf, datalen):     #NRF24L01+数据发送</span><br><span class="line">    if(txbuf == None or datalen == 0):</span><br><span class="line">        return 0</span><br><span class="line">    global nrf_irq_tx_flag</span><br><span class="line">    if(nrf_irq_tx_flag == 0):   #上一包发送完之后才能发送下一个包</span><br><span class="line">        #默认每次发送一个32byte的包</span><br><span class="line">        nrf_irq_tx_flag = 1</span><br><span class="line">        #需要 先发送一次数据包后才能 中断发送</span><br><span class="line">        CE.value(0)    #ce为低，进入待机模式1</span><br><span class="line">        nrf_writebuf(NRF_WRITE_REG + TX_ADDR, TX_ADDRESS, TX_ADR_WIDTH)           #写TX节点地址</span><br><span class="line">        nrf_writebuf(NRF_WRITE_REG + RX_ADDR_P0, RX_ADDRESS, RX_ADR_WIDTH) #设置RX节点地址 ,主要为了使能ACK！！！</span><br><span class="line">        nrf_writereg(NRF_WRITE_REG + CONFIG, 0x0A | (IS_CRC16 &lt;&lt; 2)) #配置基本工作模式的参数;PWR_UP,EN_CRC,16BIT_CRC,发射模式,开启所有中断</span><br><span class="line">        nrf_writebuf(WR_TX_PLOAD, txbuf, datalen)   #写数据到TX BUF 最大 32个字节</span><br><span class="line">        CE.value(1)   #CE为高，txbuf非空，发送数据包</span><br><span class="line">        i = 0x0fff</span><br><span class="line">        while(i != 0):</span><br><span class="line">            i -= 1</span><br><span class="line">        #print(nrf_readreg(STATUS))</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        return 0</span><br><span class="line"></span><br><span class="line">while(nrf_init() == 0):</span><br><span class="line">    print(&#x27;nrf not link openmv&#x27;)</span><br><span class="line">print(&#x27;nrf link openmv&#x27;)</span><br><span class="line">print(NRF_SPI)</span><br><span class="line">while(True):</span><br><span class="line">    time.sleep(1000)</span><br><span class="line">    nrf_tx(nrf_tx_buff.encode(&#x27;utf-8&#x27;), DATA_PACKET)</span><br></pre></td></tr></table></figure>
+
+<p>三、头疼的坑，勿入<br>1、需要先测试nrf24l01与单片机是否通过spi正常通信（串行），这里有个坑1之前提到过就是片选CS的问题<br>2、坑2：引脚irq触发中断，其中中断服务函数必须带一个参数line，即使函数里并没用到这个参数，也不用传入参数，但必须这么申明，即def callback(line):<br>3、坑3：中断服务函数里面需要清除nrf的状态标志寄存器state，清除的方法：从state读到什么状态就往寄存器写什么状态即完成清除。<br>nrf_writereg(NRF_WRITE_REG + STATUS, state) #清除中断标志<br>4、坑4：在写入需要发送的数据之前，之前，之前，必须再次写TX、RX节点地址，虽然在初始化里面已经做过这项工作了，目的是：主要为了使能ACK！！！</p>
+<p>四、<br>调试告一段落，过程中，虽多次心态崩了，但还是有收获的。<br>上面的代码是最大众化的，有了上面的基础，到后来的发送模式，多通道通信也就不在话下了，已测试通过，在此就不在赘述了。<br>–end</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://walking9.github.io/2017/06/12/nrf24l01%E4%B9%8Bpython/" data-id="cmdx54h15000zq1mk6xjwheei" data-title="nrf24l01之python" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nrf24l01/" rel="tag">nrf24l01</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" rel="tag">无线通信</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/23/%E7%94%A8wifi%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          用wifi模块开发项目
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/28/51%E5%AD%A6%E4%B9%A0%E5%BA%93%EF%BC%8810%EF%BC%89--%E7%94%B5%E6%9C%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">51学习库（10）--电机</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">About Me</h3>
+  <div class="widget about-widget">
+    <div class="about-avatar">
+      <img src="/images/shiba.jpg" alt="Avatar" />
+    </div>
+    <div class="about-info">
+      <ul>
+        <li><i class="fa fa-map-marker"></i> 上海市青浦区</li>
+        <li><i class="fa fa-envelope"></i> luka_auto@163.com</li>
+        <li><i class="fa fa-phone"></i> 177-1515-2023</li>
+        <li><i class="fa fa-briefcase"></i> C/C++工程师 @ 华为</li>
+      </ul>
+    </div>
+    <div class="about-description">
+      <p>👤 标签：程序员/toB售前/解决方案工程师/电子产品发烧友/AI忠实用户🏷️</p>
+      <p>✨ 6年工作经验，曾参与多款消费电子产品研发，现负责云计算AI+数据相关产品 🚀</p>
+      <p>💻 计算机语言：C/C++/Python/Go/Java 🛠️</p>
+      <p>🤖 积极拥抱AGI时代，职业发展全面转型，未来瞄准AI应用领域 🎯</p>
+      <p>🌟 致力于发展多元化能力：产品、运营、售前、开发等 💪</p>
+      <p>🐕 欢迎关注公众号：<strong>六边形的小狗</strong> 🔍</p>
+    </div>
+  </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">51单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSDN/" rel="tag">CSDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/" rel="tag">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/" rel="tag">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conclusion/" rel="tag">conclusion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nrf24l01/" rel="tag">nrf24l01</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A7%E5%93%81/" rel="tag">产品</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" rel="tag">学习路线</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag">数值计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" rel="tag">无线通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" rel="tag">歪比巴波🤐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">海量数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%F0%9F%A4%90/" rel="tag">🤐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">51单片机</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CSDN/" style="font-size: 10px;">CSDN</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/conclusion/" style="font-size: 10px;">conclusion</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/nrf24l01/" style="font-size: 10px;">nrf24l01</a> <a href="/tags/%E4%BA%A7%E5%93%81/" style="font-size: 10px;">产品</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">单片机</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 10px;">学习路线</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 20px;">嵌入式</a> <a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 12.5px;">技术</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" style="font-size: 15px;">数值计算</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 15px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">文件操作</a> <a href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" style="font-size: 12.5px;">无线通信</a> <a href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" style="font-size: 10px;">歪比巴波🤐</a> <a href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">海量数据处理</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" style="font-size: 10px;">软件开发</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 10px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%F0%9F%A4%90/" style="font-size: 10px;">🤐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/27/2025.07.27%E6%97%A5%E8%AE%B0/">2025.07.27日记</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/24/2025.07.24%E6%97%A5%E8%AE%B0/">2025.07.24日记</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/08/Review/">Review</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/15/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式软件开发学习路线</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/11/%E6%89%8B%E6%9C%BA%E4%BA%A7%E5%93%81%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">商业博客与个人博客系统的对比</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 Walking9<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

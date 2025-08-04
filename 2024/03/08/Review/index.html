@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Review | Walking9&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="C&#x2F;C++1、 extern、static 声明变量或函数 extern 表明该变量在别的地方已经定义过了,在这里要使用那个变量.static 表示静态的变量，分配内存的时候, 存储在静态区,不存储在栈上面.（存储在静态区的数据生命周期与程序相同） static修饰全局变量（或函数）：全局变量本来就存储在静态区，因此static并不能改变其存储位置。但是，static限制了其链接属性。被">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Review">
+<meta property="og:url" content="https://walking9.github.io/2024/03/08/Review/index.html">
+<meta property="og:site_name" content="Walking9&#39;s Blog">
+<meta property="og:description" content="C&#x2F;C++1、 extern、static 声明变量或函数 extern 表明该变量在别的地方已经定义过了,在这里要使用那个变量.static 表示静态的变量，分配内存的时候, 存储在静态区,不存储在栈上面.（存储在静态区的数据生命周期与程序相同） static修饰全局变量（或函数）：全局变量本来就存储在静态区，因此static并不能改变其存储位置。但是，static限制了其链接属性。被">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://walking9.github.io/images/%E5%BC%BA%E5%BC%B1%E5%8A%A8%E9%9D%99%E7%B1%BB%E5%9E%8B.png">
+<meta property="og:image" content="https://walking9.github.io/images/c++%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="https://walking9.github.io/images/TCP%E6%8F%A1%E6%89%8B.png">
+<meta property="og:image" content="https://walking9.github.io/images/TCP%E6%8C%A5%E6%89%8B.png">
+<meta property="og:image" content="https://walking9.github.io/images/TCP%E5%8F%AF%E9%9D%A0.png">
+<meta property="og:image" content="https://walking9.github.io/images/TCP%E6%8A%A5%E5%A4%B4.png">
+<meta property="og:image" content="https://walking9.github.io/images/UDP%E6%8A%A5%E5%A4%B4.png">
+<meta property="og:image" content="https://walking9.github.io/images/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6.png">
+<meta property="article:published_time" content="2024-03-08T03:22:31.000Z">
+<meta property="article:modified_time" content="2025-08-04T13:18:42.205Z">
+<meta property="article:author" content="Walking9">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="海量数据处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://walking9.github.io/images/%E5%BC%BA%E5%BC%B1%E5%8A%A8%E9%9D%99%E7%B1%BB%E5%9E%8B.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Walking9's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Walking9&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I try to keep on moving</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://walking9.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Review" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/08/Review/" class="article-date">
+  <time class="dt-published" datetime="2024-03-08T03:22:31.000Z" itemprop="datePublished">2024-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Review
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="C-C"><a href="#C-C" class="headerlink" title="C&#x2F;C++"></a>C&#x2F;C++</h1><p>1、 extern、static 声明变量或函数</p>
+<p>extern 表明该变量在别的地方已经定义过了,在这里要使用那个变量.<br>static 表示静态的变量，分配内存的时候, 存储在静态区,不存储在栈上面.（存储在静态区的数据生命周期与程序相同）</p>
+<p>static修饰全局变量（或函数）：全局变量本来就存储在静态区，因此static并不能改变其存储位置。但是，static限制了其链接属性。被static修饰的全局变量只能被该包含该定义的文件访问。</p>
+<p>2、内联函数</p>
+<p>C++中支持内联函数，其目的是为了提高函数的执行效率，用关键字 inline 放在函数定义(注意是定义而非声明，下文继续讲到)的前面即可将函数指定为内联函数，内联函数通常就是将它在程序中的每个调用点上”内联地”展开。</p>
+<p>内联函数和宏的区别：</p>
+<ul>
+<li>内联函数在编译时展开，而宏在预编译时展开</li>
+<li>在编译时，内联函数可以直接镶嵌在目标代码中，而宏只是简单的文本替换</li>
+<li>内联函数可以完成类型检测，语句是否能正确编译等功能，宏不具备这种功能</li>
+<li>内联函数是函数。而宏不是函数</li>
+<li>内联函数传参不会出现二义性，而宏如果括号没写好，容易出现错误</li>
+</ul>
+<p>3、指针与数组的对比</p>
+<p>　　C++&#x2F;C程序中，指针和数组在不少地方可以相互替换着用，让人产生一种错觉，以为两者是等价的。</p>
+<p>　　数组要么在静态存储区被创建（如全局数组），要么在栈上被创建。数组名对应着（而不是指向）一块内存，其地址与容量在生命期内保持不变，只有数组的内容可以改变。</p>
+<p>　　指针可以随时指向任意类型的内存块，它的特征是”可变”，所以我们常用指针来操作动态内存。指针远比数组灵活，但也更危险。</p>
+<p>4、内存泄露：一般我们常说的内存泄漏是指堆内存的泄漏。堆内存是指程序从堆中分配的，大小任意的（内存块的大小可以在程序运行期决定），使用完后必须显示释放的内存。应用程序一般使用malloc，realloc，new等函数从堆中分配到一块内存，使用完后，程序必须负责相应的调用free或delete释放该内存块，否则，这块内存就不能被再次使用，我们就说这块内存泄漏了。</p>
+<h2 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h2><p>5.1、容器分类：</p>
+<p>​    标准STL序列容器：vector、string、deque和list</p>
+<p>​    标准STL关联容器：set、multiset、map和multimap</p>
+<p>​    非标准序列容器slist和rope</p>
+<p>5.2、vector、deque、list的使用情况：</p>
+<p>vector：高效的随即存取，而不在乎插入和删除的效率</p>
+<p>list：需要大量的插入和删除，而不关心随即存取</p>
+<p>deque：要随即存取，而且关心两端数据的插入和删除</p>
+<p>5.3、vector的push_back实现原理：</p>
+<p>​    vector是一段连续的内存空间，start、finish、end_of_storage三个指针描述了空间状态，finish到end_of_storage是未使用的内存；</p>
+<p>​    vector有预存的内存capacity，如果存入元素大于capacity，就重新分配一个比原来大两倍的内存；</p>
+<p>5.4、map与hash_map</p>
+<p>STL的map底层是用红黑树实现的，查找时间复杂度是log(n)；</p>
+<p>STL的hash_map底层是用hash表存储的，查询时间复杂度是O(1)；</p>
+<p>​    一般情况下，如果记录非常大，考虑hash_map，查找效率会高很多，如果要考虑内存消耗，则要谨慎使用hash_map</p>
+<p>5.5、hash表构造原则？解决冲突？</p>
+<p>构造原则（2个）：函数便于计算； 计算得到的地址尽可能分配均匀，减少冲突</p>
+<p>解决冲突（4个）：开放定址法；再hash法；链地址法，建立公共溢出区；</p>
+<h2 id="END-STL"><a href="#END-STL" class="headerlink" title="END STL"></a>END STL</h2><p>6、指针数组：存放指针的数组int*a[10]</p>
+<p>数组指针：指向数组的指针int(*a)[10];</p>
+<p>指针函数：返回值为指针的函数int*a();</p>
+<p>函数指针：指向函数的指针(int(*f)(inta))</p>
+<p>7、malloc&#x2F;free 与 new&#x2F;delete</p>
+<ul>
+<li><p>malloc&#x2F;free是标准库函数，而new&#x2F;delete是运算符</p>
+</li>
+<li><p>对于非内部数据类型的对象而言，光是malloc&#x2F;free无法满足动态对象的要求</p>
+<p>​对象在创建的同时，自动执行构造函数，对象在消亡之前自动执行析构函数</p>
+<p>由于malloc&#x2F;free是库函数，而不是运算符，不在编译器控制权限之内，不能把执行构造函数的任务强加于malloc&#x2F;free</p>
+</li>
+<li><p>new的过程：A获得一块内存空间；B调用构造函数，返回一个正确的指针；如果创建的是内部数据类型变量，则没有第二步；</p>
+<p>​而malloc没有调用构造函数这一步。所以，初始化得单独调用</p>
+</li>
+</ul>
+<p>8、 C++如果构造函数定义为private&#x2F;protected有什么方法可以调用？</p>
+<p>如果是protected，只需在用它派生public一个派生类。派生类也可以实例化，因为，对于protected函数，子类的函数可以调用</p>
+<p>如果是protected，可以定义一个public static函数，这个函数内部可以实例化该类，这样，这个函数就的调用就不需要提前实例化一个对象，而可以直接被调用，而它又属于类的内部函数，也就可以调用构造函数了</p>
+<p>9、C++友元函数-</p>
+<p>友元函数提供了不同类或对象的成员函数之间、类的成员函数和一般函数之间进行数据共享的机制。通俗的说，友元关系就是一个类主动声明哪些类或函数是它的朋友，进而给它们提供对本类的访问特性。也就是说，通过友元关系，一个普通函数或者类的成员函数可以访问封装于另外一个类中的数据。</p>
+<p>从一定程度上讲，友元是对数据隐藏和封装的破坏，但是为了数据共享，提高程序的效率和可读性，很多情况下这种小的破坏是必要的。</p>
+<p>10、指针和引用的区别：</p>
+<ul>
+<li>初始化要求不同，引用要在创建的同时初始化，而指针可以暂时不用初始化</li>
+<li>可修改性不同，引用一旦初始化指向一个对象，他就不能被改变成另一个对象的引用，而指针可以；</li>
+<li>不存在NULL引用，引用不能指向空值</li>
+<li>测试需要的区别：引用不用检测是否为NULL,而指针需要检测—-所以传引用比传指针安全</li>
+</ul>
+<p>11、深复制和浅复制</p>
+<p>复制构造函数是基于同一类的其他对象的构建及初始化：</p>
+<p>C++下，一般三种情况对象需要复制构造函数：</p>
+<ul>
+<li>一个对象以传值的方式进入函数体</li>
+<li>一个对象以传递的方式从函数体返回</li>
+<li>一个对象需要通过另一个对象进行初始化</li>
+</ul>
+<p>浅复制：（被拷贝对象A，拷贝对象B）</p>
+<p>​    只被复制函数一点不改变被复制，如果A的某个成员变量是指针，指向某个区域，浅拷贝后，如果B被释放，那么指向的这个区域也会被释放，对A来说，就会产生错误</p>
+<p>深拷贝：针对浅拷贝的问题，深拷贝对拷贝构造函数进行重写</p>
+<p>12、C++不支持哪些函数为虚函数？</p>
+<p>构造函数、内联函数、友元函数、静态函数</p>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/lonelysky/article/details/52090109">内联函数不能成为虚函数的原因</a></p>
+<p>13、struct和class的区别</p>
+<p>在C++中，Class定义中默认情况下的成员都是私有的，而结构Struct定义中默认情况下的成员都是公有的；</p>
+<p>在C中，结构中不能有成员函数，而在C++中可以有成员函数；</p>
+<p>14、函数调用过程：</p>
+<p>​    在函数调用时，第一个进栈的是主函数中后的下一条指令（函数调用语句的下一条可执行语句）的地址，然后是函数的各个参数，在大多数的C编译器中，参数是由右往左入栈的，然后是函数中的局部变量。</p>
+<p>15、malloc之后再进行free，free的内存空间一定被OS回收了吗？</p>
+<p>OS管理是对页进行分配和回收，如果free的内存只是某个页的某小块内存，而这个页的其他内存依旧被使用，这时OS就不会回收内存空间。</p>
+<p>16、volatile</p>
+<p>三个特性：易变性，不可优化性，顺序性</p>
+<p>注意这个关键词在java和C++中作用是不同的；</p>
+<p>java中和多线程有关</p>
+<p>C++中volatile 影响编译器编译的结果,volatile指出 变量是随时可能发生变化的，与volatile变量有关的运算，不要进行编译优化，以免出错</p>
+<p>17、static、const有什么作用</p>
+<p>const ：</p>
+<ul>
+<li>定义常量，编译器可以对其进行数据静态类型安全检查；</li>
+<li>修饰函数形式参数；</li>
+<li>修饰函数的返回值；</li>
+<li>修饰类的成员函数；eg：int getCount(void) const;这样修改数据成员或调用非const成员函数时，编译器会报错</li>
+</ul>
+<p>static：</p>
+<ul>
+<li>在函数体内，static变量在函数调用过程中维持其值不变</li>
+<li>在模块内，函数体外，static变量可以被模块内所有函数访问，但能被其他模块访问；</li>
+<li>在模块内，static函数只可被模块内其他函数调用，限制在声明它的模块本地使用；</li>
+</ul>
+<p>18、面向对象的三个基本特征</p>
+<p>​    1)封装：就是隐藏对象的属性和实现细节,仅对外提供公共访问方式2)继承让某个类型的对象获得另一个类型的对象的属性的方法3)多态：允许一个基类的指针或引用指向一个派生类对象</p>
+<p>19、C语言中，通常#define NULL ((void *)0) ，NULL实际上是一个void *的指针</p>
+<p>比如int * a &#x3D; NULL;   &#x2F;&#x2F;存在隐式类型转换</p>
+<p>C++中，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus  <span class="comment">//简称：cpp c++ 文件</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> NULL 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> NULL ((void *)0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>因为C++中不能将void *类型的指针隐式转换成其他指针类型，而又为了解决空指针的问题，所以C++中引入0来表示空指针，之后C++ 11中用nullptr</p>
+<p>20、强弱类型、静态动态类型</p>
+<p><img src="/images/%E5%BC%BA%E5%BC%B1%E5%8A%A8%E9%9D%99%E7%B1%BB%E5%9E%8B.png"></p>
+<p>21、C++编译过程</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dongdongweiwu/p/4743709.html">参考博客1：c++编译过程</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/amnotgod/article/details/41808239">参考博客2：c++编译过程详解</a></p>
+<p><img src="/images/c++%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.png"></p>
+<p>三个阶段：</p>
+<ol>
+<li><p>编译预处理：包括 宏定义命令、条件编译命令、包含文件命令、预定义宏名、预编译模块、特殊符号；</p>
+</li>
+<li><p>编译 优化 汇编：</p>
+<p>分模块进行的，每一个模块独立编译，生成相应的.obj或.o文件，编译每个模块的同时还要生成三个表供链接过程使用：导出符号表、未解决符号表、地址重定向表；</p>
+<p>（1）用extern关键字修饰的符号是外部链接，它告诉编译器，这个符号定义在其它模块，应该把这个符号放入未解决符号表。</p>
+<p>（2）用static关键字修饰的符号都是内部链接符号，也就是说这些符号仅仅在模块内部可见，不会提供给其它模块引用，也就不会被放进导出符号表。</p>
+<p>（3）默认情况下，const常量是内部链接，不会被加到导出符号表中。</p>
+<p>（4 ) 默认情况下，函数和全局变量都是外部链接符号，这些符号会被放入模块的导出符号表，以供其它模块使用，但是可以用static关键字修饰，把它变成内部链接，这样就不会被放进导出符号表。</p>
+<p>problem:</p>
+<p>？为什么函数默认是外部链接？</p>
+<p>答：</p>
+<p>如果函数默认是内部链接，那么大家会倾向于把函数连同其定义都放入头文件中。然而，函数是多变的，可能会经常修改，这样一来，所以包含它的模块都需要被重新编译，很麻烦。另外一方面，如果函数中定义了静态变量，这样每一个包含该函数的模块都会有一个静态变量（因为假设是默认内部链接），导致不一致。</p>
+<p>？为什么const常量默认是内部链接而变量（全局）默认是外部链接？</p>
+<p>答：</p>
+<p>因为它是常量，初始化后就不能改变，这样即使每一个包含它的模块都有一份它的复制，那也不会导致不一致。如果变量默认是内部链接，它是可变的量，所以在每个包含它的模块中，它的值可能会被改变，从而导致不一致的状况出现。</p>
+<p>？为什么类的静态数据成员不可以就地初始化？</p>
+<p>答：</p>
+<p>因为类体一般是放在头文件中的，如果允许其静态成员就地初始化，那就相当于允许在头文件中定义变量了。</p>
+</li>
+<li><p>链接过程: (1)决定每个obj(模块)在可执行文件中的位置；(2)查看重定向表，形成正确地址；(3)检查导出符号表，一是排查重复定义，二是搜索未解决符号表的符号，完成之后生成可执行文件。</p>
+<p>problem:</p>
+<p><strong>C++编译中的特殊情况：模板函数&#x2F;模板类和内联函数的编译</strong></p>
+<p>在了解C++程序一般编译过程后，我们不难理解为什么头文件中一般只能放声明而不能放定义，这是因为头文件会被很多模块包含，如果头文件中有定义，那么链接这些包含这个头文件的模块时就会出现符号重定义的错误了。</p>
+<p>当然，我说的是一般情况，当然也有特殊情况，那就是内联函数和模板类，它们的定义是<strong>允许</strong>并且<strong>必须</strong>放在头文件中的。</p>
+<p>内联函数 — 默认是内部链接—-需要把定义一起放在头文件中</p>
+<p>用关键字<strong>inline</strong>修饰的函数称为内联函数，就效果上来说，内联函数和宏定义是一样的，它会将函数调用用函数体进行代码替换，这样省去了调用函数过程的开销，对于频繁使用并且短小精悍的函数来说，改成内联，可以提高程序效率。使用内联函数要注意一下几点：</p>
+<p>（1）类体内实现的成员函数默认内联。</p>
+<p>（2）用<strong>inline</strong>修饰只是建议编译器对函数使用内联，至于内不内联，由编译器视函数实际情况来决定，如果函数语句很多，或函数中有循环，条件判断等语句，编译器一般不会内联，如果内联函数的使用在内联函数定义之前，也不会内联。</p>
+<p>（3）<strong>inline</strong>是实现用的关键字，也就是说放在定义一起才有用，放在函数声明处是没用的。</p>
+<p><strong>？为什么内联函数需要把定义一起放在头文件中？</strong></p>
+<p>与宏定义在预处理时就进行替换不同，内联函数的替换是在编译时执行的，因为每个模块都是独立编译的，此时如果模块本身不知道函数的定义，也就无法内联展开了，这就是为什么要知道内联函数定义的原因。那么就会存在问题了，头文件中包含了定义，就不怕重定义吗？大家不用担心这个，编译器会将内联函数<strong>视为</strong>内链接。</p>
+<p><strong>?如果没有把内联函数的定义一起放在头文件里会发生什么？</strong></p>
+<p>会出现链接错误：Unresolved  external  simbols …，这是因为在编译时，因为找不到内联函数的定义而无法内联展开，这时编译器会认为它应该是在其它模块定义了。前面说过，内联函数是内部链接，所以这个函数符号在导出符号表中找不到，于是会出现Unresolved链接错误。</p>
+<p>​</p>
+</li>
+</ol>
+<p><strong>模板类与模板函数 — 需要把定义一起放在头文件中</strong></p>
+<p>要理解模板类和模板函数的编译过程，大家要记住以下几点：</p>
+<p>（1）模板就是模板，它本身不能被编译成二进制代码，它的作用只是在编译时根据类型生成相应代码而已。</p>
+<p>（2）只有在模板函数（不管是普通的还是类的成员函数）被调用时，函数模板才会被实例化，也就是才会生成相应类型的函数以供调用。</p>
+<p>（3）函数模板实例化时会增大源文件代码量，并且生成的函数都是内链接。</p>
+<p>和内联函数一样，为了能在编译时能生成相应实现代码，我们需要知道模板函数的定义，这也就要求模板类或模板函数的定义也要一起放在头文件中。</p>
+<p><strong>？如果没有把模板类或模板函数的定义一起放在头文件中会怎样？</strong></p>
+<p>如果包含它的模块调用了模板函数，那么会出现Unresolved external simbols链接错误。因为如果编译时，模块找不到模板函数的定义，它会认为这个函数肯定是定义在其它模块了，把这个问题留给链接程序去解决。当然，链接程序在导出符号表中找不到这个函数（因为它压根没有被实例化过），所以出现以上错误。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/csdn_violin/article/details/79430384">参考博客1：c++编译过程</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/amnotgod/article/details/41808239">参考博客2：c++编译过程详解</a></p>
+<p>22、从while（cin&gt;&gt;a）开始探讨cin</p>
+<ol>
+<li>首先cin&gt;&gt;a返回的是左操作数，也就是返回cin。</li>
+</ol>
+<p>cin的条件状态中: cin.eof()    判断流是否到达文件的结束符</p>
+<p>　　　　　　　　 cin.fail()    判断IO操作是否失败</p>
+<p>在while（cin&gt;&gt;a）中看流是否还能用，主要是判断 cin.fail()  的取值。事实上，无论是否用于while循环，流必须处于无错误状态才能用于输入和输出 ，也就是cin.fail() 必须为0值，程序以下的cin操作才能正常执行。</p>
+<p>导致cin.fail() 为1的操作有：输入坏值 或 遇到文件结束符（ctrl+z）</p>
+<p>当cin.fail() &#x3D;1时，可以设置cin.clear()将流中的所有状态值设为有效状态，以下操作就会正常输入输出了，否则再遇到cin就不能正常读入赋值。</p>
+<ol start="2">
+<li>关于while（cin&gt;&gt;a）中输入值是用 “空格” 间隔还是用 “回车” 间隔的问题：</li>
+</ol>
+<p>while（cin）中有个缓冲机制规定，只有收到回车键，才会将所有输入的数据一次提交到输入处理函数cin里，而这个输入过程，在按下回车之前，是不受cin控制的。</p>
+<p>对于正常的输入，用回车和空格没有差别，关键是我们最后往往要输入个ctrl+z来结束输入，这里要特别注意，ctrl+z之前必须要按”回车”，不能是空格，也不能什么都不按。</p>
+<p>正确的顺序是：”正常值输入（以空格或回车间隔都可以）”、”回车”、（ctrl+z）、”回车”。这样在缓冲机制下while（cin）循环就会把ctrl+z作为输入流单独进行判断，cin.eof()为真，即遇到正常的文件结束符，否则，while（cin）循环判断时以为ctrl+z和之前的空格是一起的或者和之前的其他输入是一起的，认为是输入了坏值，认为没有遇到正常的文件结束符。</p>
+<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><p>1、线程和进程的基本状态</p>
+<p>新建、就绪、阻塞、运行、死亡</p>
+<p>2、同步和互斥</p>
+<h4 id="互斥"><a href="#互斥" class="headerlink" title="互斥"></a>互斥</h4><p>进程互斥：是进程之间的一种制约关系，当一个进程进入临界区使用临界资源时，另一个进程必须等待，只有当使用临界资源的进程退出临界区后，这个进程才解除阻塞状态。</p>
+<p>如何实现互斥：</p>
+<ul>
+<li><p>信号量机制：Wait(mutex)   Signal(mutex)</p>
+</li>
+<li><p>管程:把所有进程对某一种资源的同步操作都集中起来，构成一个所谓的秘书进程，凡是要访问该临界资源的进程，都需要先报告秘书。</p>
+<p>秘书管道由四部分组成：</p>
+<ol>
+<li>管道内部的共享变量</li>
+<li>管道内部的条件变量</li>
+<li>管道内部并行执行的进程</li>
+<li>对于局部域管道内部的共享数据设置初始值的语句</li>
+</ol>
+</li>
+</ul>
+<h4 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h4><p>进程同步：把异步环境下的一组并发进程，因直接制约而互相发送消息，进行互相合作，互相等待，使得进程按照一定的速度执行的过程；</p>
+<p>进程同步遵循的规则</p>
+<p>​    空闲让进</p>
+<p>​    忙则等待</p>
+<p>​    让权等待：当进程不能进入自己的临界区，应该立即释放处理机</p>
+<p>​    有限等待</p>
+<p>进程间制约关系</p>
+<p>​    资源共享关系（间接制约关系）</p>
+<p>​    相互合作关系（直接制约关系）</p>
+<h4 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h4><p>产生死锁的必要条件：</p>
+<p>​    互斥条件</p>
+<p>​    请求和保持条件</p>
+<p>​    不可剥夺条件</p>
+<p>​    环路等待条件</p>
+<p>处理死锁的方法</p>
+<p>​    预防死锁：破坏四个必要条件</p>
+<p>​    避免死锁：银行家算法—得出安全序列</p>
+<p>​    检测死锁：利用资源分配图</p>
+<p>​    解除死锁：终止所有死锁进程&#x2F;终止部分死锁，牺牲最小</p>
+<h4 id="进程线程同步互斥的控制方法"><a href="#进程线程同步互斥的控制方法" class="headerlink" title="进程线程同步互斥的控制方法"></a>进程线程同步互斥的控制方法</h4><p>​    临界区：适合一个进程内多个线程访问公共区域时使用</p>
+<p>​    互斥量：适合不同进程访问公共区域使用</p>
+<p>​    信号量：可以实现多个线程同时访问数据区域，原理与PV类似，先设置一个访问公共区域的最大线程连接数目，每有一个访问，数目减一</p>
+<p>​    事件：适合线程间触发事件实现同步互斥</p>
+<p>3、进程间通信方式：</p>
+<ul>
+<li>管道：无名管道局限于单向通信方式，且只能在创建它的进程和其子进程之间实现管道的共享；有名管道可以给任意关系的进程使用，但是由于长期存储在系统中，使用不当容易出错</li>
+<li>消息： 本地套接字； 网络通信；</li>
+<li>共享内存（mmap内存映射）</li>
+</ul>
+<p>4、 互斥锁，自旋锁和读写锁</p>
+<p>​    锁是一种为了解决某种临界资源互斥而使用的一种机制。</p>
+<p>​    自旋锁和互斥锁功能差不多，每一时刻只能有一个执行单元占有锁，而占有锁的单元才能获得访问临界资源的所有权，从而达到互斥的目的</p>
+<p>​    自旋锁和互斥锁的区别：</p>
+<ul>
+<li>自旋锁在请求锁时，如果发现锁被占用，则不停的循环判断锁的状态，直到锁被释放，期间并不阻塞自己，它会一直占有cpu</li>
+<li>互斥锁在等待锁被释放时，会把自己阻塞并放入队列种。当锁被释放，会唤醒它，阻塞会耗时，但不会消耗CPU</li>
+<li>读写锁实际是一种特殊的自旋锁。把访问者分为读者和写者，允许多个读者，或者一个写着</li>
+</ul>
+<p>5、如何定位内存泄漏</p>
+<ul>
+<li>在windows下通过CRT中的库函数进行检测</li>
+<li>在可能泄漏的调用前后生成块的快照，比较前后的状态，定位泄漏的位置</li>
+<li>Linux下通过工具valgrind检测</li>
+</ul>
+<p><strong>6、进程和线程的区别和选择</strong></p>
+<p>区别：（1）进程是资源的分配和调度的一个独立单元，而线程是CPU调度的基本单元</p>
+<p>​          （2）同一个进程中可以包括多个线程，并且线程共享整个进程的资源（寄存器、堆栈、上下文），一个进行至少包括一个线程。</p>
+<p>​          （3）进程的创建调用fork或者vfork，而线程的创建调用pthread_create，进程结束后它拥有的所有线程都将销毁，而线程的结束不会影响同个进程中的其他线程的结束</p>
+<p>​          （4）线程是轻两级的进程，它的创建和销毁所需要的时间比进程小很多，所有操作系统中的执行功能都是创建线程去完成的</p>
+<p>​          （5）线程中执行时一般都要进行同步和互斥，因为他们共享同一进程的所有资源</p>
+<p>​          （6）线程有自己的私有属性TCB，线程id，寄存器、硬件上下文，而进程也有自己的私有属性进程控制块PCB，这些私有属性是不被共享的，用来标示一个进程或一个线程的标志</p>
+<p>选择：多进程，可靠安全</p>
+<p>​       多线程，需要频繁创建销毁，大量计算 （共享存储区，通信方便，不安全）</p>
+<p>7、windows内存管理方式及其优缺点</p>
+<ul>
+<li><p>页式存储</p>
+<p>​    优点：没有外碎片，每个碎片不超过业的大小</p>
+<p>​    缺点：程序全部装入内存，要求有相应的硬件支持。</p>
+</li>
+<li><p>段式存储</p>
+<p>​    优点：可以分别编写和编译，可以针对不同类型的段采用不同的保护，可以按照段为单位进行共享。（信息共享，动态链接，方便编写，信息保护）</p>
+<p>​    缺点：会产生碎片</p>
+</li>
+<li><p>段页式存储：具有两种优点</p>
+</li>
+</ul>
+<p>8、Linux伪文件</p>
+<p>​    Linux系统的文件类型大致可分为三类：普通文件，目录文件，和伪文件</p>
+<p>​    伪文件不是用来存储数据的，因为这些文件不占用磁盘空间，尽管这些文件确实存在于目录树中，是目录树的一部分。并且也按照目录的方式来组织。</p>
+<p>伪文件的目的是提供一种服务，通过这种服务，系统可以像操作普通文件一样来访问这些文件代表的对象。常见的伪文件是proc文件，socket文件，管道</p>
+<p>9、缓冲区溢出</p>
+<p>​    在计算机内部，输入数据通常被放在一个临时空间内，这个临时空间就是缓冲区，缓冲区的长度事先已经被程序或者操作系统确定好了。向缓冲区填充数据，如果数据长度很长，超过了缓冲区本身的容量，那么数据就会溢出存储空间。而这些溢出的数据还会覆盖在合法的数据上；</p>
+<p>10、守护进程、僵尸进程、孤儿进程</p>
+<p>守护进程是一种生存期很长的进程，它们独立于控制终端而且周期性的执行某种任务或者等待处理某些发生的事件。一般的网络服务都是守护进程。</p>
+<p>处理僵尸进程的三种方法：</p>
+<ul>
+<li><p>父进程回收法</p>
+<p>​Wait函数将使其调用者阻塞，直到某个子进程终止</p>
+</li>
+<li><p>使用signal信号函数</p>
+<p>​当子进程死亡，发送信号给父进程，父进程调用Wait,回收</p>
+</li>
+<li><p>init进程回收法</p>
+</li>
+</ul>
+<ol>
+<li>如果父进程先于子进程结束，那么子进程的父进程就会变成init进程</li>
+<li>如果init的子进程结束，则init进程会自动回收其子进程的资源，而不是让他变成僵尸</li>
+</ol>
+<p>11、linux系统文件夹644、755、777权限设置详解 ，左至右，第一位数字代表文件所有者的权限，第二位数字代表同组用户的权限，第三位数字代表其他用户的权限。</p>
+<p>而具体的权限是由数字来表示的，读取的权限等于4，用r表示；写入的权限等于2，用w表示；执行的权限等于1，用x表示；</p>
+<p>通过4、2、1的组合，得到以下几种权限：0（没有权限）；4（读取权限）；5（4+1 | 读取+执行）；6（4+2 | 读取+写入）；7（4+2+1 | 读取+写入+执行）</p>
+<p>12、常见批处理作业调度算法</p>
+<ul>
+<li><p><strong>先来先服务调度算法（FCFS）</strong>:就是按照各个作业进入系统的自然次序来调度作业。这种调度算法的优点是实现简单，公平。其缺点是没有考虑到系统中各种资源的综合使用情况，往往使短作业的用户不满意，因为短作业等待处理的时间可能比实际运行时间长得多。</p>
+</li>
+<li><p><strong>短作业优先调度算法(SPF)</strong>: 就是优先调度并处理短作业，所谓短是指作业的运行时间短。而在作业未投入运行时，并不能知道它实际的运行时间的长短，因此需要用户在提交作业时同时提交作业运行时间的估计值。</p>
+</li>
+<li><p>**最高响应比优先算法(HRN)：**FCFS可能造成短作业用户不满，SPF可能使得长作业用户不满，于是提出HRN，选择响应比最高的作业运行。响应比&#x3D;1+作业等待时间&#x2F;作业处理时间。</p>
+</li>
+<li><p><strong>基于优先数调度算法(HPF)</strong>：每一个作业规定一个表示该作业优先级别的整数，当需要将新的作业由输入井调入内存处理时，优先选择优先数最高的作业。</p>
+</li>
+<li><p><strong>均衡调度算法</strong>，即多级队列调度算法</p>
+<p>基本概念：</p>
+<p>作业周转时间（Ti） &#x3D; 完成时间（Tei） - 提交时间（Tsi）</p>
+<p>作业平均周转时间（T） &#x3D; 周转时间&#x2F;作业个数</p>
+<p>作业带权周转时间（Wi） &#x3D; 周转时间&#x2F;运行时间</p>
+<p>响应比 &#x3D; （等待时间+运行时间）&#x2F;运行时间</p>
+</li>
+</ul>
+<p>13、进程调度算法</p>
+<ul>
+<li><strong>先进先出算法(FIFO)</strong>：按照进程进入就绪队列的先后次序来选择。即每当进入进程调度，总是把就绪队列的队首进程投入运行。</li>
+<li><strong>时间片轮转算法(RR)</strong>：分时系统的一种调度算法。轮转的基本思想是，将CPU的处理时间划分成一个个的时间片，就绪队列中的进程轮流运行一个时间片。当时间片结束时，就强迫进程让出CPU，该进程进入就绪队列，等待下一次调度，同时，进程调度又去选择就绪队列中的一个进程，分配给它一个时间片，以投入运行。</li>
+<li><strong>最高优先级算法(HPF)</strong>：进程调度每次将处理机分配给具有最高优先级的就绪进程。最高优先级算法可与不同的CPU方式结合形成可抢占式最高优先级算法和不可抢占式最高优先级算法。</li>
+<li><strong>多级队列反馈法</strong>：几种调度算法的结合形式多级队列方式。</li>
+</ul>
+<p>14、空闲分区分配算法</p>
+<ul>
+<li>**首先适应算法：**当接到内存申请时，查找分区说明表，找到第一个满足申请长度的空闲区，将其分割并分配。此算法简单，可以快速做出分配决定。</li>
+<li>**最佳适应算法：**当接到内存申请时，查找分区说明表，找到第一个能满足申请长度的最小空闲区，将其进行分割并分配。此算法最节约空间，因为它尽量不分割到大的空闲区，其缺点是可能会形成很多很小的空闲分区，称为”碎片”。</li>
+<li>**最坏适应算法：**当接到内存申请时，查找分区说明表，找到能满足申请要求的最大的空闲区。该算法的优点是避免形成碎片，而缺点是分割了大的空闲区后，在遇到较大的程序申请内存时，无法满足的可能性较大。</li>
+</ul>
+<p>15、虚拟页式存储管理中的页面置换算法</p>
+<ul>
+<li>**理想页面置换算法(OPT)：**这是一种理想的算法，在实际中不可能实现。该算法的思想是：发生缺页时，选择以后永不使用或在最长时间内不再被访问的内存页面予以淘汰。</li>
+<li>**先进先出页面置换算法(FIFO)：**选择最先进入内存的页面予以淘汰。</li>
+<li>**最近最久未使用算法（LRU）：**选择在最近一段时间内最久没有使用过的页，把它淘汰。</li>
+<li>**最少使用算法（LFU）：**选择到当前时间为止被访问次数最少的页转换。</li>
+</ul>
+<p>16、磁盘调度</p>
+<ul>
+<li>**先来先服务（FCFS）：**是按请求访问者的先后次序启动磁盘驱动器，而不考虑它们要访问的物理位置</li>
+<li>**最短寻道时间优先（SSTF）：让离当前磁道最近的请求访问者启动磁盘驱动器，**即是让查找时间最短的那个作业先执行，而不考虑请求访问者到来的先后次序，这样就克服了先来先服务调度算法中磁臂移动过大的问题</li>
+<li>**扫描算法（SCAN）或电梯调度算法：**总是从磁臂当前位置开始，沿磁臂的移动方向去选择离当前磁臂最近的那个柱面的访问者。如果沿磁臂的方向无请求访问时，就改变磁臂的移动方向。在这种调度方法下磁臂的移动类似于电梯的调度，所以它也称为电梯调度算法。</li>
+<li>**循环扫描算法（CSCAN）：**循环扫描调度算法是在扫描算法的基础上改进的。磁臂改为单项移动，由外向里。当前位置开始沿磁臂的移动方向去选择离当前磁臂最近的那个柱面的访问者。如果沿磁臂的方向无请求访问时，再回到最外，访问柱面号最小的作业请求。</li>
+</ul>
+<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p><strong>1、TCP三次握手？为什么不是两次或四次？</strong></p>
+<p><img src="/images/TCP%E6%8F%A1%E6%89%8B.png" alt="TCP三次握手"></p>
+<p>三次握手是为了<strong>防止失效的连接请求报文段突然又传到服务器</strong>；</p>
+<p>2、TCP四次挥手？</p>
+<p><img src="/images/TCP%E6%8C%A5%E6%89%8B.png" alt="TCP四次挥手"></p>
+<p>为什么A要先进入TIME-WAIT状态，等待2ms才进入CLOSED状态？</p>
+<p>​    为了保证B能收到A的确认应答；如果A发完确认应答后直接进入CLOSED状态，如果这个分组丢失，B等待超时后就会重新发送连接释放亲求，但此时A已经关闭了，不会做出任何响应因此，B永远无法正确关闭</p>
+<p>3、 TCP如何保证可靠传输？</p>
+<p><img src="/images/TCP%E5%8F%AF%E9%9D%A0.png" alt="TCP保证可靠传输"></p>
+<p>4、ICMP是什么协议,处于哪一层?</p>
+<p>​    Internet控制报文协议，处于网络层（IP层）</p>
+<p>5、IP组播有那些好处?</p>
+<p>​    Internet上产生的许多新的应用，特别是高带宽的多媒体应用，带来了带宽的急剧<br>消耗和网络拥挤问题。组播是一种允许一个或多个发送者（组播源）发送单一的数据包<br>到多个接收者（一次的，同时的）的网络技术。组播可以大大的节省网络带宽，因为无<br>论有多少个目标地址，在整个网络的任何一条链路上只传送单一的数据包。所以说组播<br>技术的核心就是针对如何节约网络资源的前提下保证服务质量。</p>
+<p>6、列出常用网络协议使用的端口。</p>
+<ul>
+<li>21&#x2F;tcp FTP 文件传输协议 </li>
+<li>22&#x2F;tcp SSH 安全登录、文件传送(SCP)和端口重定向 </li>
+<li>23&#x2F;tcp Telnet 不安全的文本传送 </li>
+<li>25&#x2F;tcp SMTP Simple Mail Transfer Protocol (E-mail) </li>
+<li>69&#x2F;udp TFTP Trivial File Transfer Protocol 79&#x2F;tcp finger Finger </li>
+<li>80&#x2F;tcp HTTP 超文本传送协议 (WWW) </li>
+<li>88&#x2F;tcp Kerberos Authenticating agent </li>
+<li>110&#x2F;tcp POP3 Post Office Protocol (E-mail) </li>
+<li>113&#x2F;tcp ident old identification server system </li>
+<li>119&#x2F;tcp NNTP used for usenet newsgroups </li>
+<li>220&#x2F;tcp IMAP3 </li>
+<li>443&#x2F;tcp HTTPS used for securely transferring web pages</li>
+</ul>
+<p>7、HTTP与HTTPS的区别</p>
+<ul>
+<li><p>https更安全；HTTPS协议是由SSL+HTTP协议构建的可进行<strong>加密传输、身份认证</strong>的网络协议，要比http协议安全；</p>
+<p>https所有传输内容采用对称加密，但对称加密的密钥用服务器的证书进行了非对称加密。http明文传输，没有加密，可以抓包分析信息内容；</p>
+</li>
+<li><p>https需要申请CA证书</p>
+</li>
+<li><p>端口不同；http80，https443</p>
+</li>
+<li><p>层次不同；http协议运行在TCP之上，https运行在SSL&#x2F;TLS之上，SSL&#x2F;TLS运行在TCP之上</p>
+</li>
+</ul>
+<p>8、http状态码</p>
+<p> (1)**(信息类)：表示接收到请求并且继续处理</p>
+<p>  (2)**(响应成功)：表示动作被成功接收、理解和接受<br>​    200 OK 服务器已成功处理了请求并提供了请求的网页；</p>
+<p>​    202 Accepted 已经接受请求，但处理尚未完成；</p>
+<p>​    204 No Content 没有新文档，浏览器应该继续显示原来的文档；</p>
+<p>​    206 Partial Content 客户端进行了范围请求。响应报文中由Content-Range指定实体内容的范围，实现断点续传；</p>
+<p>  (3)**(重定向类)：为了完成指定的动作，必须接受进一步处理<br>​    301 Moved Permanently 永久性重定向，请求的网页已永久移到新位置；</p>
+<p>​    302（或307） Moved Temporatily 临时重定向，请求的网页临时移到新位置；</p>
+<p>​    304 Not Modified 未修改，自从上次请求之后请求的内容未修改；</p>
+<p>  (4)**(客户端错误类)：请求包含错误语法或不能正确执行</p>
+<p>​    401 Unauthorized 客户试图未经授权访问受密码保护的页面，应答中会包含一个WWW-Authenticate头，浏览器据此显示用户名字&#x2F;密码对话框，然后在填写合适的Authorization头后再次发出请求；</p>
+<p>​    403 Forbidden 服务器拒绝请求——-403.6 IP address rejected</p>
+<p>​    404 Not Found 服务器上不存在客户机所请求的资源</p>
+<p> (5)**(服务端错误类)：服务器不能正确执行一个正确的请求</p>
+<p>​    500 Internal Server Error 服务器遇到一个错误，无法提供服务</p>
+<p>9、http1.0和http1.1的区别</p>
+<ul>
+<li><p>http1.1默认使用持久连接，流水线</p>
+<p>持久连接：客户端服务端任意一端没有明确提出断开TCP连接，就一直连接</p>
+<p>流水线：客户端每遇到一个对象引用就立即发出一个请求，不必等到收到前一个响应后才发出下一个请求，但服务器端必须按照接收到客户端请求的先后顺序一次回送响应结果，以保证客户端能区分每次请求的响应内容，这样减少了整个下载过程所需要的时间；</p>
+<p>http1.0默认使用短连接</p>
+</li>
+<li><p>100(Continue) Status(节约带宽)</p>
+</li>
+<li><p>http1.1增加host字段：在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname）。但随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。</p>
+<p> HTTP1.1的请求消息和响应消息都应支持Host头域，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）。此外，服务器应该接受以绝对路径标记的资源请求。</p>
+</li>
+</ul>
+<p>http2.0： 使用二进制传送(http1.x使用的是文本传送，即字符串传送)、支持多路复用、头部压缩、服务器推送；</p>
+<p>10、Session和Cookie区别</p>
+<ul>
+<li>存储位置不同，Session存储在服务器，cookie存储在客户端,所以session安全性更高</li>
+<li>session保存的是对象,cookie保存的是字符串</li>
+<li>生命周期不同：session默认直到关闭浏览器，cookie可以一直保存</li>
+<li>应用：Cookie判断用户是否登陆过网站。记录购物车信息</li>
+</ul>
+<p>11、打开网页到页面显示之间的过程</p>
+<p>​    输入网址</p>
+<p>​    域名解析</p>
+<p>​    与服务器TCP三次握手建立连接</p>
+<p>​    浏览器向服务器发送HTTP请求</p>
+<p>​    Web处理数据。并返回指定URL的数据</p>
+<p>​    浏览器下载数据后，解析源文件，显示基础页面    </p>
+<p>​    分析超链接页面，重复上述过程，完成全部显示</p>
+<p>12、select、poll、epoll</p>
+<p>select的缺点：</p>
+<p>​    1) 单个进程能够监视的文件描述符的数量存在最大限制，通常是1024，当然可以更改数量，但由于select采用轮询的方式扫描文件描述符，文件描述符数量越多，性能越差；(在linux内核头文件中，有这样的定义：#define __FD_SETSIZE    1024)</p>
+<p>​    2). 内核 &#x2F; 用户空间内存拷贝问题，select需要复制大量的句柄数据结构，产生巨大的开销；</p>
+<p>​    3). select返回的是含有整个句柄的数组，应用程序需要遍历整个数组才能发现哪些句柄发生了事件；</p>
+<p>​    4). select的触发方式是水平触发，应用程序如果没有完成对一个已经就绪的文件描述符进行IO操作，那么之后每次select调用还是会将这些文件描述符通知进程。</p>
+<p>poll：相比select模型，poll使用链表保存文件描述符，因此没有了监视文件数量的限制，但其他三个缺点依然存在。</p>
+<p>epoll:epoll的设计和实现与select完全不同。epoll通过在Linux内核中申请一个简易的文件系统(文件系统一般用什么数据结构实现？B+树)。把原先的select&#x2F;poll调用分成了3个部分：</p>
+<p>1）调用epoll_create()建立一个epoll对象(在epoll文件系统中为这个句柄对象分配资源)</p>
+<p>2）调用epoll_ctl向epoll对象中添加这100万个连接的套接字</p>
+<p>3）调用epoll_wait收集发生的事件的连接</p>
+<p>select和poll都只提供了一个函数——select或者poll函数。而epoll提供了三个函数，epoll_create,epoll_ctl和epoll_wait，epoll_create是创建一个epoll句柄；epoll_ctl是注册要监听的事件类型；epoll_wait则是等待事件的产生。</p>
+<p>　　对于第一个缺点，epoll的解决方案在epoll_ctl函数中。每次注册新的事件到epoll句柄中时（在epoll_ctl中指定EPOLL_CTL_ADD），会把所有的fd拷贝进内核，而不是在epoll_wait的时候重复拷贝。epoll保证了每个fd在整个过程中只会拷贝一次。</p>
+<p>　　对于第二个缺点，epoll的解决方案不像select或poll一样每次都把current轮流加入fd对应的设备等待队列中，而只在epoll_ctl时把current挂一遍（这一遍必不可少）并为每个fd指定一个回调函数，当设备就绪，唤醒等待队列上的等待者时，就会调用这个回调函数，而这个回调函数会把就绪的fd加入一个就绪链表）。epoll_wait的工作实际上就是在这个就绪链表中查看有没有就绪的fd（利用schedule_timeout()实现睡一会，判断一会的效果，和select实现中的第7步是类似的）。</p>
+<p>　　对于第三个缺点，epoll没有这个限制，它所支持的FD上限是最大可以打开文件的数目，这个数字一般远大于2048,举个例子,在1GB内存的机器上大约是10万左右，具体数目可以cat &#x2F;proc&#x2F;sys&#x2F;fs&#x2F;file-max察看,一般来说这个数目和系统内存关系很大。</p>
+<p><strong>总结：</strong></p>
+<p>（1）select，poll实现需要自己不断轮询所有fd集合，直到设备就绪，期间可能要睡眠和唤醒多次交替。而epoll其实也需要调用epoll_wait不断轮询就绪链表，期间也可能多次睡眠和唤醒交替，但是它是设备就绪时，调用回调函数，把就绪fd放入就绪链表中，并唤醒在epoll_wait中进入睡眠的进程。虽然都要睡眠和交替，但是select和poll在”醒着”的时候要遍历整个fd集合，而epoll在”醒着”的时候只要判断一下就绪链表是否为空就行了，这节省了大量的CPU时间。这就是回调机制带来的性能提升。</p>
+<p>（2）select，poll每次调用都要把fd集合从用户态往内核态拷贝一次，并且要把current往设备等待队列中挂一次，而epoll只要一次拷贝，而且把current往等待队列上挂也只挂一次（在epoll_wait的开始，注意这里的等待队列并不是设备等待队列，只是一个epoll内部定义的等待队列）。这也能节省不少的开销。</p>
+<p>13、五种IO模型</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/nufangrensheng/p/3588690.html">http://www.cnblogs.com/nufangrensheng/p/3588690.html</a></p>
+<p>14、MD5的值一致，他们对应的字符串也一致吗  –不一定</p>
+<p>15、socket通信</p>
+<p>16、路由器和交换机的区别</p>
+<ul>
+<li>交换机工作在数据链路层，路由器工作在网络层</li>
+<li>交换机转发数据帧，路由器转发IP分组</li>
+<li>交换机隔离冲突域，不隔离广播域，路由器隔离冲突域和广播域</li>
+</ul>
+<p>17、GET和POST请求方式的区别</p>
+<ul>
+<li>GET请求参数通过URL传递，POST放在Request body中</li>
+<li>GET请求在URL中传递的参数是有长度限制的，而POST没有</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息</li>
+<li>GET参数通过URL传递，POST放在Request body中，而URL会被浏览器主动缓存，所以GET请求会被浏览器主动缓存，而POST不会</li>
+</ul>
+<p>18、网络模型及对应协议</p>
+<ul>
+<li>应用层：HTTP、FTP、SMTP、DNS</li>
+<li>传输层：TCP、UDP</li>
+<li>网络层：IP、ICMP、IGMP</li>
+<li>数据链路层：ARP、RARP</li>
+<li>物理层：IEEE 802.1A、IEEE 802.2到IEEE 802.11</li>
+</ul>
+<p>19、TCP&#x2F;UDP报头</p>
+<p><img src="/images/TCP%E6%8A%A5%E5%A4%B4.png"></p>
+<p><img src="/images/UDP%E6%8A%A5%E5%A4%B4.png"></p>
+<p>20、水平触发与边缘触发</p>
+<ul>
+<li>水平触发：只要满足条件就发生一个事件</li>
+<li>边缘触发：只有状态变化时才发生事件</li>
+</ul>
+<p>21、Linux容器与虚拟机</p>
+<ul>
+<li>虚拟机是在硬件层面实现虚拟化，需要Hypervisor支持</li>
+<li>容器是在操作系统层面实现虚拟化，直接使用宿主机的内核</li>
+<li>虚拟机启动时间长，占用资源多；容器启动快，占用资源少</li>
+</ul>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>1、排序算法时间复杂度</p>
+<p><img src="/images/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6.png"></p>
+<p>2、线性表、AVL、hash表存储优劣</p>
+<ul>
+<li>线性表：插入删除慢，查找慢，但是结构简单</li>
+<li>AVL：插入删除适中，查找快，结构较复杂</li>
+<li>hash表：插入删除快，查找最快，但是需要额外空间</li>
+</ul>
+<p>3、B树、B+树</p>
+<p>B树：多路平衡查找树，每个节点既保存索引，又保存数据</p>
+<p>B+树：B树的变种，非叶子节点只保存索引，数据都保存在叶子节点，叶子节点之间通过指针连接</p>
+<p>4、红黑树对比BST、AVL、hash表</p>
+<ul>
+<li>红黑树：一种自平衡二叉查找树，通过节点着色保证平衡</li>
+<li>相比BST：红黑树保证了平衡，避免了BST在极端情况下退化为链表</li>
+<li>相比AVL：红黑树牺牲了部分平衡性换取插入&#x2F;删除时更少的旋转操作</li>
+<li>相比hash表：红黑树有序，适合范围查询；hash表无序但查找更快</li>
+</ul>
+<p>5、快排</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">quickSort</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> left, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="type">int</span> pivot = <span class="built_in">partition</span>(arr, left, right);</span><br><span class="line">        <span class="built_in">quickSort</span>(arr, left, pivot - <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">quickSort</span>(arr, pivot + <span class="number">1</span>, right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">partition</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> left, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> pivot = arr[right];</span><br><span class="line">    <span class="type">int</span> i = left - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = left; j &lt; right; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[j] &lt;= pivot) &#123;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="built_in">swap</span>(arr[i], arr[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">swap</span>(arr[i + <span class="number">1</span>], arr[right]);</span><br><span class="line">    <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6、最大子数组</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="type">int</span> nums[], <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> maxSum = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="type">int</span> currentSum = nums[<span class="number">0</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        currentSum = <span class="built_in">max</span>(nums[i], currentSum + nums[i]);</span><br><span class="line">        maxSum = <span class="built_in">max</span>(maxSum, currentSum);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>7、硬币找零</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">coinChange</span><span class="params">(<span class="type">int</span> coins[], <span class="type">int</span> n, <span class="type">int</span> amount)</span> </span>&#123;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(amount + <span class="number">1</span>, amount + <span class="number">1</span>)</span></span>;</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= amount; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (coins[j] &lt;= i) &#123;</span><br><span class="line">                dp[i] = <span class="built_in">min</span>(dp[i], dp[i - coins[j]] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> dp[amount] &gt; amount ? <span class="number">-1</span> : dp[amount];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>8、单调栈</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nextGreaterElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">result</span><span class="params">(n, <span class="number">-1</span>)</span></span>;</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt; s;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!s.<span class="built_in">empty</span>() &amp;&amp; nums[s.<span class="built_in">top</span>()] &lt; nums[i]) &#123;</span><br><span class="line">            result[s.<span class="built_in">top</span>()] = nums[i];</span><br><span class="line">            s.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        s.<span class="built_in">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>9、最长公共子串</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">longestCommonSubstring</span><span class="params">(string s1, string s2)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> m = s<span class="number">1.l</span>ength();</span><br><span class="line">    <span class="type">int</span> n = s<span class="number">2.l</span>ength();</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(m + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> maxLength = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> endIndex = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s1[i<span class="number">-1</span>] == s2[j<span class="number">-1</span>]) &#123;</span><br><span class="line">                dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (dp[i][j] &gt; maxLength) &#123;</span><br><span class="line">                    maxLength = dp[i][j];</span><br><span class="line">                    endIndex = i - <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> s<span class="number">1.</span><span class="built_in">substr</span>(endIndex - maxLength + <span class="number">1</span>, maxLength);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><p>1、存储过程</p>
+<p>存储过程是一组为了完成特定功能的SQL语句集，经编译后存储在数据库中，用户通过指定存储过程的名字并给定参数来调用执行。</p>
+<p>优点：</p>
+<ul>
+<li>减少网络流量</li>
+<li>提高执行效率</li>
+<li>增强安全性</li>
+<li>可复用性高</li>
+</ul>
+<p>2、索引</p>
+<p>索引是对数据库表中一列或多列的值进行排序的一种结构，使用索引可快速访问数据库表中的特定信息。</p>
+<p>优点：</p>
+<ul>
+<li>加快数据检索速度</li>
+<li>唯一索引可以保证数据的唯一性</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>创建和维护索引需要耗费时间和空间</li>
+<li>索引会降低表的更新速度</li>
+</ul>
+<p>3、事务的ACID特性</p>
+<ul>
+<li>原子性(Atomicity)：事务是一个不可分割的工作单位，要么全部执行，要么全部不执行</li>
+<li>一致性(Consistency)：事务执行前后，数据库从一个一致性状态变换到另一个一致性状态</li>
+<li>隔离性(Isolation)：多个事务并发执行时，一个事务的执行不应影响其他事务的执行</li>
+<li>持久性(Durability)：事务一旦提交，对数据库的改变是永久的</li>
+</ul>
+<p>4、乐观锁与悲观锁</p>
+<ul>
+<li>悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作</li>
+<li>乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性</li>
+</ul>
+<p>5、drop、delete与truncate的区别</p>
+<ul>
+<li>drop：删除表结构及所有数据</li>
+<li>truncate：删除表中所有数据，但保留表结构</li>
+<li>delete：可以删除部分数据，保留表结构</li>
+</ul>
+<p>性能：drop &gt; truncate &gt; delete</p>
+<p>6、视图</p>
+<p>视图是一个虚拟表，其内容由查询定义。视图可以包含表中的所有行或经过过滤的特定行。</p>
+<p>优点：</p>
+<ul>
+<li>简化复杂查询</li>
+<li>提高安全性</li>
+<li>数据独立性</li>
+</ul>
+<p>7、三个范式</p>
+<ul>
+<li>第一范式(1NF)：每个列都是不可分割的原子数据项</li>
+<li>第二范式(2NF)：在1NF的基础上，非主键列完全依赖于主键，而不是依赖于主键的一部分</li>
+<li>第三范式(3NF)：在2NF的基础上，非主键列只依赖于主键，不依赖于其他非主键</li>
+</ul>
+<p>8、MySQL索引类型</p>
+<ul>
+<li>HASH索引：基于哈希表实现，只有精确匹配索引所有列的查询才有效</li>
+<li>BTREE索引：基于B+树实现，适合范围查询</li>
+<li>RTREE索引：基于R树实现，用于存储空间数据</li>
+</ul>
+<p>9、索引种类</p>
+<ul>
+<li>普通索引：最基本的索引，没有任何限制</li>
+<li>唯一索引：索引列的值必须唯一，但允许有空值</li>
+<li>主键索引：特殊的唯一索引，不允许有空值</li>
+<li>组合索引：多个字段上创建的索引</li>
+<li>全文索引：用于全文搜索</li>
+</ul>
+<p>10、InnoDB和MyISAM索引的区别</p>
+<ul>
+<li>InnoDB是聚集索引，数据文件是和索引绑在一起的，必须有主键，通过主键索引效率很高</li>
+<li>MyISAM是非聚集索引，数据文件是分离的，索引保存的是数据文件的指针</li>
+</ul>
+<p>11、数据库索引为什么使用B+树</p>
+<ul>
+<li>B+树所有数据都在叶子节点，便于范围查询</li>
+<li>B+树叶子节点通过指针连接，便于遍历</li>
+<li>B+树非叶子节点只存储索引，可以存储更多索引，降低树的高度</li>
+<li>B+树查询性能稳定，每次查询都是从根节点到叶子节点</li>
+</ul>
+<p>12、MyISAM和InnoDB存储引擎的索引实现方式</p>
+<ul>
+<li>MyISAM：使用B+树作为索引结构，叶节点的data域存放的是数据记录的地址</li>
+<li>InnoDB：也是使用B+树作为索引结构，但数据文件本身就是主索引文件，叶节点包含了完整的数据记录</li>
+</ul>
+<p>13、优化查询的方法</p>
+<ul>
+<li>使用合适的索引</li>
+<li>避免使用SELECT *</li>
+<li>避免在WHERE子句中使用函数或表达式</li>
+<li>使用EXPLAIN分析查询</li>
+<li>合理设计表结构</li>
+<li>使用适当的连接类型</li>
+</ul>
+<p>14、海量访问的数据库优化方法</p>
+<ul>
+<li>读写分离</li>
+<li>分库分表</li>
+<li>使用缓存</li>
+<li>优化SQL和索引</li>
+<li>硬件升级</li>
+<li>使用NoSQL数据库</li>
+</ul>
+<p>15、防止SQL注入的方法</p>
+<ul>
+<li>使用预编译语句</li>
+<li>使用存储过程</li>
+<li>检查输入数据的类型</li>
+<li>过滤特殊字符</li>
+<li>使用ORM框架</li>
+</ul>
+<p>16、数据库四种隔离级别</p>
+<ul>
+<li>读未提交(Read Uncommitted)：可能出现脏读、不可重复读、幻读</li>
+<li>读已提交(Read Committed)：避免脏读，可能出现不可重复读、幻读</li>
+<li>可重复读(Repeatable Read)：避免脏读、不可重复读，可能出现幻读</li>
+<li>串行化(Serializable)：避免脏读、不可重复读、幻读，但并发性能最差</li>
+</ul>
+<p>脏读：事务A读取了事务B更新但未提交的数据<br>不可重复读：事务A多次读取同一数据，事务B在此期间更新了数据，导致事务A多次读取的数据不一致<br>幻读：事务A多次读取一个范围的记录，事务B在此期间插入了新记录，导致事务A多次读取的记录数不一致<br>丢失修改：两个事务同时修改同一数据，后提交的事务覆盖了先提交的事务的修改</p>
+<h1 id="海量数据处理"><a href="#海量数据处理" class="headerlink" title="海量数据处理"></a>海量数据处理</h1><p>1、海量数据处理的思路</p>
+<ul>
+<li>分而治之&#x2F;hash映射 + hash_map统计 + 堆&#x2F;快速&#x2F;归并排序</li>
+<li>多层划分</li>
+<li>Bloom filter&#x2F;Bitmap</li>
+<li>Trie树&#x2F;数据库&#x2F;倒排索引</li>
+<li>外排序</li>
+<li>分布式处理MapReduce</li>
+</ul>
+<p>2、分而治之</p>
+<ul>
+<li>将海量数据分解为小数据集</li>
+<li>使用hash映射将数据分散到多个小文件</li>
+<li>对每个小文件使用hash_map进行统计</li>
+<li>使用堆排序、快速排序或归并排序得到最终结果</li>
+</ul>
+<p>3、多层划分</p>
+<p>针对大范围数据，可以先分成小范围，然后逐步确定具体范围。例如，在1-1000中找出重复的数，可以先分成1-10,11-20,…,991-1000，然后再细分。</p>
+<p>4、Bloom filter&#x2F;Bitmap</p>
+<ul>
+<li>Bloom filter：一种空间效率高的概率型数据结构，用于判断一个元素是否在集合中</li>
+<li>Bitmap：用位数组表示集合，适合处理大量整数的去重和查询</li>
+</ul>
+<p>5、Trie树&#x2F;数据库&#x2F;倒排索引</p>
+<ul>
+<li>Trie树：适合处理大量字符串的存储和查找</li>
+<li>数据库：利用数据库的索引和查询优化</li>
+<li>倒排索引：搜索引擎常用的数据结构，记录单词到文档的映射</li>
+</ul>
+<p>6、外排序</p>
+<p>当数据量太大无法一次性装入内存时，可以使用外排序算法，如多路归并排序。</p>
+<p>7、分布式处理MapReduce</p>
+<p>MapReduce是一种编程模型，用于大规模数据集的并行运算。包含Map和Reduce两个阶段：</p>
+<ul>
+<li>Map：将输入分割成小数据块，分配给多个机器处理</li>
+<li>Reduce：汇总Map阶段的结果，得到最终输出</li>
+</ul>
+<p>8、从非常大的文件中随机取数</p>
+<ul>
+<li>使用蓄水池抽样算法</li>
+<li>使用随机索引</li>
+<li>分块处理后合并</li>
+</ul>
+<p>9、结合操作系统内存分页设计思想</p>
+<ul>
+<li>将大文件分页处理</li>
+<li>建立索引结构</li>
+<li>使用缓存机制</li>
+<li>采用虚拟内存思想，按需加载</li>
+</ul>
+<p>10、题库</p>
+<ul>
+<li>网络延迟：ping、traceroute</li>
+<li>数列规律：找规律、数学归纳法</li>
+<li>分布式系统CAP理论：一致性、可用性、分区容错性</li>
+<li>设计模式分类：创建型、结构型、行为型</li>
+<li>概率计算：贝叶斯定理、条件概率</li>
+<li>C++STL容器：vector、list、deque、map、set等</li>
+<li>SQL语言分类：DDL、DML、DCL、TCL</li>
+<li>SMTP&#x2F;SNMP协议：邮件传输&#x2F;网络管理</li>
+<li>网络字节序：大端序</li>
+<li>网站高可用性加强措施：负载均衡、集群、CDN、异地容灾</li>
+</ul>
+<pre><code>
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://walking9.github.io/2024/03/08/Review/" data-id="cmdx54h13000uq1mk3b7v0b1v" data-title="Review" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">海量数据处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/07/24/2025.07.24%E6%97%A5%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          2025.07.24日记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/11/15/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">嵌入式软件开发学习路线</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">About Me</h3>
+  <div class="widget about-widget">
+    <div class="about-avatar">
+      <img src="/images/shiba.jpg" alt="Avatar" />
+    </div>
+    <div class="about-info">
+      <ul>
+        <li><i class="fa fa-map-marker"></i> 上海市青浦区</li>
+        <li><i class="fa fa-envelope"></i> luka_auto@163.com</li>
+        <li><i class="fa fa-phone"></i> 177-1515-2023</li>
+        <li><i class="fa fa-briefcase"></i> C/C++工程师 @ 华为</li>
+      </ul>
+    </div>
+    <div class="about-description">
+      <p>👤 标签：程序员/toB售前/解决方案工程师/电子产品发烧友/AI忠实用户🏷️</p>
+      <p>✨ 6年工作经验，曾参与多款消费电子产品研发，现负责云计算AI+数据相关产品 🚀</p>
+      <p>💻 计算机语言：C/C++/Python/Go/Java 🛠️</p>
+      <p>🤖 积极拥抱AGI时代，职业发展全面转型，未来瞄准AI应用领域 🎯</p>
+      <p>🌟 致力于发展多元化能力：产品、运营、售前、开发等 💪</p>
+      <p>🐕 欢迎关注公众号：<strong>六边形的小狗</strong> 🔍</p>
+    </div>
+  </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">51单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSDN/" rel="tag">CSDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/" rel="tag">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/" rel="tag">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conclusion/" rel="tag">conclusion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nrf24l01/" rel="tag">nrf24l01</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A7%E5%93%81/" rel="tag">产品</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" rel="tag">学习路线</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag">数值计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" rel="tag">无线通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" rel="tag">歪比巴波🤐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">海量数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%F0%9F%A4%90/" rel="tag">🤐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">51单片机</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CSDN/" style="font-size: 10px;">CSDN</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/conclusion/" style="font-size: 10px;">conclusion</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/nrf24l01/" style="font-size: 10px;">nrf24l01</a> <a href="/tags/%E4%BA%A7%E5%93%81/" style="font-size: 10px;">产品</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">单片机</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 10px;">学习路线</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 20px;">嵌入式</a> <a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 12.5px;">技术</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" style="font-size: 15px;">数值计算</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 15px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">文件操作</a> <a href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" style="font-size: 12.5px;">无线通信</a> <a href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" style="font-size: 10px;">歪比巴波🤐</a> <a href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">海量数据处理</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" style="font-size: 10px;">软件开发</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 10px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%F0%9F%A4%90/" style="font-size: 10px;">🤐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/27/2025.07.27%E6%97%A5%E8%AE%B0/">2025.07.27日记</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/24/2025.07.24%E6%97%A5%E8%AE%B0/">2025.07.24日记</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/08/Review/">Review</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/15/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式软件开发学习路线</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/11/%E6%89%8B%E6%9C%BA%E4%BA%A7%E5%93%81%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">商业博客与个人博客系统的对比</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 Walking9<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

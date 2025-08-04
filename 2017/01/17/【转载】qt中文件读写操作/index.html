@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>【转载】qt中文件读写操作 | Walking9&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="【转载】qt中文件读写操作1、QIODevice直接继承自QObjectQIODevice类是输入&#x2F;输出设备的基类。QIODevice为设备提供了公共实现和抽象接口用于读写块数据。QIODevice是一个抽象类，不能被实例化。被Q3Socket,Q3SocketDevice,QAbstractSocket,QBuffer,QFile,QLocalSocket,QNetworkReply,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转载】qt中文件读写操作">
+<meta property="og:url" content="https://walking9.github.io/2017/01/17/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91qt%E4%B8%AD%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Walking9&#39;s Blog">
+<meta property="og:description" content="【转载】qt中文件读写操作1、QIODevice直接继承自QObjectQIODevice类是输入&#x2F;输出设备的基类。QIODevice为设备提供了公共实现和抽象接口用于读写块数据。QIODevice是一个抽象类，不能被实例化。被Q3Socket,Q3SocketDevice,QAbstractSocket,QBuffer,QFile,QLocalSocket,QNetworkReply,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20170329234559190?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170329234717348?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170329234804333?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="article:published_time" content="2017-01-17T05:23:24.000Z">
+<meta property="article:modified_time" content="2025-08-04T13:18:42.207Z">
+<meta property="article:author" content="Walking9">
+<meta property="article:tag" content="Qt">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="文件操作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170329234559190?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="Walking9's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Walking9&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I try to keep on moving</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://walking9.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-【转载】qt中文件读写操作" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/01/17/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91qt%E4%B8%AD%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time class="dt-published" datetime="2017-01-17T05:23:24.000Z" itemprop="datePublished">2017-01-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      【转载】qt中文件读写操作
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="【转载】qt中文件读写操作"><a href="#【转载】qt中文件读写操作" class="headerlink" title="【转载】qt中文件读写操作"></a>【转载】qt中文件读写操作</h1><p>1、QIODevice<br>直接继承自QObject<br>QIODevice类是输入&#x2F;输出设备的基类。<br>QIODevice为设备提供了公共实现和抽象接口用于读写块数据。<br>QIODevice是一个抽象类，不能被实例化。<br>被Q3Socket,Q3SocketDevice,QAbstractSocket,QBuffer,QFile,QLocalSocket,QNetworkReply,QProcess继承.</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>2、QFile</p>
+<p>继承自QIODevice</p>
+<p>QFile类是一个操作文件的输入&#x2F;输出设备。</p>
+<p>QFile是用来读写二进制文件和文本文件的输入&#x2F;输出设备。QFile可以自己单独被使用，但是如果和QDataStream或QTextStream一起使用将更加方便。</p>
+<p>文件名通常可以通过构造函数来传递，但也可以使用setName()来设置。目录分隔符在任何操作系统下都使用“&#x2F;“,“&#x2F;“不被支持。你可以通过exists()来检查一个文件是否存在并且可以通过remove()来移去一个文件。更多操作系统相关的高级文件系统操作QT提供了QFileInfo和QDir类.</p>
+<p>文件可以用open()来打开、用close()来关闭、用flush()来刷新。数据通常可以使用QDataStream或者QTextStream进行读写，但你也可以使用read(),readLine(),readAll(),write()读写。QFile也支持getChar(),putChar(),和ungetChar()</p>
+<p>size()可以返回文件的大小。你可以通过使用pos()函数得到当前文件位置或者使用seek()移到一个新的文件位置。如果你到了文件的末尾，atEnd()返回真。</p>
+<p>例1：一行一行读取文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;QtCore/QCoreApplication&gt;  </span><br><span class="line">#include &lt;QFile&gt;  </span><br><span class="line">#include &lt;QDebug&gt;  </span><br><span class="line">#include &lt;QTextCodec&gt;  </span><br><span class="line">int main(int argc, char *argv[])  </span><br><span class="line">&#123;  </span><br><span class="line">    QCoreApplication a(argc, argv);  </span><br><span class="line">    //中文支持  </span><br><span class="line">    QTextCodec *codec = QTextCodec::codecForName(&quot;UTF-8&quot;);  </span><br><span class="line">    QTextCodec::setCodecForCStrings(codec);  </span><br><span class="line">      </span><br><span class="line">    QFile file(&quot;/home/administrator/testdir/test.txt&quot;);  </span><br><span class="line">    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) &#123;  </span><br><span class="line">        qDebug()&lt;&lt;&quot;Can&#x27;t open the file!&quot;&lt;&lt;endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">    while(!file.atEnd()) &#123;  </span><br><span class="line">        QByteArray line = file.readLine();  </span><br><span class="line">        QString str(line);  </span><br><span class="line">        qDebug()&lt;&lt; str;  </span><br><span class="line">    &#125;  </span><br><span class="line">    return a.exec();  </span><br><span class="line">&#125;   </span><br></pre></td></tr></table></figure>
+
+<p>  使用QTextStream读取文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;QtCore/QCoreApplication&gt;  </span><br><span class="line">#include &lt;QFile&gt;  </span><br><span class="line">#include &lt;QDebug&gt;  </span><br><span class="line">#include &lt;QTextCodec&gt;  </span><br><span class="line">int main(int argc, char *argv[])  </span><br><span class="line">&#123;  </span><br><span class="line">    QCoreApplication a(argc, argv);  </span><br><span class="line">    //中文支持  </span><br><span class="line">    QTextCodec *codec = QTextCodec::codecForName(&quot;UTF-8&quot;);  </span><br><span class="line">    QTextCodec::setCodecForCStrings(codec);  </span><br><span class="line">    //QTextCodec::setCodecForTr(codec);  </span><br><span class="line">    //QTextCodec::setCodecForLocale(codec);  </span><br><span class="line">    QFile file(&quot;/home/administrator/testdir/test.txt&quot;);  </span><br><span class="line">    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) &#123;  </span><br><span class="line">        qDebug()&lt;&lt;&quot;Can&#x27;t open the file!&quot;&lt;&lt;endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">    QTextStream in(&amp;file);  </span><br><span class="line">    while( !in.atEnd())&#123;  </span><br><span class="line">        QString line = in.readLine();  </span><br><span class="line">        qDebug() &lt;&lt; line;  </span><br><span class="line">    &#125;  </span><br><span class="line">    return a.exec();  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<p>QDataStream 重载了运算符了”&lt;&lt;”写数据，&gt;&gt;读数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;QtCore/QCoreApplication&gt;  </span><br><span class="line">#include &lt;QFile&gt;  </span><br><span class="line">#include &lt;QDebug&gt;  </span><br><span class="line">#include &lt;QTextCodec&gt;  </span><br><span class="line">int main(int argc, char *argv[])  </span><br><span class="line">&#123;  </span><br><span class="line">    QCoreApplication a(argc, argv);  </span><br><span class="line">    //中文支持  </span><br><span class="line">    QTextCodec *codec = QTextCodec::codecForName(&quot;UTF-8&quot;);  </span><br><span class="line">    QTextCodec::setCodecForCStrings(codec);  </span><br><span class="line">    //QTextCodec::setCodecForTr(codec);  </span><br><span class="line">    //QTextCodec::setCodecForLocale(codec);  </span><br><span class="line">    QFile file(&quot;/home/administrator/testdir/test.txt&quot;);  </span><br><span class="line">    if(!file.open(QIODevice::ReadWrite | QIODevice::Text)) &#123;  </span><br><span class="line">        qDebug()&lt;&lt;&quot;Can&#x27;t open the file!&quot;&lt;&lt;endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">    QTextStream stream(&amp;file);  </span><br><span class="line">    QString line_in;  </span><br><span class="line">//    while( !stream.atEnd())&#123;  </span><br><span class="line">//        line_in = stream.readLine();  </span><br><span class="line">//        qDebug() &lt;&lt; line_in;  </span><br><span class="line">//    &#125;  </span><br><span class="line">//    stream.seek(stream.pos());  </span><br><span class="line">    stream.seek(file.size());//将当前读取文件指针移动到文件末尾  </span><br><span class="line">    int count = 0;  </span><br><span class="line">    while(count &lt; 10)&#123;  </span><br><span class="line">        stream &lt;&lt; QObject::trUtf8(&quot;新建行:&quot;) &lt;&lt;++count&lt;&lt;&quot;/n&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">    stream.seek(0);//将当前读取文件指针移动到文件开始  </span><br><span class="line">    while( !stream.atEnd())&#123;  </span><br><span class="line">        line_in = stream.readLine();  </span><br><span class="line">        qDebug() &lt;&lt; line_in;  </span><br><span class="line">    &#125;  </span><br><span class="line">    return a.exec();  </span><br><span class="line">&#125;   </span><br></pre></td></tr></table></figure>
+<p>3、QDir<br>     QDir类提供了访问目录结构和他们的内容。<br>     QDir类提供了访问目录结构和它们的内容的与平台无关的方式。<br>     QDir用来操作路径名称、关于路径和文件的访问信息和操作底层文件系统。<br>     QDir使用相对或绝对文件路径来指向一个文件。绝对路径是从目录分隔符“&#x2F;”或者带有一个驱动器标识（除了在Unix下）。如果你总是使用“&#x2F;”作为目录分隔符，Qt将会把你的路径转化为符合底层的操作系统的。相对文件名是由一个目录名称或者文件名开始并且指定一个相对于当前路径的路径。<br>例如绝对路径：<br>     QDir(“&#x2F;home&#x2F;administrator&#x2F;soft”);<br>     QDir(“D:&#x2F;software”);<br>     我们可以使用isRelative()或isAbsolute()函数确认QDir是用的相对路径还是绝对路径。使用makeAbsolute()来转换相对路径的QDir转换成绝对路径的QDir.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;QtCore/QCoreApplication&gt;  </span><br><span class="line">#include &lt;QDir&gt;  </span><br><span class="line">#include &lt;QList&gt;  </span><br><span class="line">#include &lt;QFileInfoList&gt;  </span><br><span class="line">#include &lt;QDebug&gt;  </span><br><span class="line">#include &lt;QTextCodec&gt;  </span><br><span class="line">int main(int argc, char *argv[])  </span><br><span class="line">&#123;  </span><br><span class="line">    QCoreApplication a(argc, argv);  </span><br><span class="line">    QTextCodec *codec = QTextCodec::codecForName(&quot;GB2312&quot;);  </span><br><span class="line">    QTextCodec::setCodecForLocale(codec);  </span><br><span class="line">    QTextCodec::setCodecForCStrings(codec);  </span><br><span class="line">    QTextCodec::setCodecForTr(codec);  </span><br><span class="line">  </span><br><span class="line">    QDir d(&quot;D:/&quot;);  </span><br><span class="line">    d.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks | QDir::AllDirs);//列出文件,列出隐藏文件（在Unix下就是以.开始的为文件）,不列出符号链接（不支持符号连接的操作系统会忽略）  </span><br><span class="line">    d.setSorting(QDir::Size | QDir::Reversed);//按文件大小排序，相反的排序顺序  </span><br><span class="line">    const QFileInfoList list = d.entryInfoList();//返回这个目录中所有目录和文件的QFileInfo对象的列表  </span><br><span class="line">    QFileInfoList::const_iterator iterator = list.begin();  </span><br><span class="line">    qDebug() &lt;&lt; &quot;目录和文件的数量: &quot; &lt;&lt; d.count();//返回找到的目录和文件的数量  </span><br><span class="line">    qDebug() &lt;&lt; &quot;fileName/t/t/tsize/t/t/t&quot;;  </span><br><span class="line">    while(iterator != list.end())&#123;  </span><br><span class="line">        qDebug() &lt;&lt; (*iterator).fileName()&lt;&lt;&quot;/t/t/t&quot;&lt;&lt;(*iterator).size();  </span><br><span class="line">        iterator++;  </span><br><span class="line">    &#125;  </span><br><span class="line">    qDebug() &lt;&lt; &quot;当前目录: &quot; &lt;&lt; d.current();//返回应用程序当前目录。  </span><br><span class="line">    qDebug() &lt;&lt; &quot;当前目录的绝对路径&quot; &lt;&lt; d.currentPath();//返回应用程序当前目录的绝对路径。  </span><br><span class="line">//    const QList&lt;QString&gt; list = d.entryList(); //返回这个目录中所有目录和文件的名称的列表  </span><br><span class="line">//    QList&lt;QString&gt;::const_iterator iterator = list.begin();  </span><br><span class="line">//    while(iterator != list.end())&#123;  </span><br><span class="line">//        qDebug() &lt;&lt; (*iterator);  </span><br><span class="line">//        iterator++;  </span><br><span class="line">//    &#125;  </span><br><span class="line">  </span><br><span class="line">     return a.exec();  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20170329234559190?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>4、QFileInfo<br>     QFileInfo类提供了一个与平台无关的文件信息.<br>     QFileInfo提供了关于系统中的文件名称和位置，访问权限和是否是符号链接，文件大小和上次修改&#x2F;读写时间等，也能被用于Qt资源文件。<br>     QFileInfo能通过相对&#x2F;绝对路径指向一个文件。<br>     可以使用isFile(),isDir(),isSymLink().symLinkTarget()函数提供符号链接的目标文件。<br>      在Unix（包括Mac OS X）的符号链接具有与目标文件相同的大小（），因为Unix透明地处理符号链接;同样，打开一个符号连接使用的QFile有效地打开链接的目标.</p>
+<pre><code>在Windows中，符号链接（快捷方式）的lnk文件。它大小（）的是，符号链接（而不是链接的目标）的大小，打开一个符号连接使用的QFile并打开。lnk文件。例如   
+ 
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;QtCore/QCoreApplication&gt;  </span><br><span class="line">#include &lt;QFileInfo&gt;  </span><br><span class="line">#include &lt;QDebug&gt;  </span><br><span class="line">  </span><br><span class="line">int main(int argc, char *argv[])  </span><br><span class="line">&#123;  </span><br><span class="line">    QCoreApplication a(argc, argv);  </span><br><span class="line">    QFileInfo info1(&quot;E:/meego/vi_command.lnk&quot;);  </span><br><span class="line">    qDebug() &lt;&lt; info1.isSymLink();  </span><br><span class="line">    qDebug() &lt;&lt; info1.absoluteFilePath();  </span><br><span class="line">    qDebug() &lt;&lt; info1.size();  </span><br><span class="line">    qDebug() &lt;&lt; info1.symLinkTarget();  </span><br><span class="line">    qDebug() &lt;&lt; &quot;**********************&quot;;  </span><br><span class="line">    QFileInfo info2(info1.symLinkTarget());  </span><br><span class="line">    qDebug() &lt;&lt; info2.isSymLink();  </span><br><span class="line">    qDebug() &lt;&lt; info2.absoluteFilePath();  </span><br><span class="line">    qDebug() &lt;&lt; info2.size();  </span><br><span class="line">  </span><br><span class="line">    return a.exec();  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20170329234717348?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;QtCore/QCoreApplication&gt;  </span><br><span class="line">#include &lt;QFileInfo&gt;  </span><br><span class="line">#include &lt;QDebug&gt;  </span><br><span class="line">#include &lt;QTextCodec&gt;  </span><br><span class="line">  </span><br><span class="line">int main(int argc, char *argv[])  </span><br><span class="line">&#123;  </span><br><span class="line">    QCoreApplication a(argc, argv);  </span><br><span class="line">  </span><br><span class="line">    QTextCodec *codec = QTextCodec::codecForName(&quot;GB2312&quot;);  </span><br><span class="line">    QTextCodec::setCodecForLocale(codec);  </span><br><span class="line">    QTextCodec::setCodecForCStrings(codec);  </span><br><span class="line">    QTextCodec::setCodecForTr(codec);  </span><br><span class="line">  </span><br><span class="line">    QFileInfo info(&quot;E:/meego/基本命令与VI.Command.txt&quot;);  </span><br><span class="line">    qDebug() &lt;&lt; info.baseName();//不包括后缀名  </span><br><span class="line">    qDebug() &lt;&lt; info.bundleName();//只有在Mac OS才有用，其它平台为空字符串  </span><br><span class="line">    qDebug() &lt;&lt; info.suffix();//后缀名  </span><br><span class="line">    qDebug() &lt;&lt; info.completeBaseName();//不包括后缀名  </span><br><span class="line">    qDebug() &lt;&lt; info.completeSuffix();//完整的后缀名  </span><br><span class="line">    return a.exec();  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20170329234804333?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://walking9.github.io/2017/01/17/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91qt%E4%B8%AD%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C/" data-id="cmdx54h170012q1mke5lz2c6e" data-title="【转载】qt中文件读写操作" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">文件操作</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/22/51%E5%AD%A6%E4%B9%A0%E5%BA%93%E7%9A%84%E5%87%A0%E7%82%B9%E8%AF%B4%E6%98%8E/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          51学习库的几点说明
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">About Me</h3>
+  <div class="widget about-widget">
+    <div class="about-avatar">
+      <img src="/images/shiba.jpg" alt="Avatar" />
+    </div>
+    <div class="about-info">
+      <ul>
+        <li><i class="fa fa-map-marker"></i> 上海市青浦区</li>
+        <li><i class="fa fa-envelope"></i> luka_auto@163.com</li>
+        <li><i class="fa fa-phone"></i> 177-1515-2023</li>
+        <li><i class="fa fa-briefcase"></i> C/C++工程师 @ 华为</li>
+      </ul>
+    </div>
+    <div class="about-description">
+      <p>👤 标签：程序员/toB售前/解决方案工程师/电子产品发烧友/AI忠实用户🏷️</p>
+      <p>✨ 6年工作经验，曾参与多款消费电子产品研发，现负责云计算AI+数据相关产品 🚀</p>
+      <p>💻 计算机语言：C/C++/Python/Go/Java 🛠️</p>
+      <p>🤖 积极拥抱AGI时代，职业发展全面转型，未来瞄准AI应用领域 🎯</p>
+      <p>🌟 致力于发展多元化能力：产品、运营、售前、开发等 💪</p>
+      <p>🐕 欢迎关注公众号：<strong>六边形的小狗</strong> 🔍</p>
+    </div>
+  </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">51单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSDN/" rel="tag">CSDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/" rel="tag">Hibernate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/" rel="tag">IDEA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi/" rel="tag">WiFi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conclusion/" rel="tag">conclusion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nrf24l01/" rel="tag">nrf24l01</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A7%E5%93%81/" rel="tag">产品</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" rel="tag">单片机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" rel="tag">学习路线</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag">数值计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" rel="tag">无线通信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" rel="tag">歪比巴波🤐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag">海量数据处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C/" rel="tag">阿里</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%F0%9F%A4%90/" rel="tag">🤐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">51单片机</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/CSDN/" style="font-size: 10px;">CSDN</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Qt/" style="font-size: 10px;">Qt</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/WiFi/" style="font-size: 10px;">WiFi</a> <a href="/tags/conclusion/" style="font-size: 10px;">conclusion</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/nrf24l01/" style="font-size: 10px;">nrf24l01</a> <a href="/tags/%E4%BA%A7%E5%93%81/" style="font-size: 10px;">产品</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 17.5px;">单片机</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 10px;">学习路线</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" style="font-size: 20px;">嵌入式</a> <a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 12.5px;">技术</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" style="font-size: 15px;">数值计算</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 15px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">文件操作</a> <a href="/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/" style="font-size: 12.5px;">无线通信</a> <a href="/tags/%E6%AD%AA%E6%AF%94%E5%B7%B4%E6%B3%A2%F0%9F%A4%90/" style="font-size: 10px;">歪比巴波🤐</a> <a href="/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 10px;">海量数据处理</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%BB%8F%E9%AA%8C/" style="font-size: 10px;">经验</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" style="font-size: 10px;">软件开发</a> <a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 10px;">阿里</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%F0%9F%A4%90/" style="font-size: 10px;">🤐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/27/2025.07.27%E6%97%A5%E8%AE%B0/">2025.07.27日记</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/24/2025.07.24%E6%97%A5%E8%AE%B0/">2025.07.24日记</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/08/Review/">Review</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/15/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">嵌入式软件开发学习路线</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/11/%E6%89%8B%E6%9C%BA%E4%BA%A7%E5%93%81%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">商业博客与个人博客系统的对比</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 Walking9<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
