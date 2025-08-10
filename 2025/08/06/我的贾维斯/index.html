@@ -4,26 +4,21 @@
   <meta charset="utf-8">
   
   
-  <title>非线性方程求根迭代法 | Walking9&#39;s Blog</title>
+  <title>在AI时代，拥有属于你的“贾维斯” | Walking9&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="非线性方程求根迭代法 实验目的  (1)	熟悉非线性方程求根简单迭代法，牛顿迭代及牛顿下山法(2)	能编程实现简单迭代法，牛顿迭代及牛顿下山法(3)	认识选择迭代格式的重要性(4)	对迭代速度建立感性的认识；分析实验结果体会初值对迭代的影响  实验内容   **本次实验参考公式**   二、实验过程【参考代码】 1234567891011121314151617181920212223242526">
+  <meta name="description" content="同步微信公众号文章在AI时代，拥有属于你的“贾维斯”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="非线性方程求根迭代法">
-<meta property="og:url" content="https://walking9.github.io/2017/11/08/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E6%B1%82%E6%A0%B9%E8%BF%AD%E4%BB%A3%E6%B3%95/index.html">
+<meta property="og:title" content="在AI时代，拥有属于你的“贾维斯”">
+<meta property="og:url" content="https://walking9.github.io/2025/08/06/%E6%88%91%E7%9A%84%E8%B4%BE%E7%BB%B4%E6%96%AF/index.html">
 <meta property="og:site_name" content="Walking9&#39;s Blog">
-<meta property="og:description" content="非线性方程求根迭代法 实验目的  (1)	熟悉非线性方程求根简单迭代法，牛顿迭代及牛顿下山法(2)	能编程实现简单迭代法，牛顿迭代及牛顿下山法(3)	认识选择迭代格式的重要性(4)	对迭代速度建立感性的认识；分析实验结果体会初值对迭代的影响  实验内容   **本次实验参考公式**   二、实验过程【参考代码】 1234567891011121314151617181920212223242526">
+<meta property="og:description" content="同步微信公众号文章在AI时代，拥有属于你的“贾维斯”">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdn.net/20170407192904537?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-blog.csdn.net/20170407193129384?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-blog.csdn.net/20170407193710589?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="article:published_time" content="2017-11-08T05:23:24.000Z">
-<meta property="article:modified_time" content="2025-08-04T13:36:38.888Z">
+<meta property="article:published_time" content="2025-08-06T12:45:30.000Z">
+<meta property="article:modified_time" content="2025-08-10T06:22:22.896Z">
 <meta property="article:author" content="Walking9">
-<meta property="article:tag" content="数值计算">
-<meta property="article:tag" content="算法">
-<meta property="article:tag" content="数学">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="思考">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdn.net/20170407192904537?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
     <link rel="alternate" href="/atom.xml" title="Walking9's Blog" type="application/atom+xml">
   
@@ -84,10 +79,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-非线性方程求根迭代法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-我的贾维斯" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2017/11/08/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E6%B1%82%E6%A0%B9%E8%BF%AD%E4%BB%A3%E6%B3%95/" class="article-date">
-  <time class="dt-published" datetime="2017-11-08T05:23:24.000Z" itemprop="datePublished">2017-11-08</time>
+    <a href="/2025/08/06/%E6%88%91%E7%9A%84%E8%B4%BE%E7%BB%B4%E6%96%AF/" class="article-date">
+  <time class="dt-published" datetime="2025-08-06T12:45:30.000Z" itemprop="datePublished">2025-08-06</time>
 </a>
     
   </div>
@@ -98,7 +93,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      非线性方程求根迭代法
+      在AI时代，拥有属于你的“贾维斯”
     </h1>
   
 
@@ -106,30 +101,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="非线性方程求根迭代法"><a href="#非线性方程求根迭代法" class="headerlink" title="非线性方程求根迭代法"></a>非线性方程求根迭代法</h1><pre><code> 实验目的
-</code></pre>
-<p>(1)	熟悉非线性方程求根简单迭代法，牛顿迭代及牛顿下山法<br>(2)	能编程实现简单迭代法，牛顿迭代及牛顿下山法<br>(3)	认识选择迭代格式的重要性<br>(4)	对迭代速度建立感性的认识；分析实验结果体会初值对迭代的影响</p>
-<pre><code> 实验内容
-</code></pre>
-<p><img src="https://img-blog.csdn.net/20170407192904537?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<pre><code>**本次实验参考公式**
-</code></pre>
-<p><img src="https://img-blog.csdn.net/20170407193129384?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>二、实验过程<br>【参考代码】</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line"></span><br><span class="line">double IterationFunction(double x)    //迭代函数</span><br><span class="line">&#123;</span><br><span class="line">    return pow(x+1.0, 1.0/3);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double function(double x)    //原函数 f(x)</span><br><span class="line">&#123;</span><br><span class="line">    return x*x*x-x-1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double derivativeFunction(double x)    //导函数 f&#x27;(x)</span><br><span class="line">&#123;</span><br><span class="line">    return 3*x*x-1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double Iteration(double x0, double e, int N)    //一般迭代算法</span><br><span class="line">//输入参数： x0 初值， e 精度， N 最大迭代次数</span><br><span class="line">&#123;</span><br><span class="line">    int k = 0;    //当前迭代次数</span><br><span class="line">    double x1;    //终值</span><br><span class="line">    printf(&quot;--------------------------一般迭代算法过程----------------------------\n&quot;);</span><br><span class="line">    printf(&quot;k = %d:    x%d = %lf\n&quot;, k, k, x0);</span><br><span class="line">    while(k &lt; N)</span><br><span class="line">    &#123;</span><br><span class="line">        x1 = IterationFunction(x0);</span><br><span class="line">        k++;</span><br><span class="line">        printf(&quot;k = %d:    x%d = %lf\n&quot;, k, k, x1);</span><br><span class="line">        if(fabs(x1-x0) &lt; e)    //判断是否达到精度,满足要求结束程序，否则继续迭代</span><br><span class="line">            return x1;</span><br><span class="line">        x0 = x1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;    //迭代失败：迭代次数超过最大迭代次数，精度未达到要求</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double AitkenAccelerate(double x0, double e, int N)    //Aitken加速算法</span><br><span class="line">//输入参数： x0 初值， e 精度， N 最大迭代次数、</span><br><span class="line">&#123;</span><br><span class="line">    int k = 0;</span><br><span class="line">    double x1, x2, x3;</span><br><span class="line">    printf(&quot;--------------------------Aitken加速算法过程----------------------------\n&quot;);</span><br><span class="line">    printf(&quot;k = %d:   x%d=%lf\n&quot;, k, k, x0);</span><br><span class="line">    while(k &lt; N)</span><br><span class="line">    &#123;</span><br><span class="line">        x1 = IterationFunction(x0);    //迭代</span><br><span class="line">        x2 = IterationFunction(x1);    //迭代</span><br><span class="line">        x3 = x2 - (x2-x1)*(x2-x1)/(x2-2*x1+x0);    //改进</span><br><span class="line">        k++;</span><br><span class="line">        printf(&quot;k = %d:   x%d(-)=%lf,   x%d(~)=%lf,   x%d=%lf\n&quot;, k, k, x1, k, x2, k, x3);</span><br><span class="line">        if(fabs(x3-x0) &lt; e)</span><br><span class="line">            return x3;</span><br><span class="line">        x0 = x3;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double Newton(double x0, double e, int N)    //Newton算法</span><br><span class="line">&#123;</span><br><span class="line">    int k = 0;</span><br><span class="line">    double x1;</span><br><span class="line">    printf(&quot;---------------------------Newton算法过程---------------------------\n&quot;);</span><br><span class="line">    printf(&quot;k = %d:    x%d = %lf\n&quot;, k, k, x0);</span><br><span class="line">    while(k &lt; N)</span><br><span class="line">    &#123;</span><br><span class="line">        if(0 == derivativeFunction(x0))    //分母不可为0</span><br><span class="line">            return -1.999999;     //导函数值为0，返回-1.999999作为错误标志</span><br><span class="line">        x1 = x0 - function(x0)/derivativeFunction(x0);     //使用Newton迭代函数</span><br><span class="line">        k++;</span><br><span class="line">        printf(&quot;k = %d:    x%d = %lf\n&quot;, k, k, x1);</span><br><span class="line">        if(fabs(x1-x0) &lt; e)</span><br><span class="line">            return x1;</span><br><span class="line">        x0 = x1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">double NewtonDown(double x0, double e, int N)    //Newton下山算法</span><br><span class="line">&#123;</span><br><span class="line">    int k = 0;</span><br><span class="line">    double x1;</span><br><span class="line">    double down = 1.0;    //下山因子</span><br><span class="line">    printf(&quot;---------------------------Newton下山算法过程---------------------------\n&quot;);</span><br><span class="line">    printf(&quot;k = %d:    x%d = %lf\n&quot;, k, k, x0);</span><br><span class="line">    while(k &lt; N)</span><br><span class="line">    &#123;</span><br><span class="line">        if(0 == derivativeFunction(x0))    //分母不可为0</span><br><span class="line">            return -1.999999;     //导函数值为0，返回-1.999999作为错误标志</span><br><span class="line">        down = 1.0;</span><br><span class="line">        x1 = x0 - down*function(x0)/derivativeFunction(x0);     //使用Newton迭代函数</span><br><span class="line">        while(fabs(function(x1)) &gt;= fabs(function(x0)))</span><br><span class="line">        &#123;</span><br><span class="line">            down /= 2;    //下山因子减半</span><br><span class="line">            x1 = x0 - down*function(x0)/derivativeFunction(x0);</span><br><span class="line">        &#125;</span><br><span class="line">        k++;</span><br><span class="line">        if(down &lt;= 0.0000001)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;下山失败，没有找到合适的下山因子，请另选初值\n&quot;);</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;k = %d:    x%d = %lf, 下山因子 = %lf\n&quot;, k, k, x1, down);</span><br><span class="line">        if(fabs(x1-x0) &lt; e)</span><br><span class="line">            return x1;</span><br><span class="line">        x0 = x1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    double answer;</span><br><span class="line">    answer = Iteration(0.6, 0.000001, 20);</span><br><span class="line">    //在此将迭代次数设置尽可能大，不考虑迭代失败的情况</span><br><span class="line">    printf(&quot;一般迭代算法求得最终结果： x = %lf\n\n&quot;, answer);</span><br><span class="line">    answer = AitkenAccelerate(1.5, 0.000001, 10);</span><br><span class="line">    printf(&quot;Aitken加速算法求得最终结果： x = %lf\n\n&quot;, answer);</span><br><span class="line">    answer = Newton(0.6, 0.000001, 20);</span><br><span class="line">    printf(&quot;Newton算法求得最终结果： x = %lf\n\n&quot;, answer);</span><br><span class="line">    answer = NewtonDown(0.6, 0.000001, 20);</span><br><span class="line">    printf(&quot;Newton算法求得最终结果： x = %lf\n\n&quot;, answer);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>三、实验结果</p>
-<p><img src="https://img-blog.csdn.net/20170407193710589?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQnJ1bm9u/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>四、写在后面<br>        经历了几次有关数值分析的程序编写之后，有了一定的将数学知识转化为程序的能力，但是一些高级的算法还是得有较厚的数学功底，利用数学解决实际工程问题才是最终的目的，希望在这条道路上有所成长。</p>
+        <p>同步微信公众号文章<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/KRrkyqhve9zOvcgPhXUwwQ">在AI时代，拥有属于你的“贾维斯”</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://walking9.github.io/2017/11/08/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E6%B1%82%E6%A0%B9%E8%BF%AD%E4%BB%A3%E6%B3%95/" data-id="cme5arld600611ymk7igaeol7" data-title="非线性方程求根迭代法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://walking9.github.io/2025/08/06/%E6%88%91%E7%9A%84%E8%B4%BE%E7%BB%B4%E6%96%AF/" data-id="cme5arlbk001b1ymk64p4b3rq" data-title="在AI时代，拥有属于你的“贾维斯”" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag">数值计算</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%80%83/" rel="tag">思考</a></li></ul>
 
     </footer>
   </div>
@@ -137,19 +118,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/11/09/%E6%B1%82%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2025/08/10/%E7%94%A8Trae%E4%BB%8E0%E5%88%B01%E6%89%93%E9%80%A0%E6%83%85%E7%BB%AA%E7%96%97%E6%84%88App%E5%AE%9E%E6%88%98%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前一篇</strong>
       <div class="article-nav-title">
         
-          求解线性方程组
+          用Trae从0到1打造情绪疗愈App实战记录
         
       </div>
     </a>
   
   
-    <a href="/2017/06/23/%E7%94%A8wifi%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2025/07/27/2025.07.27%E6%97%A5%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">用wifi模块开发项目</div>
+      <div class="article-nav-title">2025.07.27日记</div>
     </a>
   
 </nav>
